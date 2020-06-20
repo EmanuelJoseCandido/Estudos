@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="style.css">
+		<title>Exercise three</title>
+	</head>
+	<body>
+		<header>
+			<a href="index.html">Back for the menu</a>
+		</header>
+		
+		<main>
+			
+		</main>
+		
+		<footer>
+			<p> &copy; Emanuel Cândido</p>
+		<footer>
+		
+		<script>
+
+			/*
+				Escreva uma função que verifique se o vetor de habilidades passado possui a habilidade 
+				"Javascript"e retorna um booleano true/false caso exista ou não.
+			*/
+
+			function haveSkills(skills){
+				if(skills.indexOf('Javascript') == 0){
+					return true;
+				}
+				else{
+					return false;
+				}
+			}
+
+			let skills = ['Javascript', 'React', 'React Native', 'PHP', 'JAVA', 'C++']; 
+			let mainLElement = document.querySelector('main');
+			let divElement = document.createElement('div');
+			let paragraphElement = document.createElement('p');
+			let textElement = document.createTextNode(haveSkills(skills));
+			let text = "The programer have Javascript skills ? <br> R: ";
+
+			divElement.style.color = 'black';
+			paragraphElement.innerHTML = text;
+			paragraphElement.appendChild(textElement);
+			divElement.appendChild(paragraphElement);
+			mainLElement.appendChild(divElement);
+
+
+		</script>
+	<body>
+</html>
