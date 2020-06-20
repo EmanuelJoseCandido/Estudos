@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="style.css">
+		<title>Exercise One</title>
+	</head>
+	<body>
+		<header>
+			<a href="index.html">Back for the menu</a>
+		</header>
+		
+		<main>
+		
+		</main>
+		
+		<footer>
+			<p> &copy; Emanuel Cândido</p>
+		<footer>
+		
+		<script>
+			var addressAngola = {
+				province: "Luanda",
+				contry: "Belas",
+				neighborhood: "Autodromo",
+				street: "Das Aves",
+				houseNumber: 12
+			};
+			
+			var addressBrasil = {  
+				street: "Rua dos pinheiros",  
+				houseNumber: 1293,  
+				neighborhood: "Centro", 
+				city: "São Paulo",  
+				uf: "SP"
+			};
+			
+			showAddress(addressBrasil);
+			function showAddress(address){
+				let main = document.querySelector('main');
+				let paragraph = document.createElement('p');
+				let createText = document.createTextNode(`O usuário mora em ${address.city} / ${address.uf}, no bairro ${address.neighborhood}, na rua "${address.street}" com nº ${address.houseNumber}.`);
+				
+				paragraph.style.color = 'black';
+				paragraph.style.fontSize = '18pt';
+				paragraph.style.marginTop = '180px';
+				paragraph.appendChild(createText);
+				main.appendChild(paragraph);
+			}
+			
+		</script>
+	<body>
+</html>
