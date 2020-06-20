@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="style.css">
+		<title>Exercise two</title>
+	</head>
+	<body>
+		<header>
+			<a href="index.html">Back for the menu</a>
+		</header>
+		
+		<main>
+			
+		</main>
+		
+		<footer>
+			<p> &copy; Emanuel Cândido</p>
+		<footer>
+		
+		<script>
+
+			//Crie uma função que dado um intervalo (entre x e y) exiba todos número pares:
+			function pairs(firstNumber, secondNumber){
+				let help = 0;
+				let numbers = '';
+
+				if(secondNumber < firstNumber){
+					help = secondNumber;
+					secondNumber = firstNumber;
+					firstNumber = help;
+				}
+
+				while (firstNumber < secondNumber) {
+					if(firstNumber % 2 == 0){
+						numbers += firstNumber + ', ';
+					}
+					firstNumber++;
+				}
+
+				let main = document.querySelector('main');
+				let paragraph = document.createElement('p');
+				let NumberText = document.createTextNode(numbers);
+
+				paragraph.style.color = '#27AE61';
+
+				paragraph.appendChild(NumberText);
+				main.appendChild(paragraph);
+			}
+
+			pairs(32, 321);
+		</script>
+	<body>
+</html>
