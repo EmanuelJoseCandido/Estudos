@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="style.css">
+		<title>Exercise four</title>
+	</head>
+	<body>
+		<header>
+			<a href="index.html">Back for the menu</a>
+		</header>
+		
+		<main>
+			
+		</main>
+		
+		<footer>
+			<p> &copy; Emanuel Cândido</p>
+		<footer>
+		
+		<script>
+
+			/*
+				Escreva uma função que dado um total de anos de estudo retorna o quão experiente o usuário é:
+			*/
+
+			function experience(years){
+				if (years >= 0 && years <= 1) {
+					return 'Beginner';
+				} 
+				else if (years >=2 && years <= 3) {
+					return 'Intermediate'
+				}
+				else if (years >=4 && years <= 6) {
+					return 'Advanced'
+				}
+				else if(years >= 7){
+					return 'Jedi Master';
+				}
+			}
+
+			var yearsBooks = 7;
+			var main = document.querySelector('main');
+			var text = document.createTextNode(experience(yearsBooks));
+			
+			main.style.color = 'Black';
+			main.appendChild(text);
+
+			// De 0-1 ano: Iniciante
+			// De 1-3 anos: Intermediário
+			// De 3-6 anos: Avançado
+			// De 7 acima: Jedi Master
+
+		</script>
+	<body>
+</html>
