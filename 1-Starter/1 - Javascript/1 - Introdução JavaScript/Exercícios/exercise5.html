@@ -40,19 +40,33 @@
 				Gabriel possui as habilidades: VueJS, Ruby on Rails, Elixir
 			 */
 
-			var paragraph1 = document.createElement('p');
-			var paragraph2 = document.createElement('P');
+			var main = document.querySelector('main');
+			var paragraph = document.createElement('p');
+			var span = document.createElement('span');
+			var text = "";
+			var i = 0;
 
-			var textNameParagraph1 = document.createTextNode(users[0].name);
+		/* 	var textNameParagraph1 = document.createTextNode(users[0].name);
 			var textSkillsParagraph1 = document.createTextNode(users[0].skills);
 
 			var textNameParagraph2 = document.createTextNode(users[1].name);
-			var textSkillsParagraph2 = document.createTextNode(users[1].skills);
-
-			var 
-
-
-
+			var textSkillsParagraph2 = document.createTextNode(users[1].skills); */
+			
+			for (const values of users) {
+				text += `The ${values.name} have the skills: `;
+				var text1 = document.createTextNode(`${values.skills.join(', ')}.`);
+				if(i != 0){
+					paragraph.innerHTML = text;
+					span.appendChild(text1);
+					paragraph.appendChild(span);
+				}
+				i++;
+			}
+			
+			main.style.color = 'black';
+			main.style.fontSize = '13pt';
+			span.style.color = '#27AE61';
+			main.appendChild(paragraph);
 		</script>
 	<body>
 </html>
