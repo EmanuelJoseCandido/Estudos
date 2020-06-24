@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Exercise Two</title>
+</head>
+<body>
+    <div class="content">
+        <div class="nav-bar">
+            <h1>Menu</h1>
+            <ul>
+                <li><a href="exercise1.html">Exercise One</a></li>
+                <li><a href="index.html">Main</a></li>
+                <li><a href="exercise3.html">Exercise Three</a></li>
+                <li><a href="exercise4.html">Exercise Four</a></li>
+            </ul>
+
+            <footer><a href="github.com/EmanuelJoseCandido" target="_blank">&copy; Emanuel Cândido</a></footer>
+        </div>
+
+       <div class="results">
+            <div class="back">
+                <a href="index.html"><button class="backMenu">Back to menu</button></a>
+            </div>
+
+            <div class="box">
+                
+            </div>
+       </div>
+    </div>
+
+    <script>
+        /*
+            Crie um botão que ao ser clicado cria um novo elemento em tela com a forma de um quadradovermelho com 100px de altura e largura. Sempre que o botão for clicado um novo quadrado deveaparecer na tela. 
+        */
+
+        var divBox = document.querySelector('div.box');
+        var headerButton = document.createElement('div');
+        var buttonCreate = document.createElement('button');
+        var buttonDrop = document.createElement('button');
+        var divQuadrate = document.createElement('div');
+        createButton();
+        dropButton();
+
+        function createButton() {
+            buttonCreate.style.margin = '5px';
+            buttonCreate.style.width = '100px';
+            buttonCreate.style.height = '35px';
+            buttonCreate.style.border = 'none';
+            buttonCreate.style.background = '#E67F22';
+            buttonCreate.style.borderRadius = '7px';
+            buttonCreate.innerText = 'Create Square';
+            buttonCreate.style.color = 'white';
+            headerButton.appendChild(buttonCreate);
+            divBox.appendChild(headerButton);
+        }
+
+        function dropButton() {
+            buttonDrop.style.margin = '5px';
+            buttonDrop.style.width = '100px';
+            buttonDrop.style.height = '35px';
+            buttonDrop.style.border = 'none';
+            buttonDrop.style.background = '#E67F22';
+            buttonDrop.style.borderRadius = '7px';
+            buttonDrop.innerText = 'Drop Square';
+            buttonDrop.style.color = 'white';
+            headerButton.appendChild(buttonDrop);
+            divBox.appendChild(headerButton);
+        }
+        
+        buttonCreate.onclick =  function create() {
+            divQuadrate.style.width = '100px';
+            divQuadrate.style.height = '100px';
+            divQuadrate.style.background = '#E84C3D';
+            divQuadrate.style.margin = '20px';
+            divQuadrate.style.borderRadius = '7px';
+            divBox.appendChild(divQuadrate);
+        } 
+
+        buttonDrop.onclick = function drop() {
+            let a = divBox.childElementCount;
+            if(a == 2){
+                divBox.removeChild(divQuadrate);
+            }
+        }
+
+        /* Second Exercise */
+        function getRandomColor(){  
+            var letters = "0123456789ABCDEF";  
+            var color = "#";  
+            for (var i = 0; i < 6; i++) {   
+                 color += letters[Math.floor(Math.random() * 16)];  
+            }  
+            return color;
+        }
+
+        divQuadrate.onmouseover = function move(){
+            divQuadrate.style.background = getRandomColor();
+        }
+
+    </script>
+</body>
+</html>
