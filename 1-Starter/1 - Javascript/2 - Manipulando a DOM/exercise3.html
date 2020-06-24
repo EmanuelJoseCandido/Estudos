@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Exercise Three</title>
+</head>
+<body>
+    <div class="content">
+        <div class="nav-bar">
+            <h1>Menu</h1>
+            <ul>
+                <li><a href="exercise1.html">Exercise One</a></li>
+                <li><a href="exercise2.html">Exercise Two</a></li>
+                <li><a href="index.html">Main</a></li>
+                <li><a href="exercise4.html">Exercise Four</a></li>
+            </ul>
+
+            <footer><a href="github.com/EmanuelJoseCandido" target="_blank">&copy; Emanuel Cândido</a></footer>
+        </div>
+
+       <div class="results">
+            <div class="back">
+                <a href="index.html"><button class="backMenu">Back to menu</button></a>
+            </div>
+
+            <div class="box">
+                
+            </div>
+       </div>
+    </div>
+
+    <script>
+        var divBox = document.querySelector('div.box');
+        var names = ["Sessa", "Celson", "Gustavo"];
+        var ulElement = document.createElement('ul');
+
+        for (let i = 0; i < names.length; i++) {
+            const element = names[i];
+            console.log(element);
+            var li = document.createElement('li');
+            li.textContent = element;
+            ulElement.appendChild(li);
+            
+        }
+        divBox.appendChild(ulElement);
+    </script>
+</body>
+</html>
