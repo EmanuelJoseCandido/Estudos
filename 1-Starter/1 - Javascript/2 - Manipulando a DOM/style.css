@@ -53,13 +53,15 @@ body{
 }
 
 /* Sytle of Nav-Bar */
-.content .author{
+
+.content .author, .content .results{
     display: flex;
     align-items: center;
+    flex-direction: column;
     width: 80%;
     justify-content: center;
 }
-.content .author .box{
+.content .box{
     width: 38%;
     background: white;
     display: flex;
@@ -126,7 +128,21 @@ body{
     font-size: 25pt;
 }
 
-
-.content .results{
-   
+/* Results */
+.content .results .backMenu{
+    background: #E67F22;
+    color: white;
+    border: none;
+    padding: 10px;
+    box-shadow: 1px 2px 5px rgba(0,0,0,.31);
+    border-radius: 7px;
+    margin-bottom: 20px;
+    font-family:  Montserrat, sans-serif;
+    transition: all 650ms ease-in-out;
 }
+
+.content .results .backMenu:hover{
+    box-shadow: 1px 2px 5px rgba(255,255,255,.31);
+}
+
+/* Results */
