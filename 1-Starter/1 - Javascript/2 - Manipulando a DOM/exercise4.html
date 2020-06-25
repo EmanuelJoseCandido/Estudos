@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Exercise Four</title>
+    <style>
+        .content .box .inputs{
+            background: #E67F22;
+            color: white;
+            border: none;
+            padding: 10px;
+            box-shadow: 1px 2px 5px rgba(0,0,0,.31);
+            border-radius: 7px;
+            margin-bottom: 20px;
+            font-family:  Montserrat, sans-serif;
+            transition: all 650ms ease-in-out;
+        }
+
+        .content .box .inputs input{
+            color:black;
+            border: none;
+            padding: 10px;
+            box-shadow: 1px 2px 5px rgba(0,0,0,.31);
+            border-radius: 7px;
+            font-family:  Montserrat, sans-serif;
+            transition: all 650ms ease-in-out;
+        }
+
+        .content .box .inputs button{
+            background: #E67F22;
+            color: white;
+            border: none;
+            padding: 10px;
+            box-shadow: 1px 2px 5px rgba(0,0,0,.31);
+            border-radius: 7px;
+            font-family:  Montserrat, sans-serif;
+            transition: all 650ms ease-in-out;
+            cursor: pointer;
+        }
+
+        .content .box .inputs button:hover{
+            box-shadow: 1px 2px 5px rgba(255,255,255,.31);
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="nav-bar">
+            <h1>Menu</h1>
+            <ul>
+                <li><a href="exercise1.html">Exercise One</a></li>
+                <li><a href="exercise2.html">Exercise Two</a></li>
+                <li><a href="exercise3.html">Exercise Three</a></li>
+                <li><a href="index.html">Exercise Four</a></li>
+            </ul>
+
+            <footer><a href="github.com/EmanuelJoseCandido" target="_blank">&copy; Emanuel Cândido</a></footer>
+        </div>
+
+       <div class="results">
+            <div class="back">
+                <a href="index.html"><button class="backMenu">Back to menu</button></a>
+            </div>
+
+            <div class="box">
+                <div class="inputs">
+                    <input type="text" name="thinks">
+                    <button onClick="add()">Add</button>
+                </div>
+            </div>
+       </div>
+    </div>
+
+    <script>
+        var divBox = document.querySelector('div.box');
+        var names = ["Joao Sessa", "Celson Fernandes", "Gustavo Maioso"];
+        var ulElement = document.createElement('ul');
+        var inputText = document.getElementsByName('thinks');
+        addAutomatic();
+
+        function addAutomatic(){
+            for (let i = 0; i < names.length; i++) {
+                const element = names[i];
+                var li = document.createElement('li');
+                li.textContent = element;
+                ulElement.appendChild(li);
+            }
+            divBox.appendChild(ulElement);
+        }
+
+        function add() {
+            if(inputText[0].value.length == 0){
+                alert(`Insert text in input please`);
+            }
+            else{
+                removeChildrens();
+                names.push(inputText[0].value);
+                addAutomatic();
+                deleteTextInput();
+            }
+        }
+
+        function removeChildrens(){
+            while (ulElement.firstChild) {
+                ulElement.removeChild(ulElement.firstChild);
+            }
+        }
+
+        function deleteTextInput(){
+            inputText[0].value = '';
+        }
+
+    </script>
+</body>
+</html>
