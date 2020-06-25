@@ -37,9 +37,10 @@
 
         var divBox = document.querySelector('div.box');
         var headerButton = document.createElement('div');
+        var divInterno = document.createElement('div');
         var buttonCreate = document.createElement('button');
         var buttonDrop = document.createElement('button');
-        var divQuadrate = document.createElement('div');
+        
         createButton();
         dropButton();
 
@@ -70,22 +71,22 @@
         }
         
         buttonCreate.onclick =  function create() {
+            var divQuadrate = document.createElement('div');
             divQuadrate.style.width = '100px';
             divQuadrate.style.height = '100px';
             divQuadrate.style.background = '#E84C3D';
             divQuadrate.style.margin = '20px';
             divQuadrate.style.borderRadius = '7px';
-            divBox.appendChild(divQuadrate);
+            divInterno.appendChild(divQuadrate);
+            divBox.appendChild(divInterno);
         } 
 
         buttonDrop.onclick = function drop() {
-            let a = divBox.childElementCount;
-            if(a == 2){
-                divBox.removeChild(divQuadrate);
+            let i = divInterno.childElementCount;
+            if(i > 0){
+                divInterno.removeChild(divInterno.firstChild);
             }
         }
-
-
     </script>
 </body>
 </html>
