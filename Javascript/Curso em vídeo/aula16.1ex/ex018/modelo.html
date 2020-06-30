@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-Br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Modelo de Exercicio</title>
+</head>
+<body>
+    <header>
+        <h1>Analisador de Números</h1>
+    </header>
+    <section>
+        <div>
+            <label for="number">Números (1 até 100)</label>
+            <input type="number" name="number" id="number">
+            <input type="submit" value="Adicionar" id="add" onclick="addValues()">
+        </div>
+
+        <div class="result">
+            <select name="selectNumbers" id="selectNumbers" size="10">
+            </select>
+
+            <input type="submit" value="Finalizar" id="finish" onclick="showResult()">
+
+            <div class="text">
+
+            </div>
+        </div>
+    </section>
+    <footer>&copy; Emanuel Cândido</footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

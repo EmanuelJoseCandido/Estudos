@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAIS</title>
+</head>
+<body>
+    <h1>Nacionalidade</h1>
+
+    <p>Escreva a sua nacionalidade: <input type="text" name="nacionalidade" id="nacionalidade"> <input type="button" value="enviar" class="botaoName"></p>
+    <div id="resultado"></div>
+
+    <script>
+        var button = window.document.getElementsByClassName('botaoName')[0];
+        button.addEventListener('click', verificarNacionalidade);
+
+        function verificarNacionalidade(){
+            var n = window.document.getElementsByName('nacionalidade')[0];
+            var nacionalidade = n.value;
+            var texto = `<p>A sua nacionalidade é ${nacionalidade}</p>`;
+            
+            if(nacionalidade != 'Angola'){
+                texto += "Você é estrangeiro";
+            }
+            else{
+                texto += "Você é conterraneo"; 
+            }
+
+            var res = window.document.getElementById('resultado');
+
+            res.innerHTML = texto;
+            window.alert(texto);
+        }
+    </script>
+</body>
+</html>

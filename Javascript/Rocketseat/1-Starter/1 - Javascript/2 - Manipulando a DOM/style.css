@@ -1,0 +1,148 @@
+body{
+    background: #E67F22;
+    color: white;
+    font-family:  Montserrat, sans-serif; 
+    margin: 0;
+}
+
+.content{
+    display: flex;
+}
+
+/* Sytle of Nav-Bar */
+.content .nav-bar{
+    background: white;
+    color: #E67F22;
+    box-shadow: 1px 2px 5px rgba(0,0,0,.31);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    padding: 0px 30px;
+}
+
+.content .nav-bar h1{
+    color: black;
+}
+
+.content .nav-bar ul{
+    padding: 0;
+}
+
+.content .nav-bar li{
+    list-style: none;
+    padding: 10px;
+}
+
+.content .nav-bar ul a{
+    color: #E67F22;
+    text-decoration: none;
+    font-size: 19pt;
+    transition: 1s ease-in-out;
+}
+
+.content .nav-bar a:hover{
+    border-bottom: 2px solid white;
+}
+
+.content .nav-bar footer a{
+    color: black;
+    text-decoration: none;
+}
+
+/* Sytle of Nav-Bar */
+
+.content .author, .content .results{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+    justify-content: center;
+}
+.content .box{
+    width: 38%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: black;
+    padding: 50px;
+    box-shadow: 1px 2px 5px rgba(0,0,0,.31);
+    border-radius: 7px;
+}
+
+.content .author img{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+}
+
+.content .author .about p{
+    text-align: justify;
+}
+
+.content .author .about p a{
+    color: #E67F22;
+    text-decoration: none;
+}
+
+.social ul{
+   display: flex;
+   justify-content: center;
+   padding: 0px;
+   margin-top: 30px;
+}
+
+.social li{
+    list-style: none;
+    display: inline-flex;
+    margin: 0px 10px;
+    transition: all 650ms ease-in-out;
+}
+
+.social i:hover{
+    font-size: 22pt;
+}
+
+.social .fa-facebook{
+    color: #0779E9;
+}
+
+.social .fa-envelope{
+    color: #E84C3D;
+}
+
+.social .fa-github{
+    color: #080807;
+}
+
+.social .fa-linkedin{
+    color: #0073B2;
+}
+
+.social i{
+    color: black;
+    font-size: 25pt;
+}
+
+/* Results */
+.content .results .backMenu{
+    background: #E67F22;
+    color: white;
+    border: none;
+    padding: 10px;
+    box-shadow: 1px 2px 5px rgba(0,0,0,.31);
+    border-radius: 7px;
+    margin-bottom: 20px;
+    font-family:  Montserrat, sans-serif;
+    transition: all 650ms ease-in-out;
+}
+
+.content .results .backMenu:hover{
+    box-shadow: 1px 2px 5px rgba(255,255,255,.31);
+}
+
+/* Results */
