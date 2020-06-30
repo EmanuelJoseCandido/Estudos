@@ -78,6 +78,29 @@ ul li ul{
     flex-direction: column;
 }
 
+.back{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+}
+
+button{
+    background: #1C1B20;
+    color: white;
+    border: none;
+    padding: 10px;
+    box-shadow: 1px 2px 5px rgba(0,0,0,.31);
+    border-radius: 7px;
+    font-family:  Montserrat, sans-serif;
+    transition: all 650ms ease-in-out;
+    cursor: pointer;
+}
+
+button:hover{
+    box-shadow: 1px 2px 5px rgba(255,255,255,.31);
+}
+
 main{
     display: flex;
     flex-wrap: wrap;
@@ -97,7 +120,7 @@ main{
     box-shadow: 1px 2px 5px rgba(0,0,0,.31);
     transition: all 650ms ease-in-out;
     text-align: center;
-    height: 330px;
+    height: 300px;
     width: 500px;
 }
 
