@@ -120,8 +120,7 @@ main{
     box-shadow: 1px 2px 5px rgba(0,0,0,.31);
     transition: all 650ms ease-in-out;
     text-align: center;
-    height: 300px;
-    width: 500px;
+    width: 1200px;
 }
 
 .box:hover{
