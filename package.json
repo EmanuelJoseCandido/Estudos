@@ -1,0 +1,16 @@
+{
+  "name": "Estudos",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/EmanuelJoseCandido/Rocketseat.git",
+  "author": "EmanuelJoseCandido <emanueljosecandido@hotmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/cli": "^7.10.4",
+    "@babel/core": "^7.10.4",
+    "@babel/preset-env": "^7.10.4"
+  },
+  "scripts": {
+     "dev": "babel ./Javascript/Rocketseat/1-Starter/2-JavaScript-ES6/main.js -o ./Javascript/Rocketseat/1-Starter/2-JavaScript-ES6/bundle.js -w"
+  }
+}
