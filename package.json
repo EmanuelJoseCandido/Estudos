@@ -11,6 +11,9 @@
     "@babel/preset-env": "^7.10.4"
   },
   "scripts": {
-     "dev": "babel ./Javascript/Rocketseat/1-Starter/2-JavaScript-ES6/main.js -o ./Javascript/Rocketseat/1-Starter/2-JavaScript-ES6/bundle.js -w"
+     "dev": "babel ./Javascript/Rocketseat/1-Starter/2-JavaScript-ES6/main.js -o ./Javascript/Rocketseat/1-Starter/2-JavaScript-ES6/bundle.js -w",
+     "class1": "babel ./Javascript/Rocketseat/1-Starter/2-JavaScript-ES6/Class/class1.js -o ./Javascript/Rocketseat/1-Starter/2-JavaScript-ES6/Class/classBundle1.js -w",
+     "class2": "babel ./Javascript/Rocketseat/1-Starter/2-JavaScript-ES6/Class/class2.js -o ./Javascript/Rocketseat/1-Starter/2-JavaScript-ES6/Class/classBundle2.js -w",
+     "teste": "babel ./Javascript/Rocketseat/1-Starter/2-JavaScript-ES6/Teste/main.js -o ./Javascript/Rocketseat/1-Starter/2-JavaScript-ES6/Teste/testeBundle.js -w"
   }
 }
