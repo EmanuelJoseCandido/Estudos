@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/style.css">
+    <script src="../assets/viu_version_dev.js"></script>
+    <style>
+        button {
+            padding: 10px 15px;
+            background: #323234;
+            color: wheat;
+            border: none;
+            border-radius: 7px;
+            margin: 10px;
+            cursor: pointer;
+            transition: all 650ms ease-in-out;
+        }
+
+        button:hover{
+            background: wheat;
+            color: #323234;
+            border: 1px solid #323234;
+            font-weight: bolder;
+        }
+
+        .up{
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border: 1px solid #323234;
+            border-radius: 7px;
+        }
+    </style>
+    <title>Vue - app007</title>
+</head>
+
+<body>
+    <div id="root">
+        <div class="up">
+            <p>The empresa is <b>{{empresa}}</b></p>
+            <img v-bind:src="logo" width="150" height="150">
+        </div>
+
+        <div class="down">
+            <button v-on:click="showMovicel">MOV</button>
+            <button v-on:click="showNCR">NCR</button>
+        </div>
+    </div>
+
+    <script>
+        let root = new Vue({
+            el: "#root",
+
+            data: {
+                empresa: '',
+                logo: '',
+            },
+
+            methods: {
+                showMovicel: function () {
+                    this.empresa = "MOV";
+                    this.logo = "images/movicel.png";
+                },
+
+                showNCR: function () {
+                    this.empresa = "NCR";
+                    this.logo = "images/ncr.png";
+                }
+            }
+        });
+
+        root.showMovicel();
+    </script>
+</body>
+
+</html>

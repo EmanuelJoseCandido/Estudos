@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/style.css">
+    <script src="../assets/viu_version_dev.js"></script>
+    <style>
+        .text{
+            border: 1px solid #323234;
+            border-radius: 7px;
+            padding: 10px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background: #323234;
+            color: wheat;
+            border: none;
+            border-radius: 7px;
+            margin: 10px;
+            cursor: pointer;
+            font-weight: bolder;
+            transition: all 650ms ease-in-out;
+        }
+
+        button:hover{
+            background: wheat;
+            color: #323234;
+            border: 1px solid #323234;
+        }
+
+    </style>
+    <title>Vue - app008</title>
+</head>
+<body>
+    <div id="root">
+        <div class="text">
+            <span v-html="value"></span>
+        </div>
+
+        <div>
+            <button @click="button1">Button 1</button>
+            <button @click="button2">Button 2</button>
+            <button @click="button3">Button 3</button>
+        </div>
+    </div>
+
+    <script>
+        let root = new Vue({
+            el: "#root",
+            data:{
+                value: '',
+            },
+
+            methods:{
+                button1: function(){
+                    this.value = '<h1>Text "H1"</h1>'
+                },
+
+                button2: function(){
+                    this.value = '<h2>Text "H2"</h2>'
+                },
+
+                button3: function(){
+                    this.value = '<h3>Text "H3"</h3>'
+                }
+            }
+        });
+    </script>
+</body>
+</html>

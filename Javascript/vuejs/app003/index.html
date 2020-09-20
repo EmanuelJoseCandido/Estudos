@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../assets/viu_version_dev.js"></script>
+    <title>Vue - app003</title>
+</head>
+<body>
+    <div id="root">
+        {{name}}
+       <br> <input v-model="name">
+
+       <div v-if="visible">
+            I love you {{name}}
+       </div>
+       
+       <div v-else>
+            I don't love you {{name}}
+       </div>
+    </div>
+
+
+    <script>
+        let root  = new Vue({
+            el: "#root",
+            data:{
+                name: "Marcia Arsenia Tavares.",
+                visible: true,
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../assets/viu_version_dev.js"></script>
+    <title>Vue - app001 - teste</title>
+</head>
+<body>
+    <div id="root">
+        Hello my full name is {{name}}, i live in Autodrómo, i have {{2020 - yearBorn}} years old, e like girls my sex is {{sex}}
+    </div>
+    
+    <script>
+        let root = new Vue({
+            el: "#root",
+            data:{
+                name: "Emaboy Candido",
+            }
+        });
+    </script>
+</body>
+</html>

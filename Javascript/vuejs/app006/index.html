@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/style.css">
+    <script src="../assets/viu_version_dev.js"></script>
+    <title>Vue - app006</title>
+</head>
+
+<body>
+    <div id="root">
+        <div>
+            <input v-model="fruta" id=""> <button v-on:click="insert">Insert</button>
+        </div>
+
+        <div>
+            Total: {{total}}
+        </div>
+
+        <div>
+            <ul>
+                <li v-for="fruta in frutas">{{fruta}}</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        let root = new Vue({
+            el: "#root",
+
+            data: {
+                visible: false,
+
+                total: 0,
+
+                fruta: "",
+
+                frutas: [],
+            },
+
+            methods: {
+                insert: function () {
+                    this.frutas.push(this.fruta);
+                    this.fruta = '';
+                    this.total = this.frutas.length;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

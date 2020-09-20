@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/style.css">
+    <script src="../assets/viu_version_dev.js"></script>
+    <title>Vue - app005</title>
+</head>
+
+<body>
+    <div id="root">
+        <div>
+            <p v-for="name in names">{{name}}</p>
+        </div>
+
+        <div>
+            <p v-for="cliente in clientes">The {{cliente.name}} have {{cliente.age}} years old.</p>
+        </div>
+    </div>
+
+    <script>
+        let root = new Vue({
+            el: "#root",
+            data: {
+                names: [
+                    "Emanuel",
+                    "Marcia",
+                    "Aldair",
+                    "Daniela"
+                ],
+
+                clientes: [
+                    { name: "Emanuel", age: 22 },
+                    { name: "Junior", age: 10 },
+                    { name: "Aldair", age: 20 }
+                ]
+            }
+        });
+    </script>
+</body>
+
+</html>
