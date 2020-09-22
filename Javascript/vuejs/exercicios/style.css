@@ -1,0 +1,129 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.client,
+.adminstrator {
+    background: #323234;
+    width: 300px;
+    height: 500px;
+    color: wheat;
+    margin: 30px 10px;
+    padding: 25px;
+    border-radius: 7px;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+h3 {
+    margin-bottom: 10px;
+}
+
+.add,
+.remove {
+    border: 1px solid;
+    border-radius: 7px;
+    padding: 20px;
+}
+
+.add {
+    margin-bottom: 20px;
+}
+
+.add.inputs {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+input {
+    margin-bottom: 10px;
+    width: 100px;
+    padding: 8px 5px;
+}
+
+select {
+    padding: 8px 0px;
+}
+
+.things {
+    overflow-y: scroll;
+    border-radius: 7px;
+    background: wheat;
+    color: #323234;
+    width: 100%;
+    height: 60%;
+}
+
+.things .car ol {
+    margin-left: -95px;
+    padding-top: 20px;
+}
+
+button {
+    padding: 10px 15px;
+    background: #323234;
+    color: wheat;
+    border: 1px solid wheat;
+    border-radius: 7px;
+    margin: 10px;
+    cursor: pointer;
+    font-weight: bolder;
+    transition: all 650ms ease-in-out;
+}
+
+button:hover {
+    background: wheat;
+    color: #323234;
+    border: 1px solid #323234;
+}
+
+.footer-cliente {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.footer-cliente .down {
+    margin-top: 10px;
+}
+
+.cashier {
+    font-size: 8pt;
+    margin-top: -30px;
+    margin-left: -150px;
+}
+
+span.qtd {
+    background: #323234;
+    color: wheat;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-weight: bolder;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    transition: all 650ms ease-in-out;
+}
+
+.cashier a {
+    color: wheat;
+}
+
+a:hover {
+    margin-left: 2px;
+}
+
+.footer a {
+    color: #323234;
+}
