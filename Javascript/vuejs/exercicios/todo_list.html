@@ -54,17 +54,18 @@
         }
 
         .things {
+            overflow-y: scroll;
             border-radius: 7px;
             background: wheat;
             color: #323234;
             width: 100%;
-            height: 80%;
+            height: 65%;
         }
 
-        .total {
+        /*  .total {
             float: right;
             padding: 2px;
-        }
+        } */
 
         .things .car ol {
             margin-left: -95px;
@@ -88,6 +89,27 @@
             color: #323234;
             border: 1px solid #323234;
         }
+
+        /*  button.btn-concluded {
+            margin-left: 190px;
+        } */
+
+        .footer-cliente {
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        span.qtd {
+            background: #323234;
+            color: wheat;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-weight: bolder;
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -109,11 +131,19 @@
                 <div class="things">
                     <div class="car">
                         <ol>
-                            <li v-for="produt in produts">{{produt}}</li>
+                            <li v-for="(produt, i) in produts" :key="i">{{produt}} <span class="qtd">{{qtd[i]}}</span>
+                            </li>
                         </ol>
                     </div>
                 </div>
-                <span class="total"> Total <b>{{total}}</b> KZ</span>
+
+                <div class="footer-cliente">
+                    <span class="total"> Total <b>{{total}}</b> KZ</span>
+                    <div class="buttons">
+                        <button @click="" class="btn-concluded">Finish</button>
+                        <button @click="removeToCar" class="btn-concluded">Cancel</button>
+                    </div>
+                </div>
             </div>
 
             <div class="adminstrator">
@@ -121,20 +151,20 @@
                 <div class="add">
                     <h3>Add</h3>
                     <label for="">Name:</label><br>
-                    <input v-model="name"><br>
+                    <input v-model="name" maxlength="15"><br>
 
                     <label for="">Price:</label><br>
-                    <input v-model="price"><br>
+                    <input v-model="price" maxlength="10"><br>
 
                     <button @click="addThings">Add</button>
                 </div>
 
                 <div class="remove">
                     <h3>Remove</h3>
-                    <select name="" id="remove">
+                    <select name="" id="remove" v-model="removed">
                         <optgroup>
                             <option value="">Select any thing</option>
-                            <option v-for="name2 in things">{{name2}}</option>
+                            <option v-for="name in things">{{name}}</option>
                         </optgroup>
                     </select>
 
@@ -153,13 +183,15 @@
             el: "#root",
             data: {
                 name: "Milk",
-                name2: "",
+                removed: "",
                 price: 500,
                 total: 0,
                 tot: [],
                 things: [],
                 produt: "",
                 produts: [],
+                nameProdut: "",
+                qtd: [],
                 title: '<h1>List of things</h1>'
 
             },
@@ -182,36 +214,62 @@
                 },
 
                 removeThings: function () {
-
+                    if (this.removed) {
+                        this.things.splice(this.things.indexOf(this.removed), 1);
+                    } else {
+                        alert('Select any thing');
+                    }
                 },
 
                 addCar: function () {
                     if (this.produt) {
-                        this.produts.push(this.produt);
-                        var total = 0, empty = 0, position;
-                        var aux = "";
+                        let position = this.produts.indexOf(this.produt);
+                        if (position != -1) {
+                            this.qtd[position] += 1;
+                            this.show = true;
 
-                        for (let i = this.produt.length - 1; i > 0; i--) {
-                            if (this.produt[i] == " ") {
-                                empty++;
-                                position = i;
-                            }
-                            if (empty == 2) break;
+                            root.calculate();
+                        } else {
+                            this.produts.push(this.produt);
+                            this.qtd.push(1);
+
+                            root.calculate();
                         }
-
-                        for (let i = position; i < this.produt.length - 3; i++) {
-                            aux += this.produt[i];
-                        }
-
-                        total = Number(aux);
-                        this.tot.push(total);
-
-                        this.total = this.tot.reduce(function (total, next) {
-                            return total + next;
-                        });
                     } else {
-                        alert('Select one thing');
+                        alert('Select any thing');
                     }
+                },
+
+                calculate: function () {
+                    var total = 0, empty = 0, position;
+                    var aux = "";
+
+                    for (let i = this.produt.length - 1; i > 0; i--) {
+                        if (this.produt[i] == " ") {
+                            empty++;
+                            position = i;
+                        }
+                        if (empty == 2) break;
+                    }
+
+                    for (let i = position; i < this.produt.length - 3; i++) {
+                        aux += this.produt[i];
+                    }
+
+                    total = Number(aux);
+                    this.tot.push(total);
+
+                    this.total = this.tot.reduce(function (total, next) {
+                        return total + next;
+                    });
+                },
+
+                removeToCar: function () {
+                    this.produts = [];
+                    this.tot = [];
+                    this.produt = '';
+                    this.total = 0;
+                    this.qtd = 1;
                 }
 
 
