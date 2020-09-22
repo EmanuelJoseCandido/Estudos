@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="../assets/viu_version_dev.js"></script>
     <link rel="stylesheet" href="../assets/style.css">
-    <title>Todo List</title>
+    <title>Cash register</title>
     <style>
         .container {
             display: flex;
@@ -40,15 +40,25 @@
         .remove {
             border: 1px solid;
             border-radius: 7px;
-            margin: 20px;
             padding: 20px;
+        }
+
+        .add {
+            margin-bottom: 20px;
+        }
+
+        .add.inputs {
+            display: flex;
+            align-items: center;
+            flex-direction: row;
         }
 
         input {
             margin-bottom: 10px;
+            width: 100px;
+            padding: 8px 5px;
         }
 
-        input,
         select {
             padding: 8px 0px;
         }
@@ -59,7 +69,7 @@
             background: wheat;
             color: #323234;
             width: 100%;
-            height: 65%;
+            height: 60%;
         }
 
         /*  .total {
@@ -95,11 +105,20 @@
         } */
 
         .footer-cliente {
-            padding: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
+        }
+
+        .footer-cliente .down {
+            margin-top: 10px;
+        }
+
+        .cashier {
+            font-size: 8pt;
+            margin-top: -30px;
+            margin-left: -150px;
         }
 
         span.qtd {
@@ -109,6 +128,23 @@
             padding: 2px 6px;
             font-weight: bolder;
             text-align: center;
+        }
+
+        a {
+            text-decoration: none;
+            transition: all 650ms ease-in-out;
+        }
+
+        .cashier a {
+            color: wheat;
+        }
+
+        a:hover{
+            margin-left: 2px;
+        }
+
+        .footer a {
+            color: #323234;
         }
     </style>
 </head>
@@ -138,10 +174,17 @@
                 </div>
 
                 <div class="footer-cliente">
-                    <span class="total"> Total <b>{{total}}</b> KZ</span>
-                    <div class="buttons">
-                        <button @click="" class="btn-concluded">Finish</button>
-                        <button @click="removeToCar" class="btn-concluded">Cancel</button>
+                    <div>
+                        <span class="cashier">Cashier: <b><a
+                                    href="https://emanueljosecandido.github.io">{{cashier}}</a></b></span>
+                    </div>
+
+                    <div class="down">
+                        <span class="total"> Total <b>{{total}}</b> KZ</span>
+                        <div class="buttons">
+                            <button @click="" class="btn-concluded">Finish</button>
+                            <button @click="removeToCar" class="btn-concluded">Cancel</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -150,13 +193,15 @@
                 <h2>Adminstrator</h2>
                 <div class="add">
                     <h3>Add</h3>
-                    <label for="">Name:</label><br>
-                    <input v-model="name" maxlength="15"><br>
+                    <div class="inputs">
+                        <label for="">Name:</label><br>
+                        <input v-model="name" maxlength="15"><br>
 
-                    <label for="">Price:</label><br>
-                    <input v-model="price" maxlength="10"><br>
+                        <label for="">Price:</label><br>
+                        <input v-model="price" maxlength="10"><br>
 
-                    <button @click="addThings">Add</button>
+                        <button @click="addThings">Add</button>
+                    </div>
                 </div>
 
                 <div class="remove">
@@ -174,7 +219,7 @@
         </div>
 
         <div class="footer">
-            Emanuel Cândido &copy; 2020
+            <a href="https://emanueljosecandido.github.io">Emanuel Cândido &copy; 2020</a>
         </div>
     </div>
 
@@ -190,9 +235,9 @@
                 things: [],
                 produt: "",
                 produts: [],
-                nameProdut: "",
+                cashier: "Emanuel Cândido",
                 qtd: [],
-                title: '<h1>List of things</h1>'
+                title: '<h1>Cash register</h1>'
 
             },
             methods: {
@@ -270,9 +315,7 @@
                     this.produt = '';
                     this.total = 0;
                     this.qtd = 1;
-                }
-
-
+                },
             }
         });
     </script>
