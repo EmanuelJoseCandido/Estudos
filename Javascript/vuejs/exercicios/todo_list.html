@@ -23,15 +23,21 @@
                     </optgroup>
                 </select>
 
-                <button @click="addCar">Add to Car</button>
+                <button @click="addCar">Car</button>
 
                 <div class="things">
-                    <div class="car">
-                        <ol>
-                            <li v-for="(produt, i) in produts" :key="i">{{produt}} <span class="qtd">{{qtd[i]}}</span>
-                            </li>
-                        </ol>
-                    </div>
+                    <table>
+                        <thead>
+                            <th>Thing</th>
+                            <th>Price</th>
+                            <th>Qtd</th>
+                        </thead>
+                        <tbody v-for="(name, co) in produts" :key="co">
+                            <td>{{names[co]}}</td>
+                            <td><span>{{prices[co]}} Kz</span></td>
+                            <td><span class="qtd">{{qtd[co]}}</span></td>
+                        </tbody>
+                    </table>
                 </div>
 
                 <div class="footer-cliente">
@@ -43,7 +49,7 @@
                     <div class="down">
                         <span class="total"> Total <b>{{total}}</b> KZ</span>
                         <div class="buttons">
-                            <button @click="" class="btn-concluded">Finish</button>
+                            <button @click="buyThings" class="btn-concluded">Finish</button>
                             <button @click="removeToCar" class="btn-concluded">Cancel</button>
                         </div>
                     </div>
@@ -55,26 +61,47 @@
                 <div class="add">
                     <h3>Add</h3>
                     <div class="inputs">
-                        <label for="">Name:</label><br>
-                        <input v-model="name" maxlength="15"><br>
+                        <div>
+                            <label for="">Name:</label><br>
+                            <input v-model="name" maxlength="10"><br>
+                        </div>
 
-                        <label for="">Price:</label><br>
-                        <input v-model="price" maxlength="10"><br>
-
-                        <button @click="addThings">Add</button>
+                        <div>
+                            <label for="">Price:</label><br>
+                            <input v-model="price" maxlength="5"><br>
+                        </div>
                     </div>
+
+                    <div class="inputs">
+                        <div>
+                            <label for="">Qtd:</label><br>
+                            <input v-model="qtdThing" maxlength="2"><br>
+                        </div>
+
+                        <div>
+                            <button @click="addThings" class="addThings">Add</button>
+                        </div>
+                    </div>
+
                 </div>
 
-                <div class="remove">
-                    <h3>Remove</h3>
-                    <select name="" id="remove" v-model="removed">
-                        <optgroup>
-                            <option value="">Select any thing</option>
-                            <option v-for="name in things">{{name}}</option>
-                        </optgroup>
-                    </select>
-
-                    <button @click="removeThings">Remove</button>
+                <div class="list">
+                    <h3>List of Things</h3>
+                    <div class="things">
+                        <table>
+                            <thead>
+                                <th>Thing</th>
+                                <th>Price</th>
+                                <th>Qtd</th>
+                            </thead>
+                            <tbody v-for="(name, co) in things" :key="co">
+                                <td>{{names[co]}}</td>
+                                <td><span>{{prices[co]}}</span></td>
+                                <td><span>{{qtdThings[co]}}</span></td>
+                                <td><span class="times" @click="removeThings(co)">&times;</span></td>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -89,8 +116,10 @@
             el: "#root",
             data: {
                 name: "Milk",
+                names: [],
                 removed: "",
                 price: 500,
+                prices: [],
                 total: 0,
                 tot: [],
                 things: [],
@@ -98,6 +127,9 @@
                 produts: [],
                 cashier: "Emanuel Cândido",
                 qtd: [],
+                qtdThings: [],
+                copyQtdThings: [],
+                qtdThing: 5,
                 title: '<h1>Cash register</h1>'
 
             },
@@ -113,33 +145,58 @@
                         alert('Insert a name and a price  please');
                     }
                     else {
-                        this.things.push(this.name + " - " + this.price + " Kz");
-                        this.name = '';
-                        this.price = 0;
+                        let name = this.name + " - " + this.price + " Kz";
+                        let index = this.things.indexOf(name);
+
+
+                        if (index == -1) {
+                            this.things.push(name);
+                            this.qtdThings.push(Number(this.qtdThing));
+                            this.prices.push(this.price);
+                            this.names.push(this.name);
+                            this.copyQtdThings = [...this.qtdThings];
+                            root.clearInputAdminstratorAdd();
+                        }
+                        else {
+                            this.qtdThings[index] += Number(this.qtdThing);
+                            this.copyQtdThings = [...this.qtdThings];
+                            root.clearInputAdminstratorAdd();
+                        }
+
+
                     }
                 },
 
-                removeThings: function () {
-                    if (this.removed) {
-                        this.things.splice(this.things.indexOf(this.removed), 1);
-                    } else {
-                        alert('Select any thing');
-                    }
+                clearInputAdminstratorAdd: function () {
+                    this.name = '';
+                    this.price = 0;
+                    this.qtdThing = 1;
+                },
+
+                removeThings: function (position) {
+                    this.things.splice(position, 1);
                 },
 
                 addCar: function () {
                     if (this.produt) {
                         let position = this.produts.indexOf(this.produt);
-                        if (position != -1) {
-                            this.qtd[position] += 1;
-                            this.show = true;
+                        let posQtd = this.things.indexOf(this.produt);
 
-                            root.calculate();
+                        if (this.qtdThings[position] != 0) {
+                            if (position != -1) {
+                                this.qtd[position]++;
+                                this.qtdThings[position]--;
+                                this.show = true;
+                                root.calculate();
+                            } else {
+                                this.qtdThings[posQtd]--;
+                                this.produts.push(this.produt);
+                                this.qtd.push(1);
+                                root.calculate();
+                            }
                         } else {
-                            this.produts.push(this.produt);
-                            this.qtd.push(1);
-
-                            root.calculate();
+                            //this.things.splice(this.things.indexOf(this.removed), 1);
+                            alert('empty');
                         }
                     } else {
                         alert('Select any thing');
@@ -170,15 +227,28 @@
                     });
                 },
 
+                buyThings: function () {
+                    this.total = 0;
+                    this.tot = [];
+                    this.produts = [];
+                    this.copyQtdThings = [...this.qtdThings];
+                },
+
                 removeToCar: function () {
                     this.produts = [];
                     this.tot = [];
                     this.produt = '';
                     this.total = 0;
-                    this.qtd = 1;
+                    this.qtd = [];
+                    this.name = '';
+                    this.price = 0;
+                    this.qtdThing = 0;
+                    this.qtdThings = [...this.copyQtdThings];
                 },
             }
         });
+
+
     </script>
 </body>
 

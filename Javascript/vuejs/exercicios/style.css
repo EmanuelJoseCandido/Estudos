@@ -26,34 +26,52 @@ h3 {
     margin-bottom: 10px;
 }
 
-.add,
-.remove {
+.add{
     border: 1px solid;
     border-radius: 7px;
-    padding: 20px;
+    padding: 10px;
 }
 
 .add {
     margin-bottom: 20px;
 }
 
-.add.inputs {
+.add .inputs{
     display: flex;
-    align-items: center;
+    text-align: left;
     flex-direction: row;
+    justify-content: center;
 }
 
-input {
+.add .inputs div{
+    margin: 5px;
+    
+}
+
+.list{
+    height: 65%;
+}
+
+input{
     margin-bottom: 10px;
-    width: 100px;
+    width: 120px;
     padding: 8px 5px;
+    border-radius: 7px;
+}
+
+.addThings{
+    margin-top: 16.5px;
+    width: 120px;
 }
 
 select {
     padding: 8px 0px;
+    border-radius: 7px;
 }
 
 .things {
+    display: flex;
+    justify-content: center;
     overflow-y: scroll;
     border-radius: 7px;
     background: wheat;
@@ -62,9 +80,13 @@ select {
     height: 60%;
 }
 
+.things .car{
+    display: flex;
+    justify-content: center;
+}
 .things .car ol {
-    margin-left: -95px;
     padding-top: 20px;
+    text-align: left;
 }
 
 button {
@@ -102,13 +124,21 @@ button:hover {
     margin-left: -150px;
 }
 
-span.qtd {
+span.qtd, span.times{
     background: #323234;
     color: wheat;
     border-radius: 50%;
     padding: 2px 6px;
     font-weight: bolder;
     text-align: center;
+    transition: all 650ms ease-in-out;
+}
+
+span.times:hover{
+    border: 1px solid #323234;
+    color: #323234;
+    background: wheat;
+    cursor: pointer;
 }
 
 a {
@@ -127,3 +157,15 @@ a:hover {
 .footer a {
     color: #323234;
 }
+
+table{
+    margin: 10px;
+    border: 1px solid #323234;
+    border-radius: 7px;
+    text-align: left;
+}
+
+th, td{
+    padding: 5px;
+}
+
