@@ -28,7 +28,7 @@
                 <div class="things">
                     <table>
                         <thead>
-                            <th>Thing</th>
+                            <th>Produt</th>
                             <th>Price</th>
                             <th>Qtd</th>
                         </thead>
@@ -42,8 +42,7 @@
 
                 <div class="footer-cliente">
                     <div>
-                        <span class="cashier">Cashier: <b><a
-                                    href="https://emanueljosecandido.github.io">{{cashier}}</a></b></span>
+                        <span class="cashier">Cashier: <b><a href="https://emanueljosecandido.github.io">{{cashier}}</a></b></span>
                     </div>
 
                     <div class="down">
@@ -57,7 +56,7 @@
             </div>
 
             <div class="adminstrator">
-                <h2>Adminstrator</h2>
+                <h2>Administrator</h2>
                 <div class="add">
                     <h3>Add</h3>
                     <div class="inputs">
@@ -90,7 +89,7 @@
                     <div class="things">
                         <table>
                             <thead>
-                                <th>Thing</th>
+                                <th>Produt</th>
                                 <th>Price</th>
                                 <th>Qtd</th>
                             </thead>
@@ -116,22 +115,21 @@
             el: "#root",
             data: {
                 name: "Milk",
-                names: [],
+                names: JSON.parse(localStorage.getItem('namesList')) || [],
                 removed: "",
                 price: 500,
-                prices: [],
+                prices: JSON.parse(localStorage.getItem('pricesList')) || [],
                 total: 0,
                 tot: [],
-                things: [],
+                things: JSON.parse(localStorage.getItem('thingsList')) || [],
                 produt: "",
                 produts: [],
                 cashier: "Emanuel Cândido",
                 qtd: [],
-                qtdThings: [],
+                qtdThings: JSON.parse(localStorage.getItem('qtdThingsList')) || [],
                 copyQtdThings: [],
                 qtdThing: 5,
-                title: '<h1>Cash register</h1>'
-
+                title: '<h1>Cash register</h1>',
             },
             methods: {
                 addThings: function () {
@@ -148,26 +146,25 @@
                         let name = this.name + " - " + this.price + " Kz";
                         let index = this.things.indexOf(name);
 
-
                         if (index == -1) {
                             this.things.push(name);
                             this.qtdThings.push(Number(this.qtdThing));
                             this.prices.push(this.price);
                             this.names.push(this.name);
                             this.copyQtdThings = [...this.qtdThings];
-                            root.clearInputAdminstratorAdd();
+                            root.saveToStorage();
+                            root.clearInputAdministratorAdd();
                         }
                         else {
                             this.qtdThings[index] += Number(this.qtdThing);
                             this.copyQtdThings = [...this.qtdThings];
-                            root.clearInputAdminstratorAdd();
+                            root.saveToStorage();
+                            root.clearInputAdministratorAdd();
                         }
-
-
                     }
                 },
 
-                clearInputAdminstratorAdd: function () {
+                clearInputAdministratorAdd: function () {
                     this.name = '';
                     this.price = 0;
                     this.qtdThing = 1;
@@ -175,6 +172,7 @@
 
                 removeThings: function (position) {
                     this.things.splice(position, 1);
+                    root.saveToStorage();
                 },
 
                 addCar: function () {
@@ -232,6 +230,7 @@
                     this.tot = [];
                     this.produts = [];
                     this.copyQtdThings = [...this.qtdThings];
+                    root.saveToStorage();
                 },
 
                 removeToCar: function () {
@@ -244,11 +243,19 @@
                     this.price = 0;
                     this.qtdThing = 0;
                     this.qtdThings = [...this.copyQtdThings];
+                    root.saveToStorage();
                 },
-            }
+
+                saveToStorage: function () {
+                    localStorage.setItem('namesList', JSON.stringify(this.names));
+                    localStorage.setItem('pricesList', JSON.stringify(this.prices));
+                    localStorage.setItem('thingsList', JSON.stringify(this.things));
+                    localStorage.setItem('qtdThingsList', JSON.stringify(this.qtdThings));
+                }, 
+            },
         });
 
-
+        root.languageInglish();
     </script>
 </body>
 
