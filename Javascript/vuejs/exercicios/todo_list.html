@@ -7,30 +7,30 @@
     <script src="../assets/viu_version_dev.js"></script>
     <link rel="stylesheet" href="../assets/style.css">
     <link rel="stylesheet" href="style.css">
-    <title>Cash register</title>
+    <title>Emanuel Cândido</title>
 </head>
 
 <body>
     <div id="root">
-        <span v-html="title"></span>
+        <h1>{{labelTitle}}</h1>
         <div class="container">
             <div class="client">
-                <h2>Client</h2>
+                <h2>{{labelClient}}</h2>
                 <select v-model="produt">
                     <optgroup>
-                        <option value="">Select any thing</option>
+                        <option value="">{{labelDefaultOption}}</option>
                         <option v-for="name in things">{{name}}</option>
                     </optgroup>
                 </select>
 
-                <button @click="addCar">Car</button>
+                <button @click="addCar">{{labelCar}}</button>
 
                 <div class="things">
                     <table>
                         <thead>
-                            <th>Produt</th>
-                            <th>Price</th>
-                            <th>Qtd</th>
+                            <th>{{labelProdut}}</th>
+                            <th>{{labelPrice}}</th>
+                            <th>{{labelQtd}}</th>
                         </thead>
                         <tbody v-for="(name, co) in produts" :key="co">
                             <td>{{names[co]}}</td>
@@ -42,56 +42,57 @@
 
                 <div class="footer-cliente">
                     <div>
-                        <span class="cashier">Cashier: <b><a href="https://emanueljosecandido.github.io">{{cashier}}</a></b></span>
+                        <span class="cashier">{{labelCashier}}: <b><a
+                                    href="https://emanueljosecandido.github.io">{{cashier}}</a></b></span>
                     </div>
 
                     <div class="down">
-                        <span class="total"> Total <b>{{total}}</b> KZ</span>
+                        <span class="total"> {{labelTotal}} <b>{{total}}</b> KZ</span>
                         <div class="buttons">
-                            <button @click="buyThings" class="btn-concluded">Finish</button>
-                            <button @click="removeToCar" class="btn-concluded">Cancel</button>
+                            <button @click="buyThings" class="btn-concluded">{{labelFinish}}</button>
+                            <button @click="removeToCar" class="btn-concluded">{{labelCancel}}</button>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="adminstrator">
-                <h2>Administrator</h2>
+                <h2>{{labelAdministrator}}</h2>
                 <div class="add">
-                    <h3>Add</h3>
+                    <h3>{{labelAdd}}</h3>
                     <div class="inputs">
                         <div>
-                            <label for="">Name:</label><br>
+                            <label for="">{{labelName}}:</label><br>
                             <input v-model="name" maxlength="10"><br>
                         </div>
 
                         <div>
-                            <label for="">Price:</label><br>
+                            <label for="">{{labelPrice}}:</label><br>
                             <input v-model="price" maxlength="5"><br>
                         </div>
                     </div>
 
                     <div class="inputs">
                         <div>
-                            <label for="">Qtd:</label><br>
+                            <label for="">{{labelQtd}}:</label><br>
                             <input v-model="qtdThing" maxlength="2"><br>
                         </div>
 
                         <div>
-                            <button @click="addThings" class="addThings">Add</button>
+                            <button @click="addThings" class="addThings">{{labelAdd}}</button>
                         </div>
                     </div>
 
                 </div>
 
                 <div class="list">
-                    <h3>List of Things</h3>
+                    <h3>{{labelList}}</h3>
                     <div class="things">
                         <table>
                             <thead>
-                                <th>Produt</th>
-                                <th>Price</th>
-                                <th>Qtd</th>
+                                <th>{{labelProdut}}</th>
+                                <th>{{labelPrice}}</th>
+                                <th>{{labelQtd}}</th>
                             </thead>
                             <tbody v-for="(name, co) in things" :key="co">
                                 <td>{{names[co]}}</td>
@@ -129,8 +130,23 @@
                 qtdThings: JSON.parse(localStorage.getItem('qtdThingsList')) || [],
                 copyQtdThings: [],
                 qtdThing: 5,
-                title: '<h1>Cash register</h1>',
+                labelTitle: '',
+                labelClient: '',
+                labelDefaultOption: '',
+                labelCar: '',
+                labelProdut: '',
+                labelPrice: '',
+                labelQtd: '',
+                labelName: '',
+                labelList: '',
+                labelAdministrator: '',
+                labelAdd: '',
+                labelCashier: '',
+                labelTotal: '',
+                labelFinish: '',
+                labelCancel: '',
             },
+
             methods: {
                 addThings: function () {
                     if (!this.name && this.price) {
@@ -251,7 +267,43 @@
                     localStorage.setItem('pricesList', JSON.stringify(this.prices));
                     localStorage.setItem('thingsList', JSON.stringify(this.things));
                     localStorage.setItem('qtdThingsList', JSON.stringify(this.qtdThings));
-                }, 
+                },
+
+                languageInglish: function () {
+                    this.labelTitle = 'Cash register ';
+                    this.labelClient = 'Client';
+                    this.labelDefaultOption = 'Select any product';
+                    this.labelCar = 'Car';
+                    this.labelProdut = 'Produt';
+                    this.labelPrice = 'Price';
+                    this.labelQtd = 'Qtd';
+                    this.labelName = 'Name'; 
+                    this.labelList = 'List of Things';
+                    this.labelAdministrator = 'Administrator';
+                    this.labelAdd = 'Add';
+                    this.labelCashier = 'Cashier';
+                    this.labelTotal = 'Total';
+                    this.labelFinish = 'Finish';
+                    this.labelCancel = 'Cancel';
+                },
+
+                languagePortuguese: function () {
+                    this.labelTitle = 'Caixa Registradora';
+                    this.labelClient = 'Cliente';
+                    this.labelDefaultOption = 'Escolha um produto';
+                    this.labelCar = 'Carrinho';
+                    this.labelProdut = 'Produto';
+                    this.labelPrice = 'Preço';
+                    this.labelQtd = 'Qtd';
+                    this.labelName = 'Nome'; 
+                    this.labelList = 'Lista de Produtos';
+                    this.labelAdministrator = 'Administrador';
+                    this.labelAdd = 'Adicionar';
+                    this.labelCashier = 'Caixa';
+                    this.labelTotal = 'Total';
+                    this.labelFinish = 'Finalizar';
+                    this.labelCancel = 'Cancelar';
+                },
             },
         });
 
