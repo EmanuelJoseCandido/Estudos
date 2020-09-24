@@ -10,14 +10,27 @@ body {
     height: 100vh;
 }
 
-#root{
+#root {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-h1{
-    margin-top: 40px;
+.language {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.language span{
+    margin-top: 2.5px;
+}
+
+.language select {
+    margin-bottom: 10px;
+    padding: 2px 0px;
+    border-radius: 0px;
 }
 
 .container {
@@ -72,7 +85,7 @@ h3 {
     height: 75%;
 }
 
-input{
+input {
     margin-bottom: 10px;
     padding: 8px 5px;
     border-radius: 7px;
@@ -83,16 +96,16 @@ input{
     width: 90%;
 }
 
-.inputs.second{
+.inputs.second {
     width: 100%;
 }
 
-.inputs.second input{
+.inputs.second input {
     width: 95%;
 }
 
 
-.inputs.second button{
+.inputs.second button {
     margin-top: 16.6px;
     margin-right: 70px;
     width: 90%;
@@ -151,12 +164,13 @@ button:hover {
     width: 100%;
 }
 
+
 .footer-cliente .down {
     margin-top: 10px;
 }
 
 .footer-cliente .up {
-    font-size: 8pt;  
+    font-size: 8pt;
 }
 
 span.qtd,
@@ -208,6 +222,15 @@ td {
 
 
 @media (min-width: 390px) {
+
+    .language{
+        justify-content: right;
+        margin-right: 15px;
+    }
+
+    .language select{
+        width: 5%;
+    }
 
     .list {
         height: 66%;

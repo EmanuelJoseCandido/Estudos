@@ -11,18 +11,25 @@
 
 <body>
     <div id="root">
+        <div class="language">
+            <span>
+                {{labelLanguage}}:
+            </span>
+
+            <select v-model="selectLanguage" v-on:change="getLanguage()">
+                <option v-for="language in languages">{{language}}</option>
+            </select>
+        </div>
         <h1>{{labelTitle}}</h1>
         <div class="container">
             <div class="client">
                 <h2>{{labelClient}}</h2>
                 <select v-model="produt">
-                    <optgroup>
-                        <option value="">{{labelDefaultOption}}</option>
-                        <option v-for="name in things">{{name}}</option>
-                    </optgroup>
+                    <option value="" disabled>{{labelDefaultOption}}</option>
+                    <option v-for="name in things">{{name}}</option>
                 </select>
 
-                <button @click="addCar">{{labelCar}}</button>
+                <button @click="addCar">&plus;</button>
 
                 <div class="things">
                     <table>
@@ -33,7 +40,7 @@
                         </thead>
                         <tbody v-for="(name, co) in produts" :key="co">
                             <td>{{names[co]}}</td>
-                            <td><span>{{prices[co]}} Kz</span></td>
+                            <td><span>{{prices[co]}}</span></td>
                             <td><span class="qtd">{{qtd[co]}}</span></td>
                         </tbody>
                     </table>
@@ -46,10 +53,10 @@
                     </div>
 
                     <div class="down">
-                        <span class="total"> {{labelTotal}} <b>{{total}}</b> KZ</span>
+                        <span class="total"> {{labelTotal}} <b>{{total}}</b> &dollar;</span>
                         <div class="buttons">
-                            <button @click="buyThings" class="btn-concluded">{{labelFinish}}</button>
-                            <button @click="removeToCar" class="btn-concluded">{{labelCancel}}</button>
+                            <button @click="buyThings">{{labelFinish}}</button>
+                            <button @click="removeToCar">{{labelCancel}}</button>
                         </div>
                     </div>
                 </div>
@@ -114,7 +121,7 @@
         let root = new Vue({
             el: "#root",
             data: {
-                name: "Milk",
+                name: "Funje",
                 names: JSON.parse(localStorage.getItem('namesList')) || [],
                 removed: "",
                 price: 500,
@@ -127,12 +134,14 @@
                 cashier: "Emanuel Cândido",
                 qtd: [],
                 qtdThings: JSON.parse(localStorage.getItem('qtdThingsList')) || [],
+                selectLanguage: 'EN',
+                languages: [],
                 copyQtdThings: [],
                 qtdThing: 5,
+                labelLanguage: '',
                 labelTitle: '',
                 labelClient: '',
                 labelDefaultOption: '',
-                labelCar: '',
                 labelProdut: '',
                 labelPrice: '',
                 labelQtd: '',
@@ -147,6 +156,12 @@
             },
 
             methods: {
+                render: function () {
+                    root.renderLanguage();
+                    root.languageInglish();
+                    this.copyQtdThings = [...this.qtdThings];
+                },
+
                 addThings: function () {
                     if (!this.name && this.price) {
                         alert('Insert a name please');
@@ -186,11 +201,15 @@
                 },
 
                 removeThings: function (position) {
+                    this.names.splice(position, 1);
+                    this.prices.splice(position, 1);
                     this.things.splice(position, 1);
+                    this.qtdThings.splice(position, 1);
                     root.saveToStorage();
                 },
 
                 addCar: function () {
+                    //this.produt - resolver problema
                     if (this.produt) {
                         let position = this.produts.indexOf(this.produt);
                         let posQtd = this.things.indexOf(this.produt);
@@ -243,6 +262,7 @@
                 buyThings: function () {
                     this.total = 0;
                     this.tot = [];
+                    this.produt = '';
                     this.produts = [];
                     this.copyQtdThings = [...this.qtdThings];
                     root.saveToStorage();
@@ -268,29 +288,122 @@
                     localStorage.setItem('qtdThingsList', JSON.stringify(this.qtdThings));
                 },
 
+                renderLanguage: function () {
+                    this.languages.push('AR');
+                    this.languages.push('EN');
+                    this.languages.push('FR');
+                    this.languages.push('PT');
+                    this.languages.push('RS');
+                    this.languages.push('ZH');
+                },
+
+                getLanguage: function () {
+                    switch (this.selectLanguage) {
+                        case 'AR': root.languageArabic(); break;
+                        case 'EN': root.languageInglish(); break;
+                        case 'FR': root.languageFrench(); break;
+                        case 'PT': root.languagePortuguese(); break;
+                        case 'RS': root.languageRussia(); break;
+                        case 'ZH': root.languageChinese(); break;
+                        default: break;
+                    }
+                },
+
+                languageArabic: function () {
+                    this.labelLanguage = 'لغة';
+                    this.labelTitle = 'تسجيل النقدية';
+                    this.labelClient = 'العميل';
+                    this.labelDefaultOption = 'اختر المنتج';
+                    this.labelProdut = 'المنتج';
+                    this.labelPrice = 'السعر';
+                    this.labelQtd = 'الكمية';
+                    this.labelName = 'الاسم ';
+                    this.labelList = 'قائمة المنتجات';
+                    this.labelAdministrator = 'المسؤول';
+                    this.labelAdd = 'إضافة';
+                    this.labelCashier = 'مسئول الصراف';
+                    this.labelTotal = 'المجموع';
+                    this.labelFinish = 'شراء';
+                    this.labelCancel = 'إلغاء';
+                },
+
+                languageFrench: function () {
+                    this.labelLanguage = 'Langue';
+                    this.labelTitle = 'Caisse Enregisreuse';
+                    this.labelClient = 'Client';
+                    this.labelDefaultOption = 'Choisissez un produit';
+                    this.labelProdut = 'Produit';
+                    this.labelPrice = 'Prix';
+                    this.labelQtd = 'Mnt';
+                    this.labelName = 'Nom';
+                    this.labelList = 'Liste de Produits';
+                    this.labelAdministrator = 'Administrateur';
+                    this.labelAdd = 'Ajouter';
+                    this.labelCashier = 'La Caissière';
+                    this.labelTotal = 'Total';
+                    this.labelFinish = 'Achat';
+                    this.labelCancel = 'Annuller';
+                },
+
+                languageRussia: function () {
+                    this.labelLanguage = 'Язык';
+                    this.labelTitle = 'кассовый аппарат';
+                    this.labelClient = 'Клиент';
+                    this.labelDefaultOption = 'Выберите товар';
+                    this.labelProdut = 'Продукт';
+                    this.labelPrice = 'Цена';
+                    this.labelQtd = 'Кол-во';
+                    this.labelName = 'Имя';
+                    this.labelList = 'Список продуктов';
+                    this.labelAdministrator = 'Администратор';
+                    this.labelAdd = 'Добавить';
+                    this.labelCashier = 'Ответственный кассир';
+                    this.labelTotal = 'Итого';
+                    this.labelFinish = 'Купить';
+                    this.labelCancel = 'Отмена';
+                },
+
+                languageChinese: function () {
+                    this.labelLanguage = 'Yǔyán';
+                    this.labelTitle = 'shōuyín jī';
+                    this.labelClient = 'kèhù';
+                    this.labelDefaultOption = 'xuǎnzé yīzhǒng chǎnpǐn';
+                    this.labelProdut = 'chǎnpǐn';
+                    this.labelPrice = 'jiàgé';
+                    this.labelQtd = 'shùliàng';
+                    this.labelName = 'míngchēng';
+                    this.labelList = 'chǎnpǐn lièbiǎo';
+                    this.labelAdministrator = 'guǎnlǐ yuán';
+                    this.labelAdd = 'tiānjiā';
+                    this.labelCashier = 'fùzé shōuyín yuán';
+                    this.labelTotal = 'zǒngjì';
+                    this.labelFinish = 'gòumǎi';
+                    this.labelCancel = 'qǔxiāo';
+                },
+            
                 languageInglish: function () {
+                    this.labelLanguage = 'Language';
                     this.labelTitle = 'Cash register ';
                     this.labelClient = 'Client';
                     this.labelDefaultOption = 'Select any product';
-                    this.labelCar = 'Carros';
                     this.labelProdut = 'Produt';
                     this.labelPrice = 'Price';
-                    this.labelQtd = 'Qtd';
+                    this.labelQtd = 'Qty';
                     this.labelName = 'Name';
-                    this.labelList = 'List of Things';
+                    this.labelList = 'List of Products';
                     this.labelAdministrator = 'Administrator';
                     this.labelAdd = 'Add';
                     this.labelCashier = 'Cashier';
                     this.labelTotal = 'Total';
-                    this.labelFinish = 'Finish';
+                    this.labelFinish = 'Buy';
                     this.labelCancel = 'Cancel';
                 },
 
                 languagePortuguese: function () {
+                    this.labelLanguage = 'Linguagem';
                     this.labelTitle = 'Caixa Registradora';
                     this.labelClient = 'Cliente';
                     this.labelDefaultOption = 'Escolha um produto';
-                    this.labelCar = 'Carrinho';
                     this.labelProdut = 'Produto';
                     this.labelPrice = 'Preço';
                     this.labelQtd = 'Qtd';
@@ -298,15 +411,16 @@
                     this.labelList = 'Lista de Produtos';
                     this.labelAdministrator = 'Administrador';
                     this.labelAdd = 'Adicionar';
-                    this.labelCashier = 'Caixa';
+                    this.labelCashier = 'Encarregado do caixa';
                     this.labelTotal = 'Total';
-                    this.labelFinish = 'Finalizar';
+                    this.labelFinish = 'Comprar';
                     this.labelCancel = 'Cancelar';
                 },
+
             },
         });
 
-        root.languageInglish();
+        root.render();
     </script>
 </body>
 
