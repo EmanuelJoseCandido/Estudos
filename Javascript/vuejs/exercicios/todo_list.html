@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="../assets/viu_version_dev.js"></script>
-    <link rel="stylesheet" href="../assets/style.css">
     <link rel="stylesheet" href="style.css">
     <title>Emanuel Cândido</title>
 </head>
@@ -41,7 +40,7 @@
                 </div>
 
                 <div class="footer-cliente">
-                    <div>
+                    <div class="up">
                         <span class="cashier">{{labelCashier}}: <b><a
                                     href="https://emanueljosecandido.github.io">{{cashier}}</a></b></span>
                     </div>
@@ -60,7 +59,7 @@
                 <h2>{{labelAdministrator}}</h2>
                 <div class="add">
                     <h3>{{labelAdd}}</h3>
-                    <div class="inputs">
+                    <div class="inputs first">
                         <div>
                             <label for="">{{labelName}}:</label><br>
                             <input v-model="name" maxlength="10"><br>
@@ -72,14 +71,14 @@
                         </div>
                     </div>
 
-                    <div class="inputs">
+                    <div class="inputs second">
                         <div>
                             <label for="">{{labelQtd}}:</label><br>
                             <input v-model="qtdThing" maxlength="2"><br>
                         </div>
 
                         <div>
-                            <button @click="addThings" class="addThings">{{labelAdd}}</button>
+                            <button @click="addThings">{{labelAdd}}</button>
                         </div>
                     </div>
 
@@ -273,11 +272,11 @@
                     this.labelTitle = 'Cash register ';
                     this.labelClient = 'Client';
                     this.labelDefaultOption = 'Select any product';
-                    this.labelCar = 'Car';
+                    this.labelCar = 'Carros';
                     this.labelProdut = 'Produt';
                     this.labelPrice = 'Price';
                     this.labelQtd = 'Qtd';
-                    this.labelName = 'Name'; 
+                    this.labelName = 'Name';
                     this.labelList = 'List of Things';
                     this.labelAdministrator = 'Administrator';
                     this.labelAdd = 'Add';
@@ -295,7 +294,7 @@
                     this.labelProdut = 'Produto';
                     this.labelPrice = 'Preço';
                     this.labelQtd = 'Qtd';
-                    this.labelName = 'Nome'; 
+                    this.labelName = 'Nome';
                     this.labelList = 'Lista de Produtos';
                     this.labelAdministrator = 'Administrador';
                     this.labelAdd = 'Adicionar';
