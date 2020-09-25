@@ -1,7 +1,7 @@
 # [Vuejs | Challenge #01](https://emanuelcandido-js.netlify.app/javascript/vuejs/challenges/01_cash_register/cash_register) 🇦🇴
 <center>
 
-Clique aqui para testar : [Caixa Registradora](https://emanuelcandido-js.netlify.app/javascript/vuejs/challenges/01_cash_register/cash_register)
+Clique aqui para testar : [Caixa Registradora](https://emanuelcandido-js.netlify.app/javascript/vuejs/joao_ribeiro/challenges/01_cash_register/cash_register)
 
 </center>
 
@@ -175,8 +175,7 @@ Ao desenvolver a `Caixa Registradora` aprendi e consolidei os seguintes conceito
 
 ```js
     // 4.
-    // Adicione uma nova função para adicionar um
-    // o novo idioma:
+    // Adicione uma nova função para adicionar um novo idioma:
 
     newlanguage(): function () {
         this.labelLanguage = '';
