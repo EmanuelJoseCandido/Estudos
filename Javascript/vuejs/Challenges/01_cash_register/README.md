@@ -97,8 +97,16 @@ Ao desenvolver a `Caixa Registradora` aprendi e consolidei os seguintes conceito
     Caso queiras adicionar um novo idioma siga os seguintes passos:
 </p>
 
+<table>
+<tbody>
+
+<td>
+
 ```js
-    // Adicione um novo código: NewCode
+    // 1.
+    // Adicione um novo código(NewCode) no array para ser renderizado
+    // this.languages.push('NewCode');
+
     renderLanguage: function () {
         this.languages.push('AR');
         this.languages.push('EN');
@@ -108,10 +116,15 @@ Ao desenvolver a `Caixa Registradora` aprendi e consolidei os seguintes conceito
         this.languages.push('ZH');
         this.languages.push('NewCode');
     },
+
+
 ```
+</td>
+<td>
 
 ```js
-    // Adicione-> case 'NewCode': root.newlanguage(); break;
+    // 2.
+    // Adicione-> case 'NewCode': root.newlanguage(); break;    
 
     getLanguage: function () {
         switch (this.selectLanguage) {
@@ -126,14 +139,17 @@ Ao desenvolver a `Caixa Registradora` aprendi e consolidei os seguintes conceito
         }
     },
 ```
-
+</td>
+</tbody>
+</table>
 <table>
 <tbody>
 
 <td>
 
 ```js
-    //  Apenas traduza e insira os dados traduzidos na nova função: newlanguage()
+    // 3.
+    // Insira os dados traduzidos na nova função: newlanguage()      
 
     languagePortuguese: function () {
         this.labelLanguage = 'Linguagem';
@@ -157,6 +173,7 @@ Ao desenvolver a `Caixa Registradora` aprendi e consolidei os seguintes conceito
 <td>
 
 ```js
+    // 4.
     // Adicione uma nova função para adicionar um o novo idioma:
 
     newlanguage(): function () {
@@ -177,7 +194,7 @@ Ao desenvolver a `Caixa Registradora` aprendi e consolidei os seguintes conceito
         this.labelCancel = '';
     },
 ```
-<td>
+</td>
 </tbody>
 </table>
 
