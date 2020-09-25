@@ -2,7 +2,8 @@
 
 Clique aqui para testar : [Caixa Registradora](https://emanuelcandido-js.netlify.app/javascript/vuejs/challenges/01_cash_register/cash_register)<i></i>
 
-<center><img src="../00_assets/01_cash_register.png"></center>
+<center><img src="../00_assets/01_cash_register.png"    width="350px"
+    height="350px"></center>
 
 ## O que é Caixa Registradora?
 
@@ -12,15 +13,14 @@ Clique aqui para testar : [Caixa Registradora](https://emanuelcandido-js.netlify
 
 Fonte: [Wikipédia](https://pt.wikipedia.org/wiki/Caixa_registradora)
 
-## Emanuel porque fazer uma Caixa Registradora?
+## [Emanuel Cândido](https://emanueljosecandido.github.io/) porque desenvolver uma Caixa Registradora?
 
-<p align="justify">
-    Há princípio quis apenas desenvolver um ""To Do list"" para consolidar alguns conhecimentos aprendidos durante está semana, e ao desenvolver o ""To Do list"" achei que deveria tentar fazer algo um que exigira mais de mim, e o que surgiu mesmo foi uma ""Caixa Registradora "".
-</p>
 
-<p align="justify">
-    Ao desenvolver a ""Caixa Registradora"" aprendi e consolidei os seguintes conceitos:
-</p>
+Há princípio quis apenas desenvolver um `To Do list` para consolidar alguns conhecimentos aprendidos durante está semana, e ao desenvolver o `To Do list` achei que deveria tentar fazer algo um que exigira mais de mim, e o que surgiu mesmo foi uma `Caixa Registradora`.
+
+
+Ao desenvolver a `Caixa Registradora` aprendi e consolidei os seguintes conceitos:
+
 
 <ol>
 <li>
@@ -88,7 +88,7 @@ Fonte: [Wikipédia](https://pt.wikipedia.org/wiki/Caixa_registradora)
     Para adicionar produtos ao nosso stoque, o código Javascript(Vuejs) foi o seguinte: 
 </p>
 
-```
+```js
 
                 addThings: function () {
                     if (!this.name && this.price) {
@@ -123,7 +123,6 @@ Fonte: [Wikipédia](https://pt.wikipedia.org/wiki/Caixa_registradora)
                 }
 
 ```
-
 Metodos para o aprendizado:
 
 *  [VueJS - Curso de Iniciação](https://www.youtube.com/playlist?list=PLXik_5Br-zO_xQHAH9GrNR1gAefYWaKxz)
@@ -137,4 +136,4 @@ Metodos para o aprendizado:
 Feito com 🖤💛❤ por [Emanuel Cândido](https://emanueljosecandido.github.io/)
 
 </center>
-l
+
