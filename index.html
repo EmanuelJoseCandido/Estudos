@@ -21,8 +21,8 @@
 
         <div class="item-menu">
             <ul>
-                <li><a href="Javascript/Vuejs/Joao_Ribeiro/Challenges/index.html">Javascript</a></li>
-                <li><a href="Javascript/Vuejs/Joao_Ribeiro/Challenges/index.html">Nodejs</a></li>
+                <li><a href="#">Nodejs</a></li>
+                <li><a href="#">Javascript</a></li>
                 <li><a href="Javascript/Vuejs/Joao_Ribeiro/Challenges/index.html">Vuejs</a></li>
             </ul>
         </div>
@@ -32,19 +32,21 @@
         </div>
     </header>
 
+    <h1>Learning Javascript</h1>
+
     <section>
         <div>
-            <a href="Javascript/Vuejs/Joao_Ribeiro/Challenges/index.html">
-                <div>
-                    <span class="iconify" data-icon="logos:javascript" data-inline="false"></span>
-                    <h3>Javascript</h3>
-                </div>
-            </a>
-
-            <a href="Javascript/Vuejs/Joao_Ribeiro/Challenges/index.html">
+            <a href="#">
                 <div>
                     <span class="iconify" data-icon="logos:nodejs-icon" data-inline="false"></span>
                     <h3>Nodejs</h3>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="inteiro">
+                    <span class="iconify" data-icon="logos:javascript" data-inline="false"></span>
+                    <h3>Javascript</h3>
                 </div>
             </a>
 
@@ -61,6 +63,26 @@
     <footer>
         <a href="https://emanueljosecandido.github.io">Emanuel Cândido &copy; 2020</a>
     </footer>
+
+    <script>
+        let body = document.body;
+        let mode = document.querySelector('.mode');
+        let currentTheme = localStorage.getItem('currentTheme');
+
+        if (currentTheme) {
+            body.classList.add('ligth-theme');
+        }
+
+        mode.addEventListener('click', function () {
+            body.classList.toggle('ligth-theme');
+
+            if (body.classList.contains('ligth-theme')) {
+                localStorage.setItem('currentTheme', 'themeActive');
+            } else {
+                localStorage.removeItem('currentTheme', 'themeActive');
+            }
+        });
+    </script>
 </body>
 
 </html>
