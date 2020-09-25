@@ -1,3 +1,8 @@
+:root{
+    --color-1: #F5DEB3;
+    --color-2: #323234; 
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -5,7 +10,7 @@
 }
 
 body {
-    background: wheat;
+    background: var(--color-1);
     width: 100vw;
     height: 100vh;
 }
@@ -42,10 +47,10 @@ body {
 
 .client,
 .adminstrator {
-    background: #323234;
+    background: var(--color-2);
     width: 250px;
     height: 550px;
-    color: wheat;
+    color: var(--color-1);
     margin: 30px 10px;
     padding: 25px;
     border-radius: 7px;
@@ -121,8 +126,8 @@ select {
     justify-content: center;
     overflow-y: scroll;
     border-radius: 7px;
-    background: wheat;
-    color: #323234;
+    background: var(--color-1);
+    color: var(--color-2);
     width: 100%;
     height: 60%;
 }
@@ -139,9 +144,9 @@ select {
 
 button {
     padding: 10px 15px;
-    background: #323234;
-    color: wheat;
-    border: 1px solid wheat;
+    background: var(--color-2);
+    color: var(--color-1);
+    border: 1px solid var(--color-1);
     border-radius: 7px;
     margin: 10px;
     cursor: pointer;
@@ -150,9 +155,9 @@ button {
 }
 
 button:hover {
-    background: wheat;
-    color: #323234;
-    border: 1px solid #323234;
+    background: var(--color-1);
+    color: var(--color-2);
+    border: 1px solid var(--color-2);
 }
 
 .footer-cliente {
@@ -175,8 +180,8 @@ button:hover {
 
 span.qtd,
 span.times {
-    background: #323234;
-    color: wheat;
+    background: var(--color-2);
+    color: var(--color-1);
     border-radius: 50%;
     padding: 2px 6px;
     font-weight: bolder;
@@ -185,9 +190,9 @@ span.times {
 }
 
 span.times:hover {
-    border: 1px solid #323234;
-    color: #323234;
-    background: wheat;
+    border: 1px solid var(--color-2);
+    color: var(--color-2);
+    background: var(--color-1);
     cursor: pointer;
 }
 
@@ -197,7 +202,7 @@ a {
 }
 
 .cashier a {
-    color: wheat;
+    color: var(--color-1);
 }
 
 a:hover {
@@ -205,12 +210,12 @@ a:hover {
 }
 
 .footer a {
-    color: #323234;
+    color: var(--color-2);
 }
 
 table {
     margin: 10px;
-    border: 1px solid #323234;
+    border: 1px solid var(--color-2);
     border-radius: 7px;
     text-align: left;
 }
