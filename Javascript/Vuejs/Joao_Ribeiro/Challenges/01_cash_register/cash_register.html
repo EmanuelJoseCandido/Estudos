@@ -27,7 +27,7 @@
                 <h2>{{labelClient}}</h2>
                 <select v-model="produt">
                     <option value="" disabled>{{labelDefaultOption}}</option>
-                    <option v-for="name in things">{{name}}&dollar;</option>
+                    <option v-for="name in things">{{name}}</option>
                 </select>
 
                 <button @click="addCar">&plus;</button>
@@ -43,7 +43,8 @@
                             <td>{{names[co]}}</td>
                             <td><span>{{prices[co]}}</span></td>
                             <td><span class="qtd">{{qtd[co]}}</span></td>
-                            <td><span class="times" @click="removeProduts(names[co], prices[co], qtd[co])">&times;</span></td>
+                            <td><span class="times"
+                                    @click="removeToProduts(names[co], prices[co], qtd[co])">&times;</span></td>
                         </tbody>
                     </table>
                 </div>
@@ -109,7 +110,9 @@
                                 <td>{{names[co]}}</td>
                                 <td><span>{{prices[co]}}</span></td>
                                 <td><span>{{qtdThings[co]}}</span></td>
-                                <td><span class="ctdot" @click="editThings(names[co], prices[co], qtdThings[co], co)">&ctdot;</span></td>
+                                <td><span class="ctdot"
+                                        @click="editThings(names[co], prices[co], qtdThings[co], co)">&ctdot;</span>
+                                </td>
                                 <td><span class="times" @click="removeThings(co)">&times;</span></td>
                             </tbody>
                         </table>
@@ -164,10 +167,14 @@
                 labelTotal: '',
                 labelFinish: '',
                 labelCancel: '',
+                alertTextName: '',
+                alertTextPrice: '',
+                alertTextNamePrice: '',
+                alertTextProdutAlready: '',
                 labelAux: '',
             },
 
-            methods: { 
+            methods: {
                 render: function () {
                     root.renderLanguage();
                     root.languageEnglish();
@@ -176,29 +183,29 @@
 
                 addThings: function () {
                     if (!this.name && this.price) {
-                        alert('Insert a name please');
+                        alert(this.alertTextName);
                     }
                     else if (this.name && !this.price) {
-                        alert('Insert a price please');
+                        alert(this.alertTextPrice);
                     }
                     else if (!this.name && !this.price) {
-                        alert('Insert a name and a price  please');
+                        alert(this.alertTextNamePrice);
                     }
                     else {
-                        let name = this.name + " - " + this.price;
+                        let name = this.name + " - " + this.price + "$";
                         let index = this.things.indexOf(name);
 
                         if (index == -1) {
                             this.things.push(name);
                             this.qtdThings.push(Number(this.qtdThing));
-                            this.prices.push(this.price);
+                            this.prices.push(Number(this.price));
                             this.names.push(this.name);
                             this.copyQtdThings = [...this.qtdThings];
                             root.saveToStorage();
                             root.clearInputAdministratorAdd();
                         }
                         else {
-                            alert('Produt already insert');
+                            alert(this.alertTextProdutAlready);
                         }
                     }
                 },
@@ -251,7 +258,7 @@
                             alert('empty');
                         }
                     } else {
-                        alert('Select any thing');
+                        alert(this.labelDefaultOption);
                     }
                 },
 
@@ -301,21 +308,24 @@
                     this.indexEdit = index;
                 },
 
-                saveEdit: function(){
+                saveEdit: function () {
                     this.names[this.indexEdit] = this.name;
-                    this.prices[this.indexEdit] = this.price;
-                    this.qtdThings[this.indexEdit] = this.qtdThing; 
+                    this.prices[this.indexEdit] = Number(this.price);
+                    this.qtdThings[this.indexEdit] = Number(this.qtdThing);
+                    this.things[this.indexEdit] = this.name + " - " + this.price + "$";
+                    this.copyQtdThings = [...this.qtdThings];
                     root.abortEdit();
+                    root.saveToStorage();
                 },
 
-                abortEdit: function(){
+                abortEdit: function () {
                     btn_edit.style.display = 'none';
                     btn_cancel.style.display = 'none';
                     btn_add.style.display = 'initial';
                     this.labelAdd = this.labelAux;
                     root.clearInputAdministratorAdd();
                 },
-                
+
                 removeToCar: function () {
                     this.produts = [];
                     this.tot = [];
@@ -369,11 +379,15 @@
                     this.labelList = 'قائمة المنتجات';
                     this.labelAdministrator = 'المسؤول';
                     this.labelAdd = 'إضافة';
-                    this.labelEdit = 'Edit';
+                    this.labelEdit = '';
                     this.labelCashier = 'مسئول الصراف';
                     this.labelTotal = 'المجموع';
                     this.labelFinish = 'شراء';
                     this.labelCancel = 'إلغاء';
+                    this.alertTextName = '';
+                    this.alertTextPrice = '';
+                    this.alertTextNamePrice = '';
+                    this.alertTextProdutAlready = '';  
                 },
 
                 languageFrench: function () {
@@ -388,11 +402,15 @@
                     this.labelList = 'Liste de Produits';
                     this.labelAdministrator = 'Administrateur';
                     this.labelAdd = 'Ajouter';
-                    this.labelEdit = 'Edit';
+                    this.labelEdit = '';
                     this.labelCashier = 'La Caissière';
                     this.labelTotal = 'Total';
                     this.labelFinish = 'Achat';
                     this.labelCancel = 'Annuller';
+                    this.alertTextName = '';
+                    this.alertTextPrice = '';
+                    this.alertTextNamePrice = '';
+                    this.alertTextProdutAlready = '';                  
                 },
 
                 languageRussia: function () {
@@ -407,11 +425,15 @@
                     this.labelList = 'Список продуктов';
                     this.labelAdministrator = 'Администратор';
                     this.labelAdd = 'Добавить';
-                    this.labelEdit = 'Edit';
+                    this.labelEdit = '';
                     this.labelCashier = 'Ответственный кассир';
                     this.labelTotal = 'Итого';
                     this.labelFinish = 'Купить';
                     this.labelCancel = 'Отмена';
+                    this.alertTextName = '';
+                    this.alertTextPrice = '';
+                    this.alertTextNamePrice = '';
+                    this.alertTextProdutAlready = '';   
                 },
 
                 languageChinese: function () {
@@ -426,11 +448,15 @@
                     this.labelList = 'chǎnpǐn lièbiǎo';
                     this.labelAdministrator = 'guǎnlǐ yuán';
                     this.labelAdd = 'tiānjiā';
-                    this.labelEdit = 'Edit';
+                    this.labelEdit = '';
                     this.labelCashier = 'fùzé shōuyín yuán';
                     this.labelTotal = 'zǒngjì';
                     this.labelFinish = 'gòumǎi';
                     this.labelCancel = 'qǔxiāo';
+                    this.alertTextName = '';
+                    this.alertTextPrice = '';
+                    this.alertTextNamePrice = '';
+                    this.alertTextProdutAlready = ''; 
                 },
 
                 languageEnglish: function () {
@@ -450,6 +476,10 @@
                     this.labelTotal = 'Total';
                     this.labelFinish = 'Buy';
                     this.labelCancel = 'Cancel';
+                    this.alertTextName = 'Insert a name please';
+                    this.alertTextPrice = 'Insert a price please';
+                    this.alertTextNamePrice = 'Insert a name and a price  please';
+                    this.alertTextProdutAlready = 'Produt already insert';
                 },
 
                 languagePortuguese: function () {
@@ -469,6 +499,10 @@
                     this.labelTotal = 'Total';
                     this.labelFinish = 'Comprar';
                     this.labelCancel = 'Cancelar';
+                    this.alertTextName = 'Insira um nome porfavor';
+                    this.alertTextPrice = 'Insira um preço porfavor';
+                    this.alertTextNamePrice = 'Insira um nome e um preço porfavor';
+                    this.alertTextProdutAlready = 'Este produto já foi inserido';                  
                 },
 
             },
