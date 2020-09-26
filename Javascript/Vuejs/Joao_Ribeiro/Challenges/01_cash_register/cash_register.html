@@ -26,7 +26,7 @@
                 <h2>{{labelClient}}</h2>
                 <select v-model="produt">
                     <option value="" disabled>{{labelDefaultOption}}</option>
-                    <option v-for="name in things">{{name}}</option>
+                    <option v-for="name in things">{{name}}&dollar;</option>
                 </select>
 
                 <button @click="addCar">&plus;</button>
@@ -42,6 +42,7 @@
                             <td>{{names[co]}}</td>
                             <td><span>{{prices[co]}}</span></td>
                             <td><span class="qtd">{{qtd[co]}}</span></td>
+                            <td><span class="times" @click="removeProduts(names[co], prices[co], qtd[co])">&times;</span></td>
                         </tbody>
                     </table>
                 </div>
@@ -121,7 +122,7 @@
         let root = new Vue({
             el: "#root",
             data: {
-                name: "Funje",
+                name: "Fuba",
                 names: JSON.parse(localStorage.getItem('namesList')) || [],
                 removed: "",
                 price: 500,
@@ -173,7 +174,7 @@
                         alert('Insert a name and a price  please');
                     }
                     else {
-                        let name = this.name + " - " + this.price + " Kz";
+                        let name = this.name + " - " + this.price;
                         let index = this.things.indexOf(name);
 
                         if (index == -1) {
@@ -206,6 +207,17 @@
                     this.things.splice(position, 1);
                     this.qtdThings.splice(position, 1);
                     root.saveToStorage();
+                },
+
+                removeToProduts: function (name, price, qty) {
+                    let nameProdut = name + " - " + price + "$";
+                    let index1 = this.produts.indexOf(nameProdut);
+                    let index2 = this.tot.indexOf(price);
+
+                    this.qtd[index1] = 1;
+                    this.produts.splice(index1, 1);
+                    this.tot.splice(index2, qty);
+                    this.total -= (this.prices[index1] * qty);
                 },
 
                 addCar: function () {
@@ -244,10 +256,10 @@
                             empty++;
                             position = i;
                         }
-                        if (empty == 2) break;
+                        if (empty == 1) break;
                     }
 
-                    for (let i = position; i < this.produt.length - 3; i++) {
+                    for (let i = position + 1; i < this.produt.length - 1; i++) {
                         aux += this.produt[i];
                     }
 
