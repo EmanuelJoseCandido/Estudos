@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="../../Exercices/assets/viu_version_dev.js"></script>
+    <link rel="stylesheet" href="../../../../../fontawesome-all.css">
     <link rel="stylesheet" href="style.css">
     <title>Vuejs | Challenge #01</title>
 </head>
@@ -85,8 +86,11 @@
                             <input v-model="qtdThing" maxlength="2"><br>
                         </div>
 
-                        <div>
-                            <button @click="addThings">{{labelAdd}}</button>
+                        <div class="buttons">
+                            <button @click="saveEdit" id="btn_edit">&ctdot;</button>
+                            <button @click="addThings" id="btn_add">&plus;</button>
+                            <button @click="clearInputAdministratorAdd">&times;</button>
+                            <button @click="abortEdit" id="btn_cancel">&times;2</button>
                         </div>
                     </div>
 
@@ -105,6 +109,7 @@
                                 <td>{{names[co]}}</td>
                                 <td><span>{{prices[co]}}</span></td>
                                 <td><span>{{qtdThings[co]}}</span></td>
+                                <td><span class="ctdot" @click="editThings(names[co], prices[co], qtdThings[co], co)">&ctdot;</span></td>
                                 <td><span class="times" @click="removeThings(co)">&times;</span></td>
                             </tbody>
                         </table>
@@ -139,6 +144,10 @@
                 languages: [],
                 copyQtdThings: [],
                 qtdThing: 5,
+                indexEdit: -1,
+                btn_edit: document.getElementById('btn_edit'),
+                btn_add: document.getElementById('btn_add'),
+                btn_cancel: document.getElementById('btn_cancel'),
                 labelLanguage: '',
                 labelTitle: '',
                 labelClient: '',
@@ -150,13 +159,15 @@
                 labelList: '',
                 labelAdministrator: '',
                 labelAdd: '',
+                labelEdit: '',
                 labelCashier: '',
                 labelTotal: '',
                 labelFinish: '',
                 labelCancel: '',
+                labelAux: '',
             },
 
-            methods: {
+            methods: { 
                 render: function () {
                     root.renderLanguage();
                     root.languageEnglish();
@@ -187,10 +198,7 @@
                             root.clearInputAdministratorAdd();
                         }
                         else {
-                            this.qtdThings[index] += Number(this.qtdThing);
-                            this.copyQtdThings = [...this.qtdThings];
-                            root.saveToStorage();
-                            root.clearInputAdministratorAdd();
+                            alert('Produt already insert');
                         }
                     }
                 },
@@ -280,6 +288,34 @@
                     root.saveToStorage();
                 },
 
+                editThings: function (name, price, qty, index) {
+                    btn_edit.style.display = 'initial';
+                    btn_cancel.style.display = 'initial';
+                    btn_add.style.display = 'none';
+
+                    this.labelAux = this.labelAdd;
+                    this.labelAdd = this.labelEdit;
+                    this.name = name;
+                    this.price = price;
+                    this.qtdThing = qty;
+                    this.indexEdit = index;
+                },
+
+                saveEdit: function(){
+                    this.names[this.indexEdit] = this.name;
+                    this.prices[this.indexEdit] = this.price;
+                    this.qtdThings[this.indexEdit] = this.qtdThing; 
+                    root.abortEdit();
+                },
+
+                abortEdit: function(){
+                    btn_edit.style.display = 'none';
+                    btn_cancel.style.display = 'none';
+                    btn_add.style.display = 'initial';
+                    this.labelAdd = this.labelAux;
+                    root.clearInputAdministratorAdd();
+                },
+                
                 removeToCar: function () {
                     this.produts = [];
                     this.tot = [];
@@ -333,6 +369,7 @@
                     this.labelList = 'قائمة المنتجات';
                     this.labelAdministrator = 'المسؤول';
                     this.labelAdd = 'إضافة';
+                    this.labelEdit = 'Edit';
                     this.labelCashier = 'مسئول الصراف';
                     this.labelTotal = 'المجموع';
                     this.labelFinish = 'شراء';
@@ -351,6 +388,7 @@
                     this.labelList = 'Liste de Produits';
                     this.labelAdministrator = 'Administrateur';
                     this.labelAdd = 'Ajouter';
+                    this.labelEdit = 'Edit';
                     this.labelCashier = 'La Caissière';
                     this.labelTotal = 'Total';
                     this.labelFinish = 'Achat';
@@ -369,6 +407,7 @@
                     this.labelList = 'Список продуктов';
                     this.labelAdministrator = 'Администратор';
                     this.labelAdd = 'Добавить';
+                    this.labelEdit = 'Edit';
                     this.labelCashier = 'Ответственный кассир';
                     this.labelTotal = 'Итого';
                     this.labelFinish = 'Купить';
@@ -387,12 +426,13 @@
                     this.labelList = 'chǎnpǐn lièbiǎo';
                     this.labelAdministrator = 'guǎnlǐ yuán';
                     this.labelAdd = 'tiānjiā';
+                    this.labelEdit = 'Edit';
                     this.labelCashier = 'fùzé shōuyín yuán';
                     this.labelTotal = 'zǒngjì';
                     this.labelFinish = 'gòumǎi';
                     this.labelCancel = 'qǔxiāo';
                 },
-            
+
                 languageEnglish: function () {
                     this.labelLanguage = 'Language';
                     this.labelTitle = 'Cash register';
@@ -405,6 +445,7 @@
                     this.labelList = 'List of Products';
                     this.labelAdministrator = 'Administrator';
                     this.labelAdd = 'Add';
+                    this.labelEdit = 'Edit';
                     this.labelCashier = 'Cashier';
                     this.labelTotal = 'Total';
                     this.labelFinish = 'Buy';
@@ -423,6 +464,7 @@
                     this.labelList = 'Lista de Produtos';
                     this.labelAdministrator = 'Administrador';
                     this.labelAdd = 'Adicionar';
+                    this.labelEdit = 'Editar';
                     this.labelCashier = 'Encarregado do caixa';
                     this.labelTotal = 'Total';
                     this.labelFinish = 'Comprar';

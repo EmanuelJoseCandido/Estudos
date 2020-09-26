@@ -1,6 +1,6 @@
-:root{
+:root {
     --color-1: #F5DEB3;
-    --color-2: #323234; 
+    --color-2: #323234;
 }
 
 * {
@@ -28,7 +28,7 @@ body {
     margin-top: 5px;
 }
 
-.language span{
+.language span {
     margin-top: 2.5px;
 }
 
@@ -105,6 +105,11 @@ input {
     width: 100%;
 }
 
+
+.inputs.second .buttons{
+    display: flex;
+}
+
 .inputs.second input {
     width: 95%;
 }
@@ -112,8 +117,11 @@ input {
 
 .inputs.second button {
     margin-top: 16.6px;
-    margin-right: 70px;
-    width: 90%;
+    margin-right: 0px;
+}
+
+#btn_edit, #btn_cancel{
+    display: none;
 }
 
 select {
@@ -178,8 +186,9 @@ button:hover {
     font-size: 8pt;
 }
 
+span.times,
 span.qtd,
-span.times {
+span.ctdot {
     background: var(--color-2);
     color: var(--color-1);
     border-radius: 50%;
@@ -189,7 +198,11 @@ span.times {
     transition: all 650ms ease-in-out;
 }
 
-span.times:hover {
+span.ctdot{
+    padding: 2px 4px;
+}
+
+span.times:hover, span.ctdot:hover{
     border: 1px solid var(--color-2);
     color: var(--color-2);
     background: var(--color-1);
@@ -228,12 +241,12 @@ td {
 
 @media (min-width: 390px) {
 
-    .language{
+    .language {
         justify-content: right;
         margin-right: 15px;
     }
 
-    .language select{
+    .language select {
         width: 5%;
     }
 
