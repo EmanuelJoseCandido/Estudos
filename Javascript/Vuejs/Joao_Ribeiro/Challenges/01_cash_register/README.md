@@ -4,7 +4,6 @@
 
 Clique aqui para testar : [Caixa Registradora](https://emanuelcandido-js.netlify.app/javascript/vuejs/joao_ribeiro/challenges/01_cash_register/cash_register)
 
-</center>
 
 <a href="https://emanuelcandido-js.netlify.app/javascript/vuejs/joao_ribeiro/challenges/01_cash_register/cash_register">
 <img src="../00_assets/01_cash_register.png" width="350px"height="350px">
