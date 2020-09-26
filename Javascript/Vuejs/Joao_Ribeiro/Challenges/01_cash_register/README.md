@@ -1,14 +1,16 @@
 # [Vuejs | Challenge #01](https://emanuelcandido-js.netlify.app/javascript/vuejs/challenges/01_cash_register/cash_register) 🇦🇴
-<center>
+
+<p align="center">
 
 Clique aqui para testar : [Caixa Registradora](https://emanuelcandido-js.netlify.app/javascript/vuejs/joao_ribeiro/challenges/01_cash_register/cash_register)
 
 </center>
 
+<a href="https://emanuelcandido-js.netlify.app/javascript/vuejs/joao_ribeiro/challenges/01_cash_register/cash_register">
+<img src="../00_assets/01_cash_register.png" width="350px"height="350px">
+</a>
 
-<center> 
-<img src="../00_assets/01_cash_register.png"    width="350px"height="350px">
-</center>
+</p>
 
 <br>
 
@@ -30,66 +32,29 @@ Há princípio quis desenvolver um `To Do list` para consolidar alguns conhecime
 
 Ao desenvolver a `Caixa Registradora` aprendi e consolidei os seguintes conceitos:
 
-<ol>
-<li>
 
-[Instalação](https://br.vuejs.org/v2/guide/installation.html)
-
-</li>
-    <li>Introdução
-
-- [O que é Vue.js?](https://br.vuejs.org/v2/guide/index.html#O-que-e-Vue-js)
-- [Primeiros Passos](https://br.vuejs.org/v2/guide/index.html#Primeiros-Passos)
-- [Renderização Declarativa](https://br.vuejs.org/v2/guide/index.html#Renderizacao-Declarativa)
-- [Condicionais e Laços](https://br.vuejs.org/v2/guide/index.html#Condicionais-e-Lacos)
-- [Tratando Interação do Usuário](https://br.vuejs.org/v2/guide/index.html#Tratando-Interacao-do-Usuario)
-- [Composição com Componentes](https://br.vuejs.org/v2/guide/index.html#Composicao-com-Componentes)
-</li>
-<li>A Instância Vue
-
-- [Criando a Instância Vue](https://br.vuejs.org/v2/guide/instance.html#Criando-a-Instancia-Vue)
-- [Dados e Métodos](https://br.vuejs.org/v2/guide/instance.html#Dados-e-Metodos)
-- [Ciclo de Vida da Instância](https://br.vuejs.org/v2/guide/instance.html#Ciclo-de-Vida-da-Instancia)
-- [Diagrama do Ciclo de Vida](https://br.vuejs.org/v2/guide/instance.html#Diagrama-do-Ciclo-de-Vida)
-</li>
-
-<li>Sintaxe de Templates
-
-- [Interpolações](https://br.vuejs.org/v2/guide/syntax.html#Interpolacoes)
-- [Diretivas](https://br.vuejs.org/v2/guide/syntax.html#Diretivas)
-- [Abreviações](https://br.vuejs.org/v2/guide/syntax.html#Abreviacoes)
-</li>
-
-<li>
-
-[Dados Computados e Observadores](https://br.vuejs.org/v2/guide/computed.html)
-
-</li>
-
-<li>
-
-[Interligações de Classe e Estilo](https://br.vuejs.org/v2/guide/class-and-style.html)
-
-</li>
-
-<li>
-
-[Renderização Condicional](https://br.vuejs.org/v2/guide/conditional.html)
-
-</li>
-
-<li>
-
-[Renderização de Listas](https://br.vuejs.org/v2/guide/list.html)
-
-</li>
-
-<li>
-
-[Interligações em Formulários](https://br.vuejs.org/v2/guide/forms.html)
-
-</li>
-</ol>
+* [Instalação](https://br.vuejs.org/v2/guide/installation.html)
+* [Introdução](https://br.vuejs.org/v2/guide/index.html)
+    - [O que é Vue.js?](https://br.vuejs.org/v2/guide/index.html#O-que-e-Vue-js)
+    - [Primeiros Passos](https://br.vuejs.org/v2/guide/index.html#Primeiros-Passos)
+    - [Renderização Declarativa](https://br.vuejs.org/v2/guide/index.html#Renderizacao-Declarativa)
+    - [Condicionais e Laços](https://br.vuejs.org/v2/guide/index.html#Condicionais-e-Lacos)
+    - [Tratando Interação do Usuário](https://br.vuejs.org/v2/guide/index.html#Tratando-Interacao-do-Usuario)
+    - [Composição com Componentes](https://br.vuejs.org/v2/guide/index.html#Composicao-com-Componentes)
+* [A Instância Vue](https://br.vuejs.org/v2/guide/instance.html)
+    - [Criando a Instância Vue](https://br.vuejs.org/v2/guide/instance.html#Criando-a-Instancia-Vue)
+    - [Dados e Métodos](https://br.vuejs.org/v2/guide/instance.html#Dados-e-Metodos)
+    - [Ciclo de Vida da Instância](https://br.vuejs.org/v2/guide/instance.html#Ciclo-de-Vida-da-Instancia)
+    - [Diagrama do Ciclo de Vida](https://br.vuejs.org/v2/guide/instance.html#Diagrama-do-Ciclo-de-Vida)
+* [Sintaxe de Templates](https://br.vuejs.org/v2/guide/syntax.html)
+    - [Interpolações](https://br.vuejs.org/v2/guide/syntax.html#Interpolacoes)
+    - [Diretivas](https://br.vuejs.org/v2/guide/syntax.html#Diretivas)
+    - [Abreviações](https://br.vuejs.org/v2/guide/syntax.html#Abreviacoes)
+* [Dados Computados e Observadores](https://br.vuejs.org/v2/guide/computed.html)
+* [Interligações de Classe e Estilo](https://br.vuejs.org/v2/guide/class-and-style.html)
+* [Renderização Condicional](https://br.vuejs.org/v2/guide/conditional.html)
+* [Renderização de Listas](https://br.vuejs.org/v2/guide/list.html)
+* [Interligações em Formulários](https://br.vuejs.org/v2/guide/forms.html)
 
 <br><br>
 
