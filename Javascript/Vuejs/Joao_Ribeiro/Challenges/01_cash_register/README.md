@@ -144,8 +144,8 @@ Ao desenvolver a `Caixa Registradora` aprendi e consolidei os seguintes conceito
 
 ```js
     // 4.
-    // Adicione uma nova função para adicionar um 
-    // novo idioma:
+    // Adicione uma nova função para adicionar 
+    // um novo idioma:
 
     newlanguage(): function () {
         this.labelLanguage = '';
