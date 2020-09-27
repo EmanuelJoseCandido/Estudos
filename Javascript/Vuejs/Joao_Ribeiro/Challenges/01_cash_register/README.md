@@ -4,7 +4,6 @@
 
 Clique aqui para testar : [Caixa Registradora](https://emanuelcandido-js.netlify.app/javascript/vuejs/joao_ribeiro/challenges/01_cash_register/cash_register)
 
-
 <a href="https://emanuelcandido-js.netlify.app/javascript/vuejs/joao_ribeiro/challenges/01_cash_register/cash_register">
 <img src="../00_assets/01_cash_register.png" width="350px"height="350px">
 </a>
@@ -31,29 +30,28 @@ Há princípio quis desenvolver um `To Do list` para consolidar alguns conhecime
 
 Ao desenvolver a `Caixa Registradora` aprendi e consolidei os seguintes conceitos:
 
-
-* [Instalação](https://br.vuejs.org/v2/guide/installation.html)
-* [Introdução](https://br.vuejs.org/v2/guide/index.html)
-    - [O que é Vue.js?](https://br.vuejs.org/v2/guide/index.html#O-que-e-Vue-js)
-    - [Primeiros Passos](https://br.vuejs.org/v2/guide/index.html#Primeiros-Passos)
-    - [Renderização Declarativa](https://br.vuejs.org/v2/guide/index.html#Renderizacao-Declarativa)
-    - [Condicionais e Laços](https://br.vuejs.org/v2/guide/index.html#Condicionais-e-Lacos)
-    - [Tratando Interação do Usuário](https://br.vuejs.org/v2/guide/index.html#Tratando-Interacao-do-Usuario)
-    - [Composição com Componentes](https://br.vuejs.org/v2/guide/index.html#Composicao-com-Componentes)
-* [A Instância Vue](https://br.vuejs.org/v2/guide/instance.html)
-    - [Criando a Instância Vue](https://br.vuejs.org/v2/guide/instance.html#Criando-a-Instancia-Vue)
-    - [Dados e Métodos](https://br.vuejs.org/v2/guide/instance.html#Dados-e-Metodos)
-    - [Ciclo de Vida da Instância](https://br.vuejs.org/v2/guide/instance.html#Ciclo-de-Vida-da-Instancia)
-    - [Diagrama do Ciclo de Vida](https://br.vuejs.org/v2/guide/instance.html#Diagrama-do-Ciclo-de-Vida)
-* [Sintaxe de Templates](https://br.vuejs.org/v2/guide/syntax.html)
-    - [Interpolações](https://br.vuejs.org/v2/guide/syntax.html#Interpolacoes)
-    - [Diretivas](https://br.vuejs.org/v2/guide/syntax.html#Diretivas)
-    - [Abreviações](https://br.vuejs.org/v2/guide/syntax.html#Abreviacoes)
-* [Dados Computados e Observadores](https://br.vuejs.org/v2/guide/computed.html)
-* [Interligações de Classe e Estilo](https://br.vuejs.org/v2/guide/class-and-style.html)
-* [Renderização Condicional](https://br.vuejs.org/v2/guide/conditional.html)
-* [Renderização de Listas](https://br.vuejs.org/v2/guide/list.html)
-* [Interligações em Formulários](https://br.vuejs.org/v2/guide/forms.html)
+- [Instalação](https://br.vuejs.org/v2/guide/installation.html)
+- [Introdução](https://br.vuejs.org/v2/guide/index.html)
+  - [O que é Vue.js?](https://br.vuejs.org/v2/guide/index.html#O-que-e-Vue-js)
+  - [Primeiros Passos](https://br.vuejs.org/v2/guide/index.html#Primeiros-Passos)
+  - [Renderização Declarativa](https://br.vuejs.org/v2/guide/index.html#Renderizacao-Declarativa)
+  - [Condicionais e Laços](https://br.vuejs.org/v2/guide/index.html#Condicionais-e-Lacos)
+  - [Tratando Interação do Usuário](https://br.vuejs.org/v2/guide/index.html#Tratando-Interacao-do-Usuario)
+  - [Composição com Componentes](https://br.vuejs.org/v2/guide/index.html#Composicao-com-Componentes)
+- [A Instância Vue](https://br.vuejs.org/v2/guide/instance.html)
+  - [Criando a Instância Vue](https://br.vuejs.org/v2/guide/instance.html#Criando-a-Instancia-Vue)
+  - [Dados e Métodos](https://br.vuejs.org/v2/guide/instance.html#Dados-e-Metodos)
+  - [Ciclo de Vida da Instância](https://br.vuejs.org/v2/guide/instance.html#Ciclo-de-Vida-da-Instancia)
+  - [Diagrama do Ciclo de Vida](https://br.vuejs.org/v2/guide/instance.html#Diagrama-do-Ciclo-de-Vida)
+- [Sintaxe de Templates](https://br.vuejs.org/v2/guide/syntax.html)
+  - [Interpolações](https://br.vuejs.org/v2/guide/syntax.html#Interpolacoes)
+  - [Diretivas](https://br.vuejs.org/v2/guide/syntax.html#Diretivas)
+  - [Abreviações](https://br.vuejs.org/v2/guide/syntax.html#Abreviacoes)
+- [Dados Computados e Observadores](https://br.vuejs.org/v2/guide/computed.html)
+- [Interligações de Classe e Estilo](https://br.vuejs.org/v2/guide/class-and-style.html)
+- [Renderização Condicional](https://br.vuejs.org/v2/guide/conditional.html)
+- [Renderização de Listas](https://br.vuejs.org/v2/guide/list.html)
+- [Interligações em Formulários](https://br.vuejs.org/v2/guide/forms.html)
 
 <br><br>
 
@@ -68,7 +66,7 @@ Ao desenvolver a `Caixa Registradora` aprendi e consolidei os seguintes conceito
 
 ```js
     // 1.
-    // Adicione um novo código(NewCode) no array para 
+    // Adicione um novo código(NewCode) no array para
     // ser renderizado: this.languages.push('NewCode');
 
     renderLanguage: function () {
@@ -83,12 +81,13 @@ Ao desenvolver a `Caixa Registradora` aprendi e consolidei os seguintes conceito
 
 
 ```
+
 </td>
 <td>
 
 ```js
     // 2.
-    // Adicione-> case 'NewCode': root.newlanguage(); break;    
+    // Adicione-> case 'NewCode': root.newlanguage(); break;
 
     getLanguage: function () {
         switch (this.selectLanguage) {
@@ -103,6 +102,7 @@ Ao desenvolver a `Caixa Registradora` aprendi e consolidei os seguintes conceito
         }
     },
 ```
+
 </td>
 </tbody>
 </table>
@@ -113,8 +113,7 @@ Ao desenvolver a `Caixa Registradora` aprendi e consolidei os seguintes conceito
 
 ```js
     // 3.
-    // Insira os dados traduzidos na nova função: 
-    // newlanguage()      
+    // Insira os dados traduzidos na nova função: newlanguage()      
 
     languagePortuguese: function () {
         this.labelLanguage = 'Linguagem';
@@ -128,18 +127,25 @@ Ao desenvolver a `Caixa Registradora` aprendi e consolidei os seguintes conceito
         this.labelList = 'Lista de Produtos';
         this.labelAdministrator = 'Administrador';
         this.labelAdd = 'Adicionar';
+        this.labelEdit = 'Editar';
         this.labelCashier = 'Encarregado do caixa';
         this.labelTotal = 'Total';
         this.labelFinish = 'Comprar';
         this.labelCancel = 'Cancelar';
+        this.alertTextName = 'Insira um nome porfavor';
+        this.alertTextPrice = 'Insira um preço porfavor';
+        this.alertTextNamePrice = 'Insira um nome e um preço porfavor';
+        this.alertTextProdutAlready = 'Este produto já foi inserido';
     },
 ```
+
 </td>
 <td>
 
 ```js
     // 4.
-    // Adicione uma nova função para adicionar um novo idioma:
+    // Adicione uma nova função para adicionar um 
+    // novo idioma:
 
     newlanguage(): function () {
         this.labelLanguage = '';
@@ -153,12 +159,18 @@ Ao desenvolver a `Caixa Registradora` aprendi e consolidei os seguintes conceito
         this.labelList = '';
         this.labelAdministrator = '';
         this.labelAdd = '';
+        this.labelEdit = '';
         this.labelCashier = '';
         this.labelTotal = '';
         this.labelFinish = '';
         this.labelCancel = '';
+        this.alertTextName = '';
+        this.alertTextPrice = '';
+        this.alertTextNamePrice = '';
+        this.alertTextProdutAlready = '';
     },
 ```
+
 </td>
 </tbody>
 </table>
