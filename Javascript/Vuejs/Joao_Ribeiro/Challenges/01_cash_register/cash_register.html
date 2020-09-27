@@ -236,7 +236,7 @@
                     for (let v = 0; v < this.things.length; v++) {
                         const element = this.things[v];
                         console.log(v + ' - ' + element)
-                        
+
                     }
                     console.log('index: ' + index);
                     //console.log('x: ' + x)
@@ -269,7 +269,7 @@
                                 this.show = true;
                                 if (this.qtdThings[posQtd] == 0) {
                                     root.calculate();
-                                    this.produt = '';  
+                                    this.produt = '';
                                 }
 
                                 root.calculate();
@@ -279,7 +279,7 @@
                                 this.qtd.push(1);
                                 this.aux = 'Produts',
 
-                                this.namesCar.push(this.names[posQtd]);
+                                    this.namesCar.push(this.names[posQtd]);
                                 this.pricesCar.push(this.prices[posQtd]);
                                 root.calculate();
                             }
@@ -412,15 +412,15 @@
                     this.labelList = 'قائمة المنتجات';
                     this.labelAdministrator = 'المسؤول';
                     this.labelAdd = 'إضافة';
-                    this.labelEdit = '';
+                    this.labelEdit = 'تحرير';
                     this.labelCashier = 'مسئول الصراف';
                     this.labelTotal = 'المجموع';
                     this.labelFinish = 'شراء';
                     this.labelCancel = 'إلغاء';
-                    this.alertTextName = '';
-                    this.alertTextPrice = '';
-                    this.alertTextNamePrice = '';
-                    this.alertTextProdutAlready = '';
+                    this.alertTextName = 'الرجاء إدخال الاسم';
+                    this.alertTextPrice = 'الرجاء إدخال السعر';
+                    this.alertTextNamePrice = 'الرجاء إدخال الاسم والسعر';
+                    this.alertTextProdutAlready = 'تم إدخال هذا المنتج بالفعل';
                 },
 
                 languageFrench: function () {
@@ -435,15 +435,15 @@
                     this.labelList = 'Liste de Produits';
                     this.labelAdministrator = 'Administrateur';
                     this.labelAdd = 'Ajouter';
-                    this.labelEdit = '';
+                    this.labelEdit = 'Modifier';
                     this.labelCashier = 'La Caissière';
                     this.labelTotal = 'Total';
                     this.labelFinish = 'Achat';
                     this.labelCancel = 'Annuller';
-                    this.alertTextName = '';
-                    this.alertTextPrice = '';
-                    this.alertTextNamePrice = '';
-                    this.alertTextProdutAlready = '';
+                    this.alertTextName = 'Veuillez saisir un nom';
+                    this.alertTextPrice = 'Veuillez insérer un prix';
+                    this.alertTextNamePrice = 'Veuillez saisir un nom et un prix';
+                    this.alertTextProdutAlready = 'Ce produit a déjà été inséré';
                 },
 
                 languageRussia: function () {
@@ -458,15 +458,15 @@
                     this.labelList = 'Список продуктов';
                     this.labelAdministrator = 'Администратор';
                     this.labelAdd = 'Добавить';
-                    this.labelEdit = '';
+                    this.labelEdit = 'Редактировать';
                     this.labelCashier = 'Ответственный кассир';
                     this.labelTotal = 'Итого';
                     this.labelFinish = 'Купить';
                     this.labelCancel = 'Отмена';
-                    this.alertTextName = '';
-                    this.alertTextPrice = '';
-                    this.alertTextNamePrice = '';
-                    this.alertTextProdutAlready = '';
+                    this.alertTextName = 'Пожалуйста, введите имя';
+                    this.alertTextPrice = 'Пожалуйста, введите цену';
+                    this.alertTextNamePrice = 'Пожалуйста, введите имя и цену';
+                    this.alertTextProdutAlready = 'Этот продукт уже был добавлен';
                 },
 
                 languageChinese: function () {
@@ -481,15 +481,15 @@
                     this.labelList = 'chǎnpǐn lièbiǎo';
                     this.labelAdministrator = 'guǎnlǐ yuán';
                     this.labelAdd = 'tiānjiā';
-                    this.labelEdit = '';
+                    this.labelEdit = 'biānjí';
                     this.labelCashier = 'fùzé shōuyín yuán';
                     this.labelTotal = 'zǒngjì';
                     this.labelFinish = 'gòumǎi';
                     this.labelCancel = 'qǔxiāo';
-                    this.alertTextName = '';
-                    this.alertTextPrice = '';
-                    this.alertTextNamePrice = '';
-                    this.alertTextProdutAlready = '';
+                    this.alertTextName = 'Qǐng shūrù míngchēng';
+                    this.alertTextPrice = 'qǐng shūrù jiàgé';
+                    this.alertTextNamePrice = 'qǐng shūrù míngchēng hé jiàgé';
+                    this.alertTextProdutAlready = 'yǐ chārù cǐ chǎnpǐn';
                 },
 
                 languageEnglish: function () {
@@ -509,10 +509,10 @@
                     this.labelTotal = 'Total';
                     this.labelFinish = 'Buy';
                     this.labelCancel = 'Cancel';
-                    this.alertTextName = 'Insert a name please';
-                    this.alertTextPrice = 'Insert a price please';
-                    this.alertTextNamePrice = 'Insert a name and a price  please';
-                    this.alertTextProdutAlready = 'Produt already insert';
+                    this.alertTextName = 'Please enter a name';
+                    this.alertTextPrice = 'Please insert a price';
+                    this.alertTextNamePrice = 'Please enter a name and price';
+                    this.alertTextProdutAlready = 'This product has already been inserted';
                 },
 
                 languagePortuguese: function () {
