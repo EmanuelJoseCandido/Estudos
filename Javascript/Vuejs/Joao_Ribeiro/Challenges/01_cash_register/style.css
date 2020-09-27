@@ -199,7 +199,9 @@ span.ctdot {
 }
 
 span.ctdot{
-    padding: 2px 4px;
+    padding: 4px 4px;
+    border-radius: 50%;
+    font-size: 10pt;
 }
 
 span.times:hover, span.ctdot:hover{
@@ -255,7 +257,7 @@ td {
     }
 
     select {
-        width: 76%;
+        width: 75%;
     }
 
     .client,

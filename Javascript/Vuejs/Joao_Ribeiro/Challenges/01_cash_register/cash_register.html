@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="../../Exercices/assets/viu_version_dev.js"></script>
     <link rel="stylesheet" href="../../../../../fontawesome-all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+
     <link rel="stylesheet" href="style.css">
     <title>Vuejs | Challenge #01</title>
 </head>
@@ -30,7 +32,7 @@
                     <option v-for="(name, co) in things" :key="co" v-show="qtdThings[co] != 0">{{name}}</option>
                 </select>
 
-                <button @click="addCar" v>&plus;</button>
+                <button @click="addCar" v><i class="fa fa-cart-plus"></i></button>
 
                 <div class="things">
                     <table>
@@ -58,8 +60,8 @@
                     <div class="down">
                         <span class="total"> {{labelTotal}} <b>{{total}}</b> &dollar;</span>
                         <div class="buttons">
-                            <button @click="buyThings">{{labelFinish}}</button>
-                            <button @click="removeToCar">{{labelCancel}}</button>
+                            <button @click="buyThings"><i class="fa fa-coins"></i></button>
+                            <button @click="removeToCar"><i class="fa fa-ban"></i></button>
                         </div>
                     </div>
                 </div>
@@ -88,10 +90,10 @@
                         </div>
 
                         <div class="buttons">
-                            <button @click="saveEdit" id="btn_edit">&ctdot;</button>
-                            <button @click="addThings" id="btn_add">&plus;</button>
-                            <button @click="clearInputAdministratorAdd">&times;</button>
-                            <button @click="abortEdit" id="btn_cancel">&times;2</button>
+                            <button @click="saveEdit" id="btn_edit"><i class="fa fa-save"></i></button>
+                            <button @click="addThings" id="btn_add"><i class="fa fa-save"></i></button>
+                            <button @click="clearInputAdministratorAdd"><i class="fa fa-trash"></i></button>
+                            <button @click="abortEdit" id="btn_cancel"><i class="fa fa-ban"></i></button>
                         </div>
                     </div>
 
@@ -111,7 +113,7 @@
                                 <td><span>{{prices[co]}}</span></td>
                                 <td><span>{{qtdThings[co]}}</span></td>
                                 <td><span class="ctdot"
-                                        @click="editThings(names[co], prices[co], qtdThings[co], co)">&ctdot;</span>
+                                        @click="editThings(names[co], prices[co], qtdThings[co], co)"><i class="fa fa-edit"></i></span>
                                 </td>
                                 <td><span class="times" @click="removeThings(co)">&times;</span></td>
                             </tbody>
@@ -415,8 +417,6 @@
                     this.labelEdit = 'تحرير';
                     this.labelCashier = 'مسئول الصراف';
                     this.labelTotal = 'المجموع';
-                    this.labelFinish = 'شراء';
-                    this.labelCancel = 'إلغاء';
                     this.alertTextName = 'الرجاء إدخال الاسم';
                     this.alertTextPrice = 'الرجاء إدخال السعر';
                     this.alertTextNamePrice = 'الرجاء إدخال الاسم والسعر';
@@ -438,8 +438,6 @@
                     this.labelEdit = 'Modifier';
                     this.labelCashier = 'La Caissière';
                     this.labelTotal = 'Total';
-                    this.labelFinish = 'Achat';
-                    this.labelCancel = 'Annuller';
                     this.alertTextName = 'Veuillez saisir un nom';
                     this.alertTextPrice = 'Veuillez insérer un prix';
                     this.alertTextNamePrice = 'Veuillez saisir un nom et un prix';
@@ -484,8 +482,6 @@
                     this.labelEdit = 'biānjí';
                     this.labelCashier = 'fùzé shōuyín yuán';
                     this.labelTotal = 'zǒngjì';
-                    this.labelFinish = 'gòumǎi';
-                    this.labelCancel = 'qǔxiāo';
                     this.alertTextName = 'Qǐng shūrù míngchēng';
                     this.alertTextPrice = 'qǐng shūrù jiàgé';
                     this.alertTextNamePrice = 'qǐng shūrù míngchēng hé jiàgé';
@@ -507,8 +503,6 @@
                     this.labelEdit = 'Edit';
                     this.labelCashier = 'Cashier';
                     this.labelTotal = 'Total';
-                    this.labelFinish = 'Buy';
-                    this.labelCancel = 'Cancel';
                     this.alertTextName = 'Please enter a name';
                     this.alertTextPrice = 'Please insert a price';
                     this.alertTextNamePrice = 'Please enter a name and price';
@@ -530,8 +524,6 @@
                     this.labelEdit = 'Editar';
                     this.labelCashier = 'Encarregado do caixa';
                     this.labelTotal = 'Total';
-                    this.labelFinish = 'Comprar';
-                    this.labelCancel = 'Cancelar';
                     this.alertTextName = 'Insira um nome porfavor';
                     this.alertTextPrice = 'Insira um preço porfavor';
                     this.alertTextNamePrice = 'Insira um nome e um preço porfavor';
