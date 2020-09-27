@@ -27,10 +27,10 @@
                 <h2>{{labelClient}}</h2>
                 <select v-model="produt">
                     <option value="" disabled>{{labelDefaultOption}}</option>
-                    <option v-for="name in things">{{name}}</option>
+                    <option v-for="(name, co) in things" :key="co" v-show="qtdThings[co] != 0">{{name}}</option>
                 </select>
 
-                <button @click="addCar">&plus;</button>
+                <button @click="addCar" v>&plus;</button>
 
                 <div class="things">
                     <table>
@@ -39,12 +39,12 @@
                             <th>{{labelPrice}}</th>
                             <th>{{labelQtd}}</th>
                         </thead>
-                        <tbody v-for="(name, co) in produts" :key="co">
-                            <td>{{names[co]}}</td>
-                            <td><span>{{prices[co]}}</span></td>
+                        <tbody v-for="(name, co) in namesCar" :key="co">
+                            <td>{{name}}</td>
+                            <td><span>{{pricesCar[co]}}</span></td>
                             <td><span class="qtd">{{qtd[co]}}</span></td>
                             <td><span class="times"
-                                    @click="removeToProduts(names[co], prices[co], qtd[co])">&times;</span></td>
+                                    @click="removeToProduts(name, pricesCar[co], qtd[co], co)">&times;</span></td>
                         </tbody>
                     </table>
                 </div>
@@ -130,11 +130,14 @@
         let root = new Vue({
             el: "#root",
             data: {
+                aux: '',
                 name: "Fuba",
                 names: JSON.parse(localStorage.getItem('namesList')) || [],
+                namesCar: [],
                 removed: "",
                 price: 500,
                 prices: JSON.parse(localStorage.getItem('pricesList')) || [],
+                pricesCar: [],
                 total: 0,
                 tot: [],
                 things: JSON.parse(localStorage.getItem('thingsList')) || [],
@@ -224,37 +227,63 @@
                     root.saveToStorage();
                 },
 
-                removeToProduts: function (name, price, qty) {
+                removeToProduts: function (name, price, qty, index) {
                     let nameProdut = name + " - " + price + "$";
-                    let index1 = this.produts.indexOf(nameProdut);
-                    let index2 = this.tot.indexOf(price);
+                    let c = this.tot.indexOf(price);
+                    let i = this.things.indexOf(nameProdut);
+                    let x = this.namesCar.indexOf(name);
 
-                    this.qtd[index1] = 1;
-                    this.produts.splice(index1, 1);
-                    this.tot.splice(index2, qty);
-                    this.total -= (this.prices[index1] * qty);
+                    for (let v = 0; v < this.things.length; v++) {
+                        const element = this.things[v];
+                        console.log(v + ' - ' + element)
+                        
+                    }
+                    console.log('index: ' + index);
+                    //console.log('x: ' + x)
+                    console.log('i: ' + i)
+                    console.log('c: ' + c);
+                    console.log('Price: ' + price);
+                    console.log('Qty: ' + qty);
+                    console.log('-Total: ' + (price * qty));
+
+                    this.qtd[index] = 1;
+                    this.produts.splice(index, 1);
+                    this.namesCar.splice(index, 1);
+                    this.pricesCar.splice(price, 1);
+
+
+                    this.tot.splice(x, qty);
+                    this.total -= (price * qty); //ok
+                    this.qtdThings[i] += qty; //ok
                 },
 
                 addCar: function () {
-                    //this.produt - resolver problema
                     if (this.produt) {
                         let position = this.produts.indexOf(this.produt);
                         let posQtd = this.things.indexOf(this.produt);
 
-                        if (this.qtdThings[position] != 0) {
+                        if (this.qtdThings[posQtd] != 0) {
                             if (position != -1) {
-                                this.qtd[position]++;
-                                this.qtdThings[position]--;
+                                this.qtd[position]++
+                                this.qtdThings[posQtd]--;
                                 this.show = true;
+                                if (this.qtdThings[posQtd] == 0) {
+                                    root.calculate();
+                                    this.produt = '';  
+                                }
+
                                 root.calculate();
                             } else {
                                 this.qtdThings[posQtd]--;
                                 this.produts.push(this.produt);
                                 this.qtd.push(1);
+                                this.aux = 'Produts',
+
+                                this.namesCar.push(this.names[posQtd]);
+                                this.pricesCar.push(this.prices[posQtd]);
                                 root.calculate();
                             }
                         } else {
-                            //this.things.splice(this.things.indexOf(this.removed), 1);
                             alert('empty');
                         }
                     } else {
@@ -291,6 +320,8 @@
                     this.tot = [];
                     this.produt = '';
                     this.produts = [];
+                    this.namesCar = [];
+                    this.pricesCar = [];
                     this.copyQtdThings = [...this.qtdThings];
                     root.saveToStorage();
                 },
@@ -328,6 +359,8 @@
 
                 removeToCar: function () {
                     this.produts = [];
+                    this.namesCar = [];
+                    this.pricesCar = [];
                     this.tot = [];
                     this.produt = '';
                     this.total = 0;
@@ -374,7 +407,7 @@
                     this.labelDefaultOption = 'اختر المنتج';
                     this.labelProdut = 'المنتج';
                     this.labelPrice = 'السعر';
-                    this.labelQtd = 'الكمية';
+                    this.labelQtd = 'الك';
                     this.labelName = 'الاسم ';
                     this.labelList = 'قائمة المنتجات';
                     this.labelAdministrator = 'المسؤول';
@@ -387,7 +420,7 @@
                     this.alertTextName = '';
                     this.alertTextPrice = '';
                     this.alertTextNamePrice = '';
-                    this.alertTextProdutAlready = '';  
+                    this.alertTextProdutAlready = '';
                 },
 
                 languageFrench: function () {
@@ -410,7 +443,7 @@
                     this.alertTextName = '';
                     this.alertTextPrice = '';
                     this.alertTextNamePrice = '';
-                    this.alertTextProdutAlready = '';                  
+                    this.alertTextProdutAlready = '';
                 },
 
                 languageRussia: function () {
@@ -420,7 +453,7 @@
                     this.labelDefaultOption = 'Выберите товар';
                     this.labelProdut = 'Продукт';
                     this.labelPrice = 'Цена';
-                    this.labelQtd = 'Кол-во';
+                    this.labelQtd = 'Кол';
                     this.labelName = 'Имя';
                     this.labelList = 'Список продуктов';
                     this.labelAdministrator = 'Администратор';
@@ -433,7 +466,7 @@
                     this.alertTextName = '';
                     this.alertTextPrice = '';
                     this.alertTextNamePrice = '';
-                    this.alertTextProdutAlready = '';   
+                    this.alertTextProdutAlready = '';
                 },
 
                 languageChinese: function () {
@@ -443,7 +476,7 @@
                     this.labelDefaultOption = 'xuǎnzé yīzhǒng chǎnpǐn';
                     this.labelProdut = 'chǎnpǐn';
                     this.labelPrice = 'jiàgé';
-                    this.labelQtd = 'shùliàng';
+                    this.labelQtd = 'shù';
                     this.labelName = 'míngchēng';
                     this.labelList = 'chǎnpǐn lièbiǎo';
                     this.labelAdministrator = 'guǎnlǐ yuán';
@@ -456,7 +489,7 @@
                     this.alertTextName = '';
                     this.alertTextPrice = '';
                     this.alertTextNamePrice = '';
-                    this.alertTextProdutAlready = ''; 
+                    this.alertTextProdutAlready = '';
                 },
 
                 languageEnglish: function () {
@@ -502,7 +535,7 @@
                     this.alertTextName = 'Insira um nome porfavor';
                     this.alertTextPrice = 'Insira um preço porfavor';
                     this.alertTextNamePrice = 'Insira um nome e um preço porfavor';
-                    this.alertTextProdutAlready = 'Este produto já foi inserido';                  
+                    this.alertTextProdutAlready = 'Este produto já foi inserido';
                 },
 
             },
