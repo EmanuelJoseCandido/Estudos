@@ -67,7 +67,8 @@ Ao desenvolver a `Caixa Registradora` aprendi e consolidei os seguintes conceito
 ```js
     // 1.
     // Adicione um novo código(NewCode) no array para
-    // ser renderizado: this.languages.push('NewCode');
+    // ser renderizado: 
+    // this.languages.push('NewCode');
     //
 
     renderLanguage: function () {
@@ -132,8 +133,6 @@ Ao desenvolver a `Caixa Registradora` aprendi e consolidei os seguintes conceito
         this.labelEdit = 'Editar';
         this.labelCashier = 'Encarregado do caixa';
         this.labelTotal = 'Total';
-        this.labelFinish = 'Comprar';
-        this.labelCancel = 'Cancelar';
         this.alertTextName = 'Insira um nome porfavor';
         this.alertTextPrice = 'Insira um preço porfavor';
         this.alertTextNamePrice = 'Insira um nome e um preço porfavor';
@@ -164,8 +163,6 @@ Ao desenvolver a `Caixa Registradora` aprendi e consolidei os seguintes conceito
         this.labelEdit = '';
         this.labelCashier = '';
         this.labelTotal = '';
-        this.labelFinish = '';
-        this.labelCancel = '';
         this.alertTextName = '';
         this.alertTextPrice = '';
         this.alertTextNamePrice = '';
