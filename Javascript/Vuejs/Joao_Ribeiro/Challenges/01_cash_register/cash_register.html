@@ -41,12 +41,13 @@
                             <th>{{labelPrice}}</th>
                             <th>{{labelQtd}}</th>
                         </thead>
-                        <tbody v-for="(name, co) in namesCar" :key="co">
-                            <td>{{name}}</td>
+                        <tbody v-for="(name, co) in produts" :key="co" v-show="produts[co] != ''">
+                            <td>{{namesCar[co]}}</td>
                             <td><span>{{pricesCar[co]}}</span></td>
                             <td><span class="qtd">{{qtd[co]}}</span></td>
                             <td><span class="times"
-                                    @click="removeToProduts(name, pricesCar[co], qtd[co], co)">&times;</span></td>
+                                    @click="removeToProduts(namesCar[co], pricesCar[co], qtd[co], co)">&times;</span>
+                            </td>
                         </tbody>
                     </table>
                 </div>
@@ -112,8 +113,8 @@
                                 <td>{{names[co]}}</td>
                                 <td><span>{{prices[co]}}</span></td>
                                 <td><span>{{qtdThings[co]}}</span></td>
-                                <td><span class="ctdot"
-                                        @click="editThings(names[co], prices[co], qtdThings[co], co)"><i class="fa fa-edit"></i></span>
+                                <td><span class="ctdot" @click="editThings(names[co], prices[co], qtdThings[co], co)"><i
+                                            class="fa fa-edit"></i></span>
                                 </td>
                                 <td><span class="times" @click="removeThings(co)">&times;</span></td>
                             </tbody>
@@ -231,32 +232,23 @@
 
                 removeToProduts: function (name, price, qty, index) {
                     let nameProdut = name + " - " + price + "$";
-                    let c = this.tot.indexOf(price);
                     let i = this.things.indexOf(nameProdut);
                     let x = this.namesCar.indexOf(name);
 
-                    for (let v = 0; v < this.things.length; v++) {
-                        const element = this.things[v];
-                        console.log(v + ' - ' + element)
-
-                    }
-                    console.log('index: ' + index);
-                    //console.log('x: ' + x)
-                    console.log('i: ' + i)
-                    console.log('c: ' + c);
-                    console.log('Price: ' + price);
-                    console.log('Qty: ' + qty);
-                    console.log('-Total: ' + (price * qty));
-
-                    this.qtd[index] = 1;
-                    this.produts.splice(index, 1);
-                    this.namesCar.splice(index, 1);
+                    this.qtd.splice(price, 1);
+                    this.produts[index] = '';
+                    this.namesCar.splice(price, 1);
                     this.pricesCar.splice(price, 1);
 
+                    for (let v = 0; v < this.tot.length; v++) {
+                        if (this.tot[v] == price) {
+                            this.tot[v] = 0;
+                            if (v == qty - 1) break;
+                        }
+                    }
 
-                    this.tot.splice(x, qty);
-                    this.total -= (price * qty); //ok
-                    this.qtdThings[i] += qty; //ok
+                    this.total -= (price * qty);
+                    this.qtdThings[i] += qty;
                 },
 
                 addCar: function () {
@@ -315,6 +307,8 @@
                     this.total = this.tot.reduce(function (total, next) {
                         return total + next;
                     });
+
+                    this.tot.sort();
                 },
 
                 buyThings: function () {
