@@ -68,6 +68,7 @@ Ao desenvolver a `Caixa Registradora` aprendi e consolidei os seguintes conceito
     // 1.
     // Adicione um novo código(NewCode) no array para
     // ser renderizado: this.languages.push('NewCode');
+    //
 
     renderLanguage: function () {
         this.languages.push('AR');
@@ -114,6 +115,7 @@ Ao desenvolver a `Caixa Registradora` aprendi e consolidei os seguintes conceito
 ```js
     // 3.
     // Insira os dados traduzidos na nova função: newlanguage()      
+    //
 
     languagePortuguese: function () {
         this.labelLanguage = 'Linguagem';
