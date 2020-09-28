@@ -32,7 +32,7 @@
                     <option v-for="(name, co) in things" :key="co" v-show="qtdThings[co] != 0">{{name}}</option>
                 </select>
 
-                <button @click="addCar" v><i class="fa fa-cart-plus"></i></button>
+                <button @click="addProductToCart" v><i class="fa fa-cart-plus"></i></button>
 
                 <div class="things">
                     <table>
@@ -46,7 +46,7 @@
                             <td><span>{{pricesCar[co]}}</span></td>
                             <td><span class="qtd">{{qtd[co]}}</span></td>
                             <td><span class="times"
-                                    @click="removeToProduts(namesCar[co], pricesCar[co], qtd[co], co)">&times;</span>
+                                    @click="removeProductFromCart(namesCar[co], pricesCar[co], qtd[co], co)">&times;</span>
                             </td>
                         </tbody>
                     </table>
@@ -61,8 +61,8 @@
                     <div class="down">
                         <span class="total"> {{labelTotal}} <b>{{total}}</b> &dollar;</span>
                         <div class="buttons">
-                            <button @click="buyThings"><i class="fa fa-coins"></i></button>
-                            <button @click="removeToCar"><i class="fa fa-ban"></i></button>
+                            <button @click="buyProducts"><i class="fa fa-coins"></i></button>
+                            <button @click="cancelPurchase"><i class="fa fa-ban"></i></button>
                         </div>
                     </div>
                 </div>
@@ -91,10 +91,10 @@
                         </div>
 
                         <div class="buttons">
-                            <button @click="saveEdit" id="btn_edit"><i class="fa fa-save"></i></button>
-                            <button @click="addThings" id="btn_add"><i class="fa fa-save"></i></button>
-                            <button @click="clearInputAdministratorAdd"><i class="fa fa-trash"></i></button>
-                            <button @click="abortEdit" id="btn_cancel"><i class="fa fa-ban"></i></button>
+                            <button @click="saveEditedProduct" id="btn_edit"><i class="fa fa-save"></i></button>
+                            <button @click="addProduct" id="btn_add"><i class="fa fa-save"></i></button>
+                            <button @click="clearAllAdministrativeAreaInputs"><i class="fa fa-trash"></i></button>
+                            <button @click="cancelEditing" id="btn_cancel"><i class="fa fa-ban"></i></button>
                         </div>
                     </div>
 
@@ -113,10 +113,10 @@
                                 <td>{{names[co]}}</td>
                                 <td><span>{{prices[co]}}</span></td>
                                 <td><span>{{qtdThings[co]}}</span></td>
-                                <td><span class="ctdot" @click="editThings(names[co], prices[co], qtdThings[co], co)"><i
+                                <td><span class="ctdot" @click="editProduct(names[co], prices[co], qtdThings[co], co)"><i
                                             class="fa fa-edit"></i></span>
                                 </td>
-                                <td><span class="times" @click="removeThings(co)">&times;</span></td>
+                                <td><span class="times" @click="removeProduct(co)">&times;</span></td>
                             </tbody>
                         </table>
                     </div>
@@ -187,7 +187,7 @@
                     this.copyQtdThings = [...this.qtdThings];
                 },
 
-                addThings: function () {
+                addProduct: function () {
                     if (!this.name && this.price) {
                         alert(this.alertTextName);
                     }
@@ -207,8 +207,8 @@
                             this.prices.push(Number(this.price));
                             this.names.push(this.name);
                             this.copyQtdThings = [...this.qtdThings];
-                            root.saveToStorage();
-                            root.clearInputAdministratorAdd();
+                            root.saveToLocalStorage();
+                            root.clearAllAdministrativeAreaInputs();
                         }
                         else {
                             alert(this.alertTextProdutAlready);
@@ -216,22 +216,32 @@
                     }
                 },
 
-                clearInputAdministratorAdd: function () {
+                clearAllAdministrativeAreaInputs: function () {
                     this.name = '';
                     this.price = 0;
                     this.qtdThing = 1;
                 },
 
-                removeThings: function (position) {
+                clearAllCustomerItems: function () {
+                    this.tot = [];
+                    this.qtd = [];
+                    this.produts = [];
+                    this.namesCar = [];
+                    this.pricesCar = [];
+                    this.total = 0;
+                    this.produt = '';
+                },
+
+                removeProduct: function (position) {
                     this.names.splice(position, 1);
                     this.prices.splice(position, 1);
                     this.things.splice(position, 1);
                     this.qtdThings.splice(position, 1);
                     this.copyQtdThings.splice(position, 1);
-                    root.saveToStorage();
+                    root.saveToLocalStorage();
                 },
 
-                removeToProduts: function (name, price, qty, index) {
+                removeProductFromCart: function (name, price, qty, index) {
                     let nameProdut = name + " - " + price + "$";
                     let i = this.things.indexOf(nameProdut);
                     let x = this.namesCar.indexOf(name);
@@ -252,7 +262,7 @@
                     this.qtdThings[i] += qty;
                 },
 
-                addCar: function () {
+                addProductToCart: function () {
                     if (this.produt) {
                         let position = this.produts.indexOf(this.produt);
                         let posQtd = this.things.indexOf(this.produt);
@@ -274,7 +284,7 @@
                                 this.qtd.push(1);
                                 this.aux = 'Produts',
 
-                                this.namesCar.push(this.names[posQtd]);
+                                    this.namesCar.push(this.names[posQtd]);
                                 this.pricesCar.push(this.prices[posQtd]);
                                 root.calculate();
                             }
@@ -312,18 +322,12 @@
                     this.tot.sort();
                 },
 
-                buyThings: function () {
-                    this.total = 0;
-                    this.tot = [];
-                    this.produt = '';
-                    this.produts = [];
-                    this.namesCar = [];
-                    this.pricesCar = [];
-                    this.qtdThing = 1;
-                    root.saveToStorage();
+                buyProducts: function () {
+                    root.clearAllCustomerItems();
+                    root.saveToLocalStorage();
                 },
 
-                editThings: function (name, price, qty, index) {
+                editProduct: function (name, price, qty, index) {
                     btn_edit.style.display = 'initial';
                     btn_cancel.style.display = 'initial';
                     btn_add.style.display = 'none';
@@ -336,40 +340,31 @@
                     this.indexEdit = index;
                 },
 
-                saveEdit: function () {
+                saveEditedProduct: function () {
                     this.names[this.indexEdit] = this.name;
                     this.prices[this.indexEdit] = Number(this.price);
                     this.qtdThings[this.indexEdit] = Number(this.qtdThing);
                     this.things[this.indexEdit] = this.name + " - " + this.price + "$";
                     this.copyQtdThings = [...this.qtdThings];
-                    root.abortEdit();
-                    root.saveToStorage();
+                    root.cancelEditing();
+                    root.saveToLocalStorage();
                 },
 
-                abortEdit: function () {
+                cancelEditing: function () {
                     btn_edit.style.display = 'none';
                     btn_cancel.style.display = 'none';
                     btn_add.style.display = 'initial';
                     this.labelAdd = this.labelAux;
-                    root.clearInputAdministratorAdd();
+                    root.clearAllAdministrativeAreaInputs();
                 },
 
-                removeToCar: function () {
-                    this.produts = [];
-                    this.namesCar = [];
-                    this.pricesCar = [];
-                    this.tot = [];
-                    this.produt = '';
-                    this.total = 0;
-                    this.qtd = [];
-                    this.name = '';
-                    this.price = 0;
-                    this.qtdThing = 1;
+                cancelPurchase: function () {
+                    root.clearAllCustomerItems();
                     this.qtdThings = [...this.copyQtdThings];
-                    root.saveToStorage();
+                    root.saveToLocalStorage();
                 },
 
-                saveToStorage: function () {
+                saveToLocalStorage: function () {
                     localStorage.setItem('namesList', JSON.stringify(this.names));
                     localStorage.setItem('pricesList', JSON.stringify(this.prices));
                     localStorage.setItem('thingsList', JSON.stringify(this.things));
