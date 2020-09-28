@@ -153,6 +153,7 @@
                 selectLanguage: 'EN',
                 languages: [],
                 copyQtdThings: [],
+                copyQtdThings2: [],
                 qtdThing: 1,
                 indexEdit: -1,
                 btn_edit: document.getElementById('btn_edit'),
@@ -181,7 +182,7 @@
                 alertTextQty: '',
                 alertTextNameQty: '',
                 alertTextPriceQty: '',
-                alertTextPriceQty: '',
+                alertTextNamePriceQty: '',
                 labelAux: '',
             },
 
@@ -212,7 +213,7 @@
                         alert(this.alertTextPriceQty);
                     }
                     else if (this.name == "" && this.price == 0 && this.qtdThing == 0) {
-                        alert(this.alertTextPriceQty);
+                        alert(this.alertTextNamePriceQty);
                     }
                     else {
                         let name = this.name + " - " + this.price + "$";
@@ -289,20 +290,23 @@
                                 this.qtd[position]++
                                 this.qtdThings[posQtd]--;
                                 this.show = true;
+                                
                                 if (this.qtdThings[posQtd] == 0) {
                                     root.calculate();
                                     this.produt = '';
                                 }
 
+                                this.copyQtdThings2 = [...this.qtdThings];
                                 root.calculate();
                             } else {
                                 this.qtdThings[posQtd]--;
                                 this.produts.push(this.produt);
                                 this.qtd.push(1);
                                 this.aux = 'Produts',
-
-                                    this.namesCar.push(this.names[posQtd]);
+                                this.namesCar.push(this.names[posQtd]);
                                 this.pricesCar.push(this.prices[posQtd]);
+
+                                this.copyQtdThings2 = [...this.qtdThings];
                                 root.calculate();
                             }
                         } else {
@@ -341,6 +345,8 @@
 
                 buyProducts: function () {
                     root.clearAllCustomerItems();
+                    this.qtdThings = [...this.copyQtdThings2];
+                    this.copyQtdThings = [...this.copyQtdThings2];
                     root.saveToLocalStorage();
                 },
 
@@ -431,7 +437,7 @@
                     this.alertTextQty = '';
                     this.alertTextNameQty = '';
                     this.alertTextPriceQty = '';
-                    this.alertTextPriceQty = '';
+                    this.alertTextNamePriceQty = '';
                 },
 
                 languageFrench: function () {
@@ -456,7 +462,7 @@
                     this.alertTextQty = '';
                     this.alertTextNameQty = '';
                     this.alertTextPriceQty = '';
-                    this.alertTextPriceQty = '';
+                    this.alertTextNamePriceQty = '';
                 },
 
                 languageRussia: function () {
@@ -483,7 +489,7 @@
                     this.alertTextQty = '';
                     this.alertTextNameQty = '';
                     this.alertTextPriceQty = '';
-                    this.alertTextPriceQty = '';
+                    this.alertTextNamePriceQty = '';
                 },
 
                 languageChinese: function () {
@@ -508,7 +514,7 @@
                     this.alertTextQty = '';
                     this.alertTextNameQty = '';
                     this.alertTextPriceQty = '';
-                    this.alertTextPriceQty = '';
+                    this.alertTextNamePriceQty = '';
                 },
 
                 languageEnglish: function () {
@@ -530,10 +536,9 @@
                     this.alertTextPrice = 'Please insert a price';
                     this.alertTextNamePrice = 'Please enter a name and price';
                     this.alertTextProdutAlready = 'This product has already been inserted';
-                    this.alertTextQty = '';
-                    this.alertTextNameQty = '';
-                    this.alertTextPriceQty = '';
-                    this.alertTextPriceQty = '';
+                    this.alertTextQty = 'Please enter a quantity';
+                    this.alertTextNameQty = 'Please enter a name and quantity';
+                    this.alertTextNamePriceQty = 'Please enter a price and quantity';
                 },
 
                 languagePortuguese: function () {
@@ -558,7 +563,7 @@
                     this.alertTextQty = 'Insira uma quantidade';
                     this.alertTextNameQty = 'Insira um nome e uma quantidade';
                     this.alertTextPriceQty = 'Insira um preço e uma quantidade';
-                    this.alertTextPriceQty = 'Insira um nome, preço e uma quantidade';
+                    this.alertTextNamePriceQty = 'Insira um nome, preço e uma quantidade';
                 },
 
             },
