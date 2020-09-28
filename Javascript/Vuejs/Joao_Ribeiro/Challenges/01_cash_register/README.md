@@ -140,7 +140,7 @@ Ao desenvolver a `Caixa Registradora` aprendi e consolidei os seguintes conceito
         this.alertTextQty = 'Insira uma quantidade';
         this.alertTextNameQty = 'Insira um nome e uma quantidade';
         this.alertTextPriceQty = 'Insira um preço e uma quantidade';
-        this.alertTextPriceQty = 'Insira um nome, preço e uma quantidade';
+        this.alertTextNamePriceQty = 'Insira um nome, preço e uma quantidade';
     },
 ```
 
@@ -174,7 +174,7 @@ Ao desenvolver a `Caixa Registradora` aprendi e consolidei os seguintes conceito
         this.alertTextQty = '';
         this.alertTextNameQty = '';
         this.alertTextPriceQty = '';
-        this.alertTextPriceQty = '';
+        this.alertTextNamePriceQty = '';
     },
 ```
 
