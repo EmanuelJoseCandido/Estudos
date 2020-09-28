@@ -67,7 +67,7 @@ Ao desenvolver a `Caixa Registradora` aprendi e consolidei os seguintes conceito
 ```js
     // 1.
     // Adicione um novo código(NewCode) no array para
-    // ser renderizado: 
+    // ser renderizado:
     // this.languages.push('NewCode');
     //
 
@@ -115,7 +115,7 @@ Ao desenvolver a `Caixa Registradora` aprendi e consolidei os seguintes conceito
 
 ```js
     // 3.
-    // Insira os dados traduzidos na nova função: newlanguage()      
+    // Insira os dados traduzidos na nova função: newlanguage()
     //
 
     languagePortuguese: function () {
@@ -137,6 +137,10 @@ Ao desenvolver a `Caixa Registradora` aprendi e consolidei os seguintes conceito
         this.alertTextPrice = 'Insira um preço porfavor';
         this.alertTextNamePrice = 'Insira um nome e um preço porfavor';
         this.alertTextProdutAlready = 'Este produto já foi inserido';
+        this.alertTextQty = 'Insira uma quantidade';
+        this.alertTextNameQty = 'Insira um nome e uma quantidade';
+        this.alertTextPriceQty = 'Insira um preço e uma quantidade';
+        this.alertTextPriceQty = 'Insira um nome, preço e uma quantidade';
     },
 ```
 
@@ -145,7 +149,7 @@ Ao desenvolver a `Caixa Registradora` aprendi e consolidei os seguintes conceito
 
 ```js
     // 4.
-    // Adicione uma nova função para adicionar 
+    // Adicione uma nova função para adicionar
     // um novo idioma:
 
     newlanguage(): function () {
@@ -167,6 +171,10 @@ Ao desenvolver a `Caixa Registradora` aprendi e consolidei os seguintes conceito
         this.alertTextPrice = '';
         this.alertTextNamePrice = '';
         this.alertTextProdutAlready = '';
+        this.alertTextQty = '';
+        this.alertTextNameQty = '';
+        this.alertTextPriceQty = '';
+        this.alertTextPriceQty = '';
     },
 ```
 
