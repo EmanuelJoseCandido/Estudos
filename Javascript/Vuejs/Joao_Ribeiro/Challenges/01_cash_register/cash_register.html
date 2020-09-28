@@ -113,7 +113,8 @@
                                 <td>{{names[co]}}</td>
                                 <td><span>{{prices[co]}}</span></td>
                                 <td><span>{{qtdThings[co]}}</span></td>
-                                <td><span class="ctdot" @click="editProduct(names[co], prices[co], qtdThings[co], co)"><i
+                                <td><span class="ctdot"
+                                        @click="editProduct(names[co], prices[co], qtdThings[co], co)"><i
                                             class="fa fa-edit"></i></span>
                                 </td>
                                 <td><span class="times" @click="removeProduct(co)">&times;</span></td>
@@ -177,6 +178,10 @@
                 alertTextPrice: '',
                 alertTextNamePrice: '',
                 alertTextProdutAlready: '',
+                alertTextQty: '',
+                alertTextNameQty: '',
+                alertTextPriceQty: '',
+                alertTextPriceQty: '',
                 labelAux: '',
             },
 
@@ -188,14 +193,26 @@
                 },
 
                 addProduct: function () {
-                    if (!this.name && this.price) {
+                    if (this.name == "" && this.price != 0 && this.qtdThing != 0) {
                         alert(this.alertTextName);
                     }
-                    else if (this.name && !this.price) {
+                    else if (this.name != "" && this.price == 0 && this.qtdThing != 0) {
                         alert(this.alertTextPrice);
                     }
-                    else if (!this.name && !this.price) {
+                    else if (this.name != "" && this.price != 0 && this.qtdThing == 0) {
+                        alert(this.alertTextQty);
+                    }
+                    else if (this.name == "" && this.price == 0 && this.qtdThing != 0) {
                         alert(this.alertTextNamePrice);
+                    }
+                    else if (this.name == "" && this.price != 0 && this.qtdThing == 0) {
+                        alert(this.alertTextNameQty);
+                    }
+                    else if (this.name != "" && this.price == 0 && this.qtdThing == 0) {
+                        alert(this.alertTextPriceQty);
+                    }
+                    else if (this.name == "" && this.price == 0 && this.qtdThing == 0) {
+                        alert(this.alertTextPriceQty);
                     }
                     else {
                         let name = this.name + " - " + this.price + "$";
