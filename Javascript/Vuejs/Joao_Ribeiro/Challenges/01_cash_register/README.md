@@ -137,10 +137,10 @@ Ao desenvolver a `Caixa Registradora` aprendi e consolidei os seguintes conceito
         this.alertTextPrice = 'Insira um preço porfavor';
         this.alertTextNamePrice = 'Insira um nome e um preço porfavor';
         this.alertTextProdutAlready = 'Este produto já foi inserido';
-        this.alertTextQty = 'Insira uma quantidade';
-        this.alertTextNameQty = 'Insira um nome e uma quantidade';
-        this.alertTextPriceQty = 'Insira um preço e uma quantidade';
-        this.alertTextNamePriceQty = 'Insira um nome, preço e uma quantidade';
+        this.alertTextQty = 'Insira uma quantidade porfavor';
+        this.alertTextNameQty = 'Insira um nome e uma quantidade porfavor';
+        this.alertTextPriceQty = 'Insira um preço e uma quantidade porfavor';
+        this.alertTextNamePriceQty = 'Insira um nome, preço e uma quantidade porfavor';
     },
 ```
 
