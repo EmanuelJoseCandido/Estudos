@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/style.css">
+    <script src="../assets/viu_version_dev.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="root">
+        <input v-model="newName">
+        <div>
+            <button @click="added">Added</button>
+        </div>
+        <hr>
+        <ul>
+            <li v-for="(name, index) in names" :key="index">{{name | upperCase}}</li>
+        </ul>
+    </div>
+
+    <script>
+        let root = new Vue({
+            el: "#root",
+
+            data: {
+                newName: '',
+                names: [],
+            },
+
+            methods: {
+                added: function(){
+                    this.names.push(this.newName);
+                    this.newName = '';
+                }
+            },
+            filters:{
+                upperCase: function(value){
+                    return value.toUpperCase();
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
