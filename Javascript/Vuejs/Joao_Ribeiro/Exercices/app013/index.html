@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/style.css">
+    <script src="../assets/viu_version_dev.js"></script>
+    <title>Vue - App013</title>
+</head>
+
+<body>
+    <div id="root">
+        <father></father>
+    </div>
+
+    <script>
+        Vue.component('father', {
+            template: `
+                <div>
+                    <p>This is text of component father</p> 
+                    <son/>   
+                </div>
+            `
+        });
+
+        Vue.component('son', {
+            template: `
+                <div>
+                    <p>This is text of component son</p>    
+                </div>
+            `
+        });
+
+        let root = new Vue({
+            el: "#root",
+            component: [
+                'father',
+                'son',
+
+            ]
+        });
+    </script>
+</body>
+
+</html>
