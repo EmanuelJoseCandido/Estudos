@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/style.css">
+    <script src="../assets/viu_version_dev.js"></script>
+    <title>Vue - app012 - Test</title>
+    <style>
+        header ul{
+            display:  flex;
+            list-style: none;
+            background: white;
+        }
+
+        header ul li{
+            margin: 10px;
+        }
+
+        header ul li a{
+            color: black;
+            text-decoration: none;
+            transition: all 650ms ease-in-out;
+        }
+
+        header ul li a:hover{
+            color: white;
+            background: black;
+            text-decoration: none;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <header1 />
+        <sec1 />
+        <footerC />
+    </div>
+
+    <script>
+        Vue.component('header1', {
+            template: `
+                <header>
+                    <ul>
+                        <li><a href="#">Header</a></li>    
+                        <li><a href="#">Body</a></li> 
+                        <li><a href="#">Footer</a></li>   
+                    </ul>
+                </header>
+            `,
+        });
+
+        let root = new Vue({
+            el: "#root",
+            component: [
+                'header1',
+            ],
+        });
+
+    </script>
+</body>
+
+</html>
