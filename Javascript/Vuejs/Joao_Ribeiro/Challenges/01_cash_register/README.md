@@ -141,6 +141,9 @@ Ao desenvolver a `Caixa Registradora` aprendi e consolidei os seguintes conceito
         this.alertTextNameQty = 'Insira um nome e uma quantidade porfavor';
         this.alertTextPriceQty = 'Insira um preço e uma quantidade porfavor';
         this.alertTextNamePriceQty = 'Insira um nome, preço e uma quantidade porfavor';
+        this.alertRegexPriceQty = 'O preço e a quantidade devem ser números inteiros';
+        this.alertRegexPrice = 'O preço deve ser um número inteiro';
+        this.alertRegexQty = 'A quantidade deve ser um número inteiro';
     },
 ```
 
@@ -175,6 +178,9 @@ Ao desenvolver a `Caixa Registradora` aprendi e consolidei os seguintes conceito
         this.alertTextNameQty = '';
         this.alertTextPriceQty = '';
         this.alertTextNamePriceQty = '';
+        this.alertRegexPriceQty = '';
+        this.alertRegexPrice = '';
+        this.alertRegexQty = '';
     },
 ```
 
