@@ -80,14 +80,14 @@
 
                         <div>
                             <label for="">{{labelPrice}}:</label><br>
-                            <input v-model="price" maxlength="5"><br>
+                            <input v-model="price" maxlength="5" pattern="[0-9]+$"><br>
                         </div>
                     </div>
 
                     <div class="inputs second">
                         <div>
                             <label for="">{{labelQtd}}:</label><br>
-                            <input v-model="qtdThing" maxlength="2"><br>
+                            <input v-model="qtdThing" maxlength="2" pattern="[0-9]+$"><br>
                         </div>
 
                         <div class="buttons">
@@ -194,6 +194,29 @@
                 },
 
                 addProduct: function () {
+                    if (root.validateInputs()) {
+                        let name = this.name + " - " + this.price + "$";
+                        let index = this.things.indexOf(name);
+
+                        if (index == -1) {
+                            this.things.push(name);
+                            this.qtdThings.push(Number(this.qtdThing));
+                            this.prices.push(Number(this.price));
+                            this.names.push(this.name);
+                            this.copyQtdThings = [...this.qtdThings];
+                            root.saveToLocalStorage();
+                            root.clearAllAdministrativeAreaInputs();
+                        }
+                        else {
+                            alert(this.alertTextProdutAlready);
+                        }
+                    }
+                },
+
+                validateInputs: function () {
+                    let validated = false;
+                    var regex = /^\d+$/;
+
                     if (this.name == "" && this.price != 0 && this.qtdThing != 0) {
                         alert(this.alertTextName);
                     }
@@ -215,23 +238,20 @@
                     else if (this.name == "" && this.price == 0 && this.qtdThing == 0) {
                         alert(this.alertTextNamePriceQty);
                     }
-                    else {
-                        let name = this.name + " - " + this.price + "$";
-                        let index = this.things.indexOf(name);
-
-                        if (index == -1) {
-                            this.things.push(name);
-                            this.qtdThings.push(Number(this.qtdThing));
-                            this.prices.push(Number(this.price));
-                            this.names.push(this.name);
-                            this.copyQtdThings = [...this.qtdThings];
-                            root.saveToLocalStorage();
-                            root.clearAllAdministrativeAreaInputs();
-                        }
-                        else {
-                            alert(this.alertTextProdutAlready);
-                        }
+                    else if (!(regex.test(this.price)) && !(regex.test(this.qtdThing))) {
+                        alert(this.alertRegexPriceQty);
                     }
+                    else if (!(regex.test(this.price))) {
+                        alert(this.alertRegexPrice);
+                    }
+                    else if (!(regex.test(this.qtdThing))) {
+                        alert(this.alertRegexQty);
+                    }
+                    else {
+                        validated = true;
+                    }
+
+                    return validated;
                 },
 
                 clearAllAdministrativeAreaInputs: function () {
@@ -290,7 +310,7 @@
                                 this.qtd[position]++
                                 this.qtdThings[posQtd]--;
                                 this.show = true;
-                                
+
                                 if (this.qtdThings[posQtd] == 0) {
                                     root.calculate();
                                     this.produt = '';
@@ -303,7 +323,7 @@
                                 this.produts.push(this.produt);
                                 this.qtd.push(1);
                                 this.aux = 'Produts',
-                                this.namesCar.push(this.names[posQtd]);
+                                    this.namesCar.push(this.names[posQtd]);
                                 this.pricesCar.push(this.prices[posQtd]);
 
                                 this.copyQtdThings2 = [...this.qtdThings];
@@ -564,6 +584,9 @@
                     this.alertTextNameQty = 'Insira um nome e uma quantidade porfavor';
                     this.alertTextPriceQty = 'Insira um preço e uma quantidade porfavor';
                     this.alertTextNamePriceQty = 'Insira um nome, preço e uma quantidade porfavor';
+                    this.alertRegexPriceQty = 'O preço e a quantidade devem ser números inteiros';
+                    this.alertRegexPrice = 'O preço deve ser um número inteiro';
+                    this.alertRegexQty = 'A quantidade deve ser um número inteiro';
                 },
 
             },
