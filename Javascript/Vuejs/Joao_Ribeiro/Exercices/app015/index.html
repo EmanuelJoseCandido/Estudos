@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/style.css">
+    <script src="../assets/viu_version_dev.js"></script>
+    <title>Vue - App015</title>
+</head>
+
+<body>
+    <div id="root">
+        <p>{{name}}</p>
+        <button @click="click">Click</button>
+    </div>
+
+    <script>
+        //-------------------------------
+        let root = new Vue({
+            el: "#root",
+
+            data: {
+                name: '',
+            },
+
+            methods: {
+                click: function () {
+                    this.name = 'Emanuel';
+                }
+            },
+
+
+            //--------------------------------
+            created: function () {
+                console.log('Created');
+            },
+
+            mounted: function () {
+                console.log('Mounted');
+            },
+
+            updated: function() {
+                console.log('Updated')
+            },
+        });
+    </script>
+</body>
+
+</html>
