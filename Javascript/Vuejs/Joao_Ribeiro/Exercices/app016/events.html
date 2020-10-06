@@ -24,6 +24,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-direction: column;
             text-align: center;
             width: 100%;
             height: 100%;
@@ -99,56 +100,79 @@
             color: #fafafa;
         }
 
-        .footer a {
+        #footer a {
             color: #fafafa;
             text-decoration: none;
         }
 
+        header ul {
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        header ul li {
+            list-style: none;
+            margin: 10px;
+        }
+
+        header ul li a {
+            text-decoration: none;
+            color: #fafafa;
+        }
     </style>
 </head>
 
 <body>
     <div id="root">
-        <div id="increment">
-            <div>
-                <button @click="value += 1, changeColor()" class="increment">Click(Increment)</button>
-                <button @click="value -= 1, changeColor()" class="decrement">Click(Decrement)</button>
+        <header>
+            <ul>
+                <li><a href="#increment" @click="changeID(true)">Increment</a></li>
+                <li><a href="#timesTable" @click="changeID(false)">Times Table</a></li>
+            </ul>
+        </header>
+        <section>
+            <div id="increment">
+                <div>
+                    <button @click="value += 1, changeColor()" class="increment">Click(Increment)</button>
+                    <button @click="value -= 1, changeColor()" class="decrement">Click(Decrement)</button>
+                </div>
+
+                <button @click="value = 0, changeColor()" class="clean">Click(Clean)</button>
+
+                <p>This button click <span>{{value}}</span> times.</p>
             </div>
 
-            <button @click="value = 0, changeColor()" class="clean">Click(Clean)</button>
+            <div id="timesTable">
+                <div class="title">
+                    <h2>Times Table of {{value}}</h2>
+                </div>
 
-            <p>This button click <span>{{value}}</span> times.</p>
-        </div>
+                <div class="number">
+                    <input v-model="value" maxlength="18" pattern="[0-9]+$" @input="lockCharacters($event)"
+                        placeholder="Insert one number">
+                </div>
 
-        <div id="timesTable">
-            <div class="title">
-                <h2>Times Table of {{value}}</h2>
+                <div class="timesT">
+                    <ul>
+                        <li v-for="(number, i) in numbers" :key="i" v-show="value != ''">
+                            {{value}} x {{number}} = {{value * number}}
+                        </li>
+                    </ul>
+                </div>
             </div>
 
-            <div class="number">
-                <input v-model="value" maxlength="18" pattern="[0-9]+$" @input="lockCharacters($event)"
-                    placeholder="Insert one number">
-            </div>
-
-            <div class="timesT">
-                <ul>
-                    <li v-for="(number, i) in numbers" :key="i" v-show="value != ''">
-                        {{value}} x {{number}} = {{value * number}}
-                    </li>
-                </ul>
-            </div>
-
-            <div class="footer">
+            <div id="footer">
                 <a href="https://emanueljosecandido.github.io">Emanuel Cândido &copy; 2020</a>
             </div>
-        </div>
+        </section>
     </div>
 
     <script>
         let root = new Vue({
             el: "#root",
             data: {
-                value: '',
+                value: 0,
                 numbers: [1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12],
                 arrayValue: [],
             },
@@ -186,7 +210,23 @@
                             this.value = aux;
                         }
                     }
-                }
+                },
+
+                changeID: function (value) {
+                    var divIncrement = document.getElementById('increment');
+                    var divTimesTable = document.getElementById('timesTable');
+
+
+                    if (value) {
+                        divIncrement.style.display = 'initial';
+                        divTimesTable.style.display = 'none';
+                        this.value = 0;
+                    }else{
+                        divIncrement.style.display = 'none';
+                        divTimesTable.style.display = 'flex';
+                        this.value = '';
+                    }
+                },
             },
         });
     </script>
