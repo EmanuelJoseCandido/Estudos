@@ -80,14 +80,14 @@
 
                         <div>
                             <label for="">{{labelPrice}}:</label><br>
-                            <input v-model="price" maxlength="5" pattern="[0-9]+$"><br>
+                            <input v-model="price" maxlength="5" pattern="[0-9]+$" @input="validatePrice($event)"><br>
                         </div>
                     </div>
 
                     <div class="inputs second">
                         <div>
                             <label for="">{{labelQtd}}:</label><br>
-                            <input v-model="qtdThing" maxlength="2" pattern="[0-9]+$"><br>
+                            <input v-model="qtdThing" maxlength="2" pattern="[0-9]+$" @input="validateQty($event)"><br>
                         </div>
 
                         <div class="buttons">
@@ -135,6 +135,9 @@
             el: "#root",
             data: {
                 aux: '',
+                regex: /^\d+$/,
+                arrayPrice: [],
+                arrayQty: [],
                 name: "",
                 names: JSON.parse(localStorage.getItem('namesList')) || [],
                 namesCar: [],
@@ -215,7 +218,6 @@
 
                 validateInputs: function () {
                     let validated = false;
-                    var regex = /^\d+$/;
 
                     if (this.name == "" && this.price != 0 && this.qtdThing != 0) {
                         alert(this.alertTextName);
@@ -238,13 +240,13 @@
                     else if (this.name == "" && this.price == 0 && this.qtdThing == 0) {
                         alert(this.alertTextNamePriceQty);
                     }
-                    else if (!(regex.test(this.price)) && !(regex.test(this.qtdThing))) {
+                    else if (!(this.regex.test(this.price)) && !(this.regex.test(this.qtdThing))) {
                         alert(this.alertRegexPriceQty);
                     }
-                    else if (!(regex.test(this.price))) {
+                    else if (!(this.regex.test(this.price))) {
                         alert(this.alertRegexPrice);
                     }
-                    else if (!(regex.test(this.qtdThing))) {
+                    else if (!(this.regex.test(this.qtdThing))) {
                         alert(this.alertRegexQty);
                     }
                     else {
@@ -252,6 +254,46 @@
                     }
 
                     return validated;
+                },
+
+                validatePrice: function (event) {
+                    let aux = '';
+                    if (event.inputType == "deleteContentBackward") {
+                        this.arrayPrice.splice(this.arrayPrice.length - 1);
+                    } else {
+                        this.arrayPrice.push(this.price[this.price.length - 1])
+
+                        if (!this.regex.test(this.price)) {
+                            this.arrayPrice.splice(this.arrayPrice.length - 1);
+
+                            this.arrayPrice.forEach(element => {
+                                aux += element;
+                            });
+
+                            this.price = aux;
+                        }
+                    }
+                },
+
+                validateQty: function (event) {
+                    let aux = '';
+                    if (event.inputType == "deleteContentBackward") {
+                        this.arrayQty.splice(this.arrayQty.length - 1);
+                    } else {
+                        this.arrayQty.push(this.qtdThing[this.qtdThing.length - 1])
+
+                        
+                        console.log(!this.regex.test(this.qtdThing));                        
+                        if (!this.regex.test(this.qtdThing)) {
+                            this.arrayQty.splice(this.arrayQty.length - 1);
+
+                            this.arrayQty.forEach(element => {
+                                aux += element;
+                            });
+
+                            this.qtdThing = aux;
+                        }
+                    }
                 },
 
                 clearAllAdministrativeAreaInputs: function () {
