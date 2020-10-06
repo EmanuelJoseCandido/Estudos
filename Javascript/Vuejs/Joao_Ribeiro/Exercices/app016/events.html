@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../assets/viu_version_dev.js"></script>
+    <title>Vue - App016(Manipulation of Events)</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            background: teal;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+        }
+
+        #root {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        button {
+            padding: 8px;
+            background: transparent;
+            border: 1px solid;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        span {
+            color: #fafafa;
+            font-weight: bolder;
+        }
+
+        .increment1 {
+            color: #2ECC71;
+        }
+
+        .decrement1 {
+            color: #E74C3C;
+        }
+
+        .clean1 {
+            color: #fafafa;
+        }
+
+        button.increment:hover {
+            color: #2ECC71;
+        }
+
+        button.decrement:hover {
+            color: #E74C3C;
+        }
+
+        button.clean:hover {
+            color: #fafafa;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <div id="increment">
+            <div>
+                <button @click="value += 1, changeColor()" class="increment">Click(Increment)</button>
+                <button @click="value -= 1, changeColor()" class="decrement">Click(Decrement)</button>
+            </div>
+
+            <button @click="value = 0, changeColor()" class="clean">Click(Clean)</button>
+
+            <p>This button click <span>{{value}}</span> times.</p>
+        </div>
+
+        <div id="timesTable">
+            <!-- <ul>
+                <li></li>
+            </ul> -->
+        </div>
+    </div>
+
+    <script>
+        let root = new Vue({
+            el: "#root",
+            data: {
+                value: 0,
+                number: 0,
+            },
+
+            methods: {
+                changeColor: function () {
+                    let span = document.getElementsByTagName('span')[0];
+
+                    if (this.value > 0){
+                        span.setAttribute('class', 'increment1');
+                    }else if(this.value < 0){
+                        span.setAttribute('class', 'decrement1');
+                    }
+                    else{
+                        span.setAttribute('class', 'clean1');
+                    }
+                }
+            },
+        });
+    </script>
+
+</body>
+
+</html>
