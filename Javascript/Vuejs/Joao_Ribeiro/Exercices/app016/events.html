@@ -213,6 +213,7 @@
                 },
 
                 changeID: function (value) {
+                    let span = document.getElementsByTagName('span')[0];
                     var divIncrement = document.getElementById('increment');
                     var divTimesTable = document.getElementById('timesTable');
 
@@ -221,10 +222,12 @@
                         divIncrement.style.display = 'initial';
                         divTimesTable.style.display = 'none';
                         this.value = 0;
+                        span.setAttribute('class', 'clean1');
                     }else{
                         divIncrement.style.display = 'none';
                         divTimesTable.style.display = 'flex';
                         this.value = '';
+                        span.setAttribute('class', 'clean1');
                     }
                 },
             },
