@@ -101,7 +101,7 @@
                     <option v-for="(item, index) in vectorDeTextos" :key="index">{{item}}</option>
                 </select>
 
-                <select id="textos questoes">
+                <select id="textos questoes" v-model="textoQuestoes">
                     <option value="" disabled>Selecione uma acção</option>
                     <option>Acrónimo</option>
                     <option>Divisão Silábica</option>
@@ -135,9 +135,11 @@
                 vectorDeTextos: JSON.parse(localStorage.getItem('textoList')) || [],
                 textoSelecionado: '',
                 id: '',
+                textoQuestoes: '',
             },
 
             methods: {
+                /* Funções do CRUD */
                 adicionarTextoNoVector: function () {
                     if (root.validarInput()) {
                         this.vectorDeTextos.push(this.texto);
@@ -163,10 +165,10 @@
                 },
 
                 validarInput: function () {
-                    if(this.texto == ''){
+                    if (this.texto == '') {
                         alert('Insira um texto');
                         return false
-                    }else{
+                    } else {
                         return true;
                     }
                 },
@@ -200,7 +202,27 @@
 
                 salvarNoLocalStorage: function () {
                     localStorage.setItem('textoList', JSON.stringify(this.vectorDeTextos));
-                }
+                },
+                /* Funções do CRUD */
+
+
+                /* Funções do Select */
+                selecionarFuncao: function () {
+                    switch (textoQuestoes) {
+                        case 'Acrónimo': root.funcao(); break;
+                        case 'Divisão Silábica': root.funcao(); break;
+                        case 'Inicias Maiúsculas': root.funcao(); break;
+                        case 'Inicias Minúsculas': root.funcao(); break;
+                        case 'Maiúsculas': root.funcao(); break;
+                        case 'Minúsculas': root.funcao(); break;
+                        case 'Quantidade Caracteres': root.funcao(); break;
+                        case 'Quantidade Consoates': root.funcao(); break;
+                        case 'Quantidade Vogais': root.funcao(); break;
+                        case 'Sigla': root.funcao(); break;
+                        default: root.funcao(); break;
+                    }
+                },
+                /* Funções do Select */
             },
 
             filters: {
