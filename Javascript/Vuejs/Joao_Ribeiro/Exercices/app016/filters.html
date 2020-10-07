@@ -89,7 +89,7 @@
     <div id="root">
         <div id="card">
             <div id="inputs">
-                <input maxlength="23" placeholder="Insira um textoo" v-model="texto">
+                <input maxlength="23" placeholder="Insira um texto" v-model="texto">
                 <button @click="adicionarTextoNoVector" id="salvar">Salvar</button>
                 <button @click="editarTextoNoVector" id="editar">Editar</button>
                 <button @click="removerTextoNoVector" id="eliminar">Eliminar</button>
@@ -97,7 +97,7 @@
 
             <div id="selects">
                 <select id="textos inputs" v-model="textoSelecionado" @change="activarBotoesEditarEliminar">
-                    <option value="" disabled>Selecione um textoo</option>
+                    <option value="" disabled>Selecione um texto</option>
                     <option v-for="(item, index) in vectorDeTextos" :key="index">{{item}}</option>
                 </select>
 
@@ -139,9 +139,11 @@
 
             methods: {
                 adicionarTextoNoVector: function () {
-                    this.vectorDeTextos.push(this.texto);
-                    root.salvarNoLocalStorage();
-                    root.limparTexto();
+                    if (root.validarInput()) {
+                        this.vectorDeTextos.push(this.texto);
+                        root.salvarNoLocalStorage();
+                        root.limparTexto();
+                    }
                 },
 
                 editarTextoNoVector: function () {
@@ -157,6 +159,15 @@
                         root.salvarNoLocalStorage();
                         root.limparTexto();
                         root.activarBotaoSalvar();
+                    }
+                },
+
+                validarInput: function () {
+                    if(this.texto == ''){
+                        alert('Insira um texto');
+                        return false
+                    }else{
+                        return true;
                     }
                 },
 
@@ -178,7 +189,7 @@
                     botaoSalvar.style.display = 'none';
                     botaoEditar.style.display = 'initial';
                     botaoEliminar.style.display = 'initial';
-                    
+
                     this.texto = this.textoSelecionado;
                     this.id = this.vectorDeTextos.indexOf(this.textoSelecionado);
                 },
