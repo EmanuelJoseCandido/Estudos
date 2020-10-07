@@ -43,7 +43,7 @@
             margin: 5px;
         }
 
-        #selects{
+        #selects {
             margin-bottom: 20px;
         }
 
@@ -61,15 +61,20 @@
             width: 49%;
         }
 
-        #solve {
+        button#editar,
+        button#eliminar {
+            display: none;
+        }
+
+        #resolucao {
             height: 350px;
             background: #ECF0F1;
             overflow-y: scroll;
         }
 
-        #footer a{
+        #footer a {
             color: #fff;
-            text-decoration: none;
+            texto-decoration: none;
         }
     </style>
 </head>
@@ -84,27 +89,34 @@
     <div id="root">
         <div id="card">
             <div id="inputs">
-                <input maxlength="23" placeholder="Insira um texto">
-                <button>Save</button>
+                <input maxlength="23" placeholder="Insira um textoo" v-model="texto">
+                <button @click="adicionarTextoNoVector" id="salvar">Salvar</button>
+                <button @click="editarTextoNoVector" id="editar">Editar</button>
+                <button @click="removerTextoNoVector" id="eliminar">Eliminar</button>
             </div>
 
             <div id="selects">
-                <select id="texts inputs">
-                    <option value="" disabled>Selecione um texto</option>
-                    <option> coisa 1.1</option>
-                    <option> coisa 1.2</option>
-                    <option> coisa 1.3</option>
+                <select id="textos inputs" v-model="textoSelecionado" @change="activarBotoesEditarEliminar">
+                    <option value="" disabled>Selecione um textoo</option>
+                    <option v-for="(item, index) in vectorDeTextos" :key="index">{{item}}</option>
                 </select>
 
-                <select id="texts questions">
-                    <option value="" disabled>Selecione alguma coisa 2</option>
-                    <option> coisa 2.1</option>
-                    <option> coisa 2.2</option>
-                    <option> coisa 2.3</option>
+                <select id="textos questoes">
+                    <option value="" disabled>Selecione uma acção</option>
+                    <option>Acrónimo</option>
+                    <option>Divisão Silábica</option>
+                    <option>Inicias Maiúsculas</option>
+                    <option>Inicias Minúsculas</option>
+                    <option>Maiúsculas</option>
+                    <option>Minúsculas</option>
+                    <option>Quantidade Caracteres</option>
+                    <option>Quantidade Consoates</option>
+                    <option>Quantidade Vogais</option>
+                    <option>Sigla</option>
                 </select>
             </div>
 
-            <div id="solve">
+            <div id="resolucao">
 
             </div>
         </div>
@@ -119,7 +131,65 @@
             el: "#root",
 
             data: {
+                texto: '',
+                vectorDeTextos: JSON.parse(localStorage.getItem('textoList')) || [],
+                textoSelecionado: '',
+                id: '',
+            },
 
+            methods: {
+                adicionarTextoNoVector: function () {
+                    this.vectorDeTextos.push(this.texto);
+                    root.salvarNoLocalStorage();
+                    root.limparTexto();
+                },
+
+                editarTextoNoVector: function () {
+                    this.vectorDeTextos[this.id] = this.texto;
+                    root.salvarNoLocalStorage();
+                    root.limparTexto();
+                    root.activarBotaoSalvar();
+                },
+
+                removerTextoNoVector: function () {
+                    if (confirm("Queres mesmo eliminar")) {
+                        this.vectorDeTextos.splice(this.vectorDeTextos.indexOf(this.texto), 1);
+                        root.salvarNoLocalStorage();
+                        root.limparTexto();
+                        root.activarBotaoSalvar();
+                    }
+                },
+
+                activarBotaoSalvar: function () {
+                    let botaoSalvar = document.getElementById('salvar');
+                    let botaoEditar = document.getElementById('editar');
+                    let botaoEliminar = document.getElementById('eliminar');
+
+                    botaoSalvar.style.display = 'initial';
+                    botaoEditar.style.display = 'none';
+                    botaoEliminar.style.display = 'none';
+                },
+
+                activarBotoesEditarEliminar: function () {
+                    let botaoSalvar = document.getElementById('salvar');
+                    let botaoEditar = document.getElementById('editar');
+                    let botaoEliminar = document.getElementById('eliminar');
+
+                    botaoSalvar.style.display = 'none';
+                    botaoEditar.style.display = 'initial';
+                    botaoEliminar.style.display = 'initial';
+                    
+                    this.texto = this.textoSelecionado;
+                    this.id = this.vectorDeTextos.indexOf(this.textoSelecionado);
+                },
+
+                limparTexto: function () {
+                    this.texto = '';
+                },
+
+                salvarNoLocalStorage: function () {
+                    localStorage.setItem('textoList', JSON.stringify(this.vectorDeTextos));
+                }
             },
 
             filters: {
