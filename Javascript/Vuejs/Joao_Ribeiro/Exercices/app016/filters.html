@@ -223,7 +223,7 @@
                         case 'Acrónimo': root.funcao(); break;
                         case 'Divisão Silábica': root.funcao(); break;
                         case 'Inicias Maiúsculas': root.iniciaisMaiusculas(); break;
-                        case 'Inicias Minúsculas': root.funcao(); break;
+                        case 'Inicias Minúsculas': root.iniciaisMinusculas(); break;
                         case 'Maiúsculas': root.maiusculas(); break;
                         case 'Minúsculas': root.minusculas(); break;
                         case 'Quantidade Caracteres': root.funcao(); break;
@@ -259,6 +259,34 @@
 
                     paragrafo.setAttribute('id', 'paragrafo');
                     paragrafo.innerText = iniciaisMaiusculas;
+                    resolucao.appendChild(paragrafo);
+                },
+
+                iniciaisMinusculas: function () {
+                    root.verificarElemento();
+                    let resolucao = document.getElementById('resolucao');
+                    let paragrafo = document.createElement('p');
+                    let array = [];
+                    let iniciaisMinusculas = '';
+
+                    var c = -1;
+                    for (let i = 0; i < this.textoSelecionado.length; i++) {
+                        if (i == 0) {
+                            array.push(this.textoSelecionado.charAt(i).toLowerCase());
+                        } else {
+                            array.push(this.textoSelecionado.charAt(i));
+                        }
+
+                        if (this.textoSelecionado.charAt(i) != ' ' && this.textoSelecionado.charAt(c) == ' ') {
+
+                            array[i] = this.textoSelecionado.charAt(i).toLowerCase();
+                        }
+                        iniciaisMinusculas += array[i];
+                        c++;
+                    }
+
+                    paragrafo.setAttribute('id', 'paragrafo');
+                    paragrafo.innerText = iniciaisMinusculas;
                     resolucao.appendChild(paragrafo);
                 },
 
