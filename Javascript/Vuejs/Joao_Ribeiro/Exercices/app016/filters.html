@@ -222,7 +222,7 @@
                     switch (this.textoQuestoes) {
                         case 'Acrónimo': root.funcao(); break;
                         case 'Divisão Silábica': root.funcao(); break;
-                        case 'Inicias Maiúsculas': root.funcao(); break;
+                        case 'Inicias Maiúsculas': root.iniciaisMaiusculas(); break;
                         case 'Inicias Minúsculas': root.funcao(); break;
                         case 'Maiúsculas': root.maiusculas(); break;
                         case 'Minúsculas': root.minusculas(); break;
@@ -232,6 +232,34 @@
                         case 'Sigla': root.funcao(); break;
                         default: root.funcao(); break;
                     }
+                },
+
+                iniciaisMaiusculas: function () {
+                    root.verificarElemento();
+                    let resolucao = document.getElementById('resolucao');
+                    let paragrafo = document.createElement('p');
+                    let array = [];
+                    let iniciaisMaiusculas = '';
+
+                    var c = -1;
+                    for (let i = 0; i < this.textoSelecionado.length; i++) {
+                        if (i == 0) {
+                            array.push(this.textoSelecionado.charAt(i).toUpperCase());
+                        } else {
+                            array.push(this.textoSelecionado.charAt(i));
+                        }
+
+                        if (this.textoSelecionado.charAt(i) != ' ' && this.textoSelecionado.charAt(c) == ' ') {
+
+                            array[i] = this.textoSelecionado.charAt(i).toUpperCase();
+                        }
+                        iniciaisMaiusculas += array[i];
+                        c++;
+                    }
+
+                    paragrafo.setAttribute('id', 'paragrafo');
+                    paragrafo.innerText = iniciaisMaiusculas;
+                    resolucao.appendChild(paragrafo);
                 },
 
                 maiusculas: function () {
@@ -256,13 +284,13 @@
                     resolucao.appendChild(paragrafo);
                 },
 
-                
 
-                verificarElemento: function(){
+
+                verificarElemento: function () {
                     let resolucao = document.getElementById('resolucao');
                     let elemento = document.getElementById('paragrafo');
 
-                    if(elemento != null){
+                    if (elemento != null) {
                         resolucao.removeChild(elemento);
                     }
                 }
