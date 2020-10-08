@@ -70,11 +70,18 @@
             height: 350px;
             background: #ECF0F1;
             overflow-y: scroll;
+            display: flex;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        #resolucao #paragrafo {
+            padding: 10px;
         }
 
         #footer a {
             color: #fff;
-            texto-decoration: none;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -101,23 +108,27 @@
                     <option v-for="(item, index) in vectorDeTextos" :key="index">{{item}}</option>
                 </select>
 
-                <select id="textos questoes" v-model="textoQuestoes">
+                <select id="textos questoes" v-model="textoQuestoes" @change="selecionarFuncao">
                     <option value="" disabled>Selecione uma acção</option>
-                    <option>Acrónimo</option>
-                    <option>Divisão Silábica</option>
-                    <option>Inicias Maiúsculas</option>
-                    <option>Inicias Minúsculas</option>
-                    <option>Maiúsculas</option>
-                    <option>Minúsculas</option>
-                    <option>Quantidade Caracteres</option>
-                    <option>Quantidade Consoates</option>
-                    <option>Quantidade Vogais</option>
-                    <option>Sigla</option>
+                    <optgroup v-show="textoSelecionado != ''">
+                        <option>Acrónimo</option>
+                        <option>Divisão Silábica</option>
+                        <option>Inicias Maiúsculas</option>
+                        <option>Inicias Minúsculas</option>
+                        <option>Maiúsculas</option>
+                        <option>Minúsculas</option>
+                        <option>Quantidade Caracteres</option>
+                        <option>Quantidade Consoates</option>
+                        <option>Quantidade Vogais</option>
+                        <option>Sigla</option>
+                    </optgroup>
                 </select>
             </div>
 
             <div id="resolucao">
 
+                <h3 v-if="textoQuestoes == ''">Resolução</h3>
+                <h3 v-else>{{textoQuestoes}}</h3>
             </div>
         </div>
 
@@ -208,12 +219,12 @@
 
                 /* Funções do Select */
                 selecionarFuncao: function () {
-                    switch (textoQuestoes) {
+                    switch (this.textoQuestoes) {
                         case 'Acrónimo': root.funcao(); break;
                         case 'Divisão Silábica': root.funcao(); break;
                         case 'Inicias Maiúsculas': root.funcao(); break;
                         case 'Inicias Minúsculas': root.funcao(); break;
-                        case 'Maiúsculas': root.funcao(); break;
+                        case 'Maiúsculas': root.maiusculas(); break;
                         case 'Minúsculas': root.funcao(); break;
                         case 'Quantidade Caracteres': root.funcao(); break;
                         case 'Quantidade Consoates': root.funcao(); break;
@@ -221,6 +232,16 @@
                         case 'Sigla': root.funcao(); break;
                         default: root.funcao(); break;
                     }
+                },
+
+                maiusculas: function () {
+                    let resolucao = document.getElementById('resolucao');
+                    let maiuscula = this.textoSelecionado.toUpperCase();
+                    let paragrafo = document.createElement('p');
+
+                    paragrafo.setAttribute('id', 'paragrafo');
+                    paragrafo.innerText = maiuscula;
+                    resolucao.appendChild(paragrafo);
                 },
                 /* Funções do Select */
             },
