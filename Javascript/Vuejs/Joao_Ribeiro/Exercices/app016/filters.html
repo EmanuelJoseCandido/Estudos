@@ -225,7 +225,7 @@
                         case 'Inicias Maiúsculas': root.funcao(); break;
                         case 'Inicias Minúsculas': root.funcao(); break;
                         case 'Maiúsculas': root.maiusculas(); break;
-                        case 'Minúsculas': root.funcao(); break;
+                        case 'Minúsculas': root.minusculas(); break;
                         case 'Quantidade Caracteres': root.funcao(); break;
                         case 'Quantidade Consoates': root.funcao(); break;
                         case 'Quantidade Vogais': root.funcao(); break;
@@ -244,6 +244,19 @@
                     paragrafo.innerText = maiuscula;
                     resolucao.appendChild(paragrafo);
                 },
+
+                minusculas: function () {
+                    root.verificarElemento();
+                    let resolucao = document.getElementById('resolucao');
+                    let minuscula = this.textoSelecionado.toLowerCase();
+                    let paragrafo = document.createElement('p');
+
+                    paragrafo.setAttribute('id', 'paragrafo');
+                    paragrafo.innerText = minuscula;
+                    resolucao.appendChild(paragrafo);
+                },
+
+                
 
                 verificarElemento: function(){
                     let resolucao = document.getElementById('resolucao');
