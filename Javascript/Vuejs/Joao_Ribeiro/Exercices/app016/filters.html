@@ -235,6 +235,7 @@
                 },
 
                 maiusculas: function () {
+                    root.verificarElemento();
                     let resolucao = document.getElementById('resolucao');
                     let maiuscula = this.textoSelecionado.toUpperCase();
                     let paragrafo = document.createElement('p');
@@ -243,6 +244,17 @@
                     paragrafo.innerText = maiuscula;
                     resolucao.appendChild(paragrafo);
                 },
+
+                verificarElemento: function(){
+                    let resolucao = document.getElementById('resolucao');
+                    let elemento = document.getElementById('paragrafo');
+
+                    if(elemento != null){
+                        resolucao.removeChild(elemento);
+                    }
+                }
+
+
                 /* Funções do Select */
             },
 
