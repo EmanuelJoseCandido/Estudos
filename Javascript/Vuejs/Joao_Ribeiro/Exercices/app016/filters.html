@@ -117,7 +117,7 @@
                         <option>Inicias Minúsculas</option>
                         <option>Maiúsculas</option>
                         <option>Minúsculas</option>
-                        <option>Quantidade Caracteres</option>
+                        <option>Quantidade Letras</option>
                         <option>Quantidade Consoates</option>
                         <option>Quantidade Vogais</option>
                         <option>Sigla</option>
@@ -126,7 +126,6 @@
             </div>
 
             <div id="resolucao">
-
                 <h3 v-if="textoQuestoes == ''">Resolução</h3>
                 <h3 v-else>{{textoQuestoes}}</h3>
             </div>
@@ -226,7 +225,7 @@
                         case 'Inicias Minúsculas': root.iniciaisMinusculas(); break;
                         case 'Maiúsculas': root.maiusculas(); break;
                         case 'Minúsculas': root.minusculas(); break;
-                        case 'Quantidade Caracteres': root.funcao(); break;
+                        case 'Quantidade Letras': root.quantidadeDeLetras(); break;
                         case 'Quantidade Consoates': root.funcao(); break;
                         case 'Quantidade Vogais': root.funcao(); break;
                         case 'Sigla': root.funcao(); break;
@@ -312,7 +311,28 @@
                     resolucao.appendChild(paragrafo);
                 },
 
+                quantidadeDeLetras: function () {
+                    root.verificarElemento();
+                    let resolucao = document.getElementById('resolucao');
+                    let paragrafoGlobal = document.createElement('p');
+                    let paragrafo1 = document.createElement('p');
+                    let paragrafo2 = document.createElement('p');
+                    let quantidadeDeLetras = 0;
+                    var regex = /^\d+$/;
 
+                    for (let i = 0; i < this.textoSelecionado.length; i++) {
+                        if(!regex.test(this.textoSelecionado[i])){
+                            quantidadeDeLetras++;
+                        }
+                    }
+
+                    paragrafoGlobal.setAttribute('id', 'paragrafo');
+                    paragrafo1.innerHTML = 'Texto: <strong>'+ this.textoSelecionado + '</strong>.';
+                    paragrafo2.innerHTML = 'Há <strong>' + quantidadeDeLetras + '</strong> letras no texto.';
+                    paragrafoGlobal.appendChild(paragrafo1);
+                    paragrafoGlobal.appendChild(paragrafo2);
+                    resolucao.appendChild(paragrafoGlobal);
+                },
 
                 verificarElemento: function () {
                     let resolucao = document.getElementById('resolucao');
