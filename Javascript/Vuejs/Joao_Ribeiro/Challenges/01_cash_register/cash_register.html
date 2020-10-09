@@ -282,8 +282,8 @@
                     } else {
                         this.arrayQty.push(this.qtdThing[this.qtdThing.length - 1])
 
-                        
-                        console.log(!this.regex.test(this.qtdThing));                        
+
+                        console.log(!this.regex.test(this.qtdThing));
                         if (!this.regex.test(this.qtdThing)) {
                             this.arrayQty.splice(this.arrayQty.length - 1);
 
@@ -426,13 +426,15 @@
                 },
 
                 saveEditedProduct: function () {
-                    this.names[this.indexEdit] = this.name;
-                    this.prices[this.indexEdit] = Number(this.price);
-                    this.qtdThings[this.indexEdit] = Number(this.qtdThing);
-                    this.things[this.indexEdit] = this.name + " - " + this.price + "$";
-                    this.copyQtdThings = [...this.qtdThings];
-                    root.cancelEditing();
-                    root.saveToLocalStorage();
+                    if (root.validateInputs()) {
+                        this.names[this.indexEdit] = this.name;
+                        this.prices[this.indexEdit] = Number(this.price);
+                        this.qtdThings[this.indexEdit] = Number(this.qtdThing);
+                        this.things[this.indexEdit] = this.name + " - " + this.price + "$";
+                        this.copyQtdThings = [...this.qtdThings];
+                        root.cancelEditing();
+                        root.saveToLocalStorage();
+                    }
                 },
 
                 cancelEditing: function () {
