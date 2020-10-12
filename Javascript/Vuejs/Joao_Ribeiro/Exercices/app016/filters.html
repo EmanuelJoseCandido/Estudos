@@ -72,7 +72,7 @@
         }
 
         #resolucao #paragrafo {
-            padding: 10px;
+            padding: 5px;
         }
 
         #footer a {
@@ -177,9 +177,6 @@
                 },
 
                 iniciaisMaiusculas: function () {
-                    root.verificarElemento();
-                    let resolucao = document.getElementById('resolucao');
-                    let paragrafo = document.createElement('p');
                     let array = [];
                     let iniciaisMaiusculas = '';
 
@@ -199,15 +196,10 @@
                         c++;
                     }
 
-                    paragrafo.setAttribute('id', 'paragrafo');
-                    paragrafo.innerText = iniciaisMaiusculas;
-                    resolucao.appendChild(paragrafo);
+                    root.mostrar(iniciaisMaiusculas);
                 },
 
                 iniciaisMinusculas: function () {
-                    root.verificarElemento();
-                    let resolucao = document.getElementById('resolucao');
-                    let paragrafo = document.createElement('p');
                     let array = [];
                     let iniciaisMinusculas = '';
 
@@ -227,39 +219,18 @@
                         c++;
                     }
 
-                    paragrafo.setAttribute('id', 'paragrafo');
-                    paragrafo.innerText = iniciaisMinusculas;
-                    resolucao.appendChild(paragrafo);
+                    root.mostrar(iniciaisMinusculas);
                 },
 
                 maiusculas: function () {
-                    root.verificarElemento();
-                    let resolucao = document.getElementById('resolucao');
-                    let maiuscula = this.texto.toUpperCase();
-                    let paragrafo = document.createElement('p');
-
-                    paragrafo.setAttribute('id', 'paragrafo');
-                    paragrafo.innerText = maiuscula;
-                    resolucao.appendChild(paragrafo);
+                    root.mostrar(this.texto.toUpperCase());
                 },
 
                 minusculas: function () {
-                    root.verificarElemento();
-                    let resolucao = document.getElementById('resolucao');
-                    let minuscula = this.texto.toLowerCase();
-                    let paragrafo = document.createElement('p');
-
-                    paragrafo.setAttribute('id', 'paragrafo');
-                    paragrafo.innerText = minuscula;
-                    resolucao.appendChild(paragrafo);
+                    root.mostrar(this.texto.toLowerCase());
                 },
 
                 quantidadeDeLetras: function () {
-                    root.verificarElemento();
-                    let resolucao = document.getElementById('resolucao');
-                    let paragrafoGlobal = document.createElement('p');
-                    let paragrafo1 = document.createElement('p');
-                    let paragrafo2 = document.createElement('p');
                     let quantidadeDeLetras = 0;
                     var regex = /^\d+$/;
 
@@ -269,47 +240,42 @@
                         }
                     }
 
-                    paragrafoGlobal.setAttribute('id', 'paragrafo');
-                    paragrafo1.innerHTML = 'Texto: <strong>' + this.texto + '</strong>.';
-                    paragrafo2.innerHTML = 'Há <strong>' + quantidadeDeLetras + '</strong> letras no texto.';
-                    paragrafoGlobal.appendChild(paragrafo1);
-                    paragrafoGlobal.appendChild(paragrafo2);
-                    resolucao.appendChild(paragrafoGlobal);
+                    texto = 'Há <strong>' + quantidadeDeLetras + '</strong> letras no texto.';
+                    root.mostrar(texto);
                 },
 
                 quantidadeDeVogais: function () {
-                    root.verificarElemento();
-                    let resolucao = document.getElementById('resolucao');
-                    let paragrafoGlobal = document.createElement('p');
-                    let paragrafo1 = document.createElement('p');
-                    let paragrafo2 = document.createElement('p');
                     let quantidadeDeVogais = 0;
+                    let quantidadeDeConsoantes = 0;
                     let vogais = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'];
-                    var regex = /^\d+$/;
 
                     for (let i = 0; i < this.texto.length; i++) {
                         for (let j = 0; j < vogais.length; j++) {
                             if (this.texto[i] == vogais[j]) {
                                 quantidadeDeVogais++;
+                            } else {
+                                quantidadeDeConsoantes++;
                             }
                         }
                     }
 
-                    paragrafoGlobal.setAttribute('id', 'paragrafo');
-                    paragrafo1.innerHTML = 'Texto: <strong>' + this.texto + '</strong>.';
-                    paragrafo2.innerHTML = 'Há <strong>' + quantidadeDeVogais + '</strong> vogais no texto.';
-                    paragrafoGlobal.appendChild(paragrafo1);
-                    paragrafoGlobal.appendChild(paragrafo2);
-                    resolucao.appendChild(paragrafoGlobal);
+                    if (this.textoQuestoes == 'Quantidade Vogais') {
+                        texto = 'Há <strong>' + quantidadeDeVogais + '</strong> vogais no texto.';
+                    }
+                    else {
+                        texto = 'Há <strong>' + quantidadeDeConsoantes + '</strong> consoantes no texto.';
+                    }
+
+                    root.mostrar(texto);
+                },
+
+                quantidadeDeConsoantes: function () {
+                    root.quantidadeDeVogais();
                 },
 
                 silga: function () {
-                    root.verificarElemento();
-                    let resolucao = document.getElementById('resolucao');
-                    let paragrafo = document.createElement('p');
                     let sigla = '';
                     var c = -1;
-                    
                     for (let i = 0; i < this.texto.length; i++) {
                         if (i == 0) {
                             sigla += this.texto.charAt(i).toUpperCase();
@@ -321,9 +287,7 @@
                         c++;
                     }
 
-                    paragrafo.setAttribute('id', 'paragrafo');
-                    paragrafo.innerText = sigla;
-                    resolucao.appendChild(paragrafo);
+                    root.mostrar(sigla);
                 },
 
                 verificarElemento: function () {
@@ -333,7 +297,24 @@
                     if (elemento != null) {
                         resolucao.removeChild(elemento);
                     }
-                }
+                },
+
+                mostrar: function (texto) {
+                    root.verificarElemento();
+                    let resolucao = document.getElementById('resolucao');
+                    let paragrafoGlobal = document.createElement('p');
+                    let paragrafo1 = document.createElement('p');
+                    let paragrafo2 = document.createElement('p');
+
+                    paragrafoGlobal.setAttribute('id', 'paragrafo');
+                    paragrafo1.innerHTML = 'Texto: <strong>' + this.texto + '</strong>.';
+
+                    paragrafo2.innerHTML = texto;
+                    paragrafoGlobal.appendChild(paragrafo1);
+                    paragrafoGlobal.appendChild(paragrafo2);
+                    resolucao.appendChild(paragrafoGlobal);
+                },
+
                 /* Funções do Select */
             },
 
