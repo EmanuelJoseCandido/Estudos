@@ -74,3 +74,18 @@ select {
     color: #fff;
     text-decoration: none;
 }
+
+@media (max-width: 360px) {
+    #card {
+        width: 220px;
+    }
+
+    input{
+        width: 97%;
+    }
+
+    button{
+        width: 100%;
+        margin: 5px 3px 0px 0px;
+    }
+}
