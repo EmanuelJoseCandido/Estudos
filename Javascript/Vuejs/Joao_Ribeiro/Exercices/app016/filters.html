@@ -71,7 +71,7 @@
             flex-direction: column;
         }
 
-        #resolucao h3{
+        #resolucao h3 {
             margin-bottom: -10px;
         }
 
@@ -234,11 +234,13 @@
 
                 quantidadeDeLetras: function () {
                     let quantidadeDeLetras = 0;
-                    var regex = /^\d+$/;
+                    var alfabeto = 'abcdefghijklmnopqrstuvwxyz';
 
                     for (let i = 0; i < this.texto.length; i++) {
-                        if (!regex.test(this.texto[i])) {
-                            quantidadeDeLetras++;
+                        for (let j = 0; j < alfabeto.length; j++) {
+                            if (this.texto[i] == alfabeto[j] || this.texto[i] == alfabeto[j].toUpperCase()) {
+                                quantidadeDeLetras++;
+                            }
                         }
                     }
 
