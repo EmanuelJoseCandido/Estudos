@@ -144,7 +144,8 @@
                 limparTexto: function () {
                     let botaoLimpar = document.getElementById('limpar');
                     botaoLimpar.setAttribute('disabled', 'disabled');
-                    this.texto = '';
+                    this.textoQuestoes = this.texto = '';
+                    root.verificarElemento();
                 },
 
                 mudarBotaoLimpar: function () {
