@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../Exercices/assets/viu_version_dev.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Vuejs | Challenge #03</title>
+</head>
+
+<body>
+    <div id="root">
+        <div id="card">
+            <div id="inputs">
+                <input v-model="texto" @keyup="mudarBotaoLimpar">
+                <button @click="limparTexto" id="limpar">Limpar</button>
+            </div>
+
+            <div id="selects">
+                <select v-model="textoQuestoes" @change="selecionarFuncao">
+                    <option value="" disabled>Selecione uma acção</option>
+                    <optgroup v-show="texto != ''">
+                        <option>Inicias Maiúsculas</option>
+                        <option>Inicias Minúsculas</option>
+                        <option>Maiúsculas</option>
+                        <option>Minúsculas</option>
+                        <option>Quantidade Letras</option>
+                        <option>Quantidade Consoates</option>
+                        <option>Quantidade Vogais</option>
+                        <option>Sigla</option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <div id="resolucao">
+                <h3 v-if="textoQuestoes == ''">Resolução</h3>
+                <h3 v-else>{{textoQuestoes}}</h3>
+            </div>
+        </div>
+
+        <div id="footer">
+            <a href="https://emanueljosecandido.github.io">Emanuel Cândido &copy; 2020</a>
+        </div>
+    </div>
+
+    <script>
+        let root = new Vue({
+            el: "#root",
+
+            data: {
+                texto: '',
+                textoQuestoes: '',
+            },
+
+            methods: {
+                /* Funções Auxiliares */
+                validarInput: function () {
+                    if (this.texto == '') {
+                        alert('Insira um texto');
+                        return false
+                    } else {
+                        return true;
+                    }
+                },
+
+                limparTexto: function () {
+                    let botaoLimpar = document.getElementById('limpar');
+                    botaoLimpar.setAttribute('disabled', 'disabled');
+                    this.textoQuestoes = this.texto = '';
+                    root.verificarElemento();
+                },
+
+                mudarBotaoLimpar: function () {
+                    let botaoLimpar = document.getElementById('limpar');
+
+                    if (this.texto == '') {
+                        botaoLimpar.setAttribute('disabled', 'disabled');
+                    } else {
+                        botaoLimpar.removeAttribute('disabled');
+                    }
+                },
+                /* Funções Auxiliares */
+
+
+                /* Funções do Select */
+                selecionarFuncao: function () {
+                    switch (this.textoQuestoes) {
+                        case 'Inicias Maiúsculas': root.iniciaisMaiusculas(); break;
+                        case 'Inicias Minúsculas': root.iniciaisMinusculas(); break;
+                        case 'Maiúsculas': root.maiusculas(); break;
+                        case 'Minúsculas': root.minusculas(); break;
+                        case 'Quantidade Letras': root.quantidadeDeLetras(); break;
+                        case 'Quantidade Consoates': root.quantidadeDeConsoantes(); break;
+                        case 'Quantidade Vogais': root.quantidadeDeVogais(); break;
+                        case 'Sigla': root.silga(); break;
+                        default: root.funcao(); break;
+                    }
+                },
+
+                funcao: function () {
+                    alert('Em desenvolvimento!');
+                },
+
+                iniciaisMaiusculas: function () {
+                    let array = [];
+                    let iniciaisMaiusculas = '';
+
+                    var c = -1;
+                    for (let i = 0; i < this.texto.length; i++) {
+                        if (i == 0) {
+                            array.push(this.texto.charAt(i).toUpperCase());
+                        } else {
+                            array.push(this.texto.charAt(i));
+                        }
+
+                        if (this.texto.charAt(i) != ' ' && this.texto.charAt(c) == ' ') {
+
+                            array[i] = this.texto.charAt(i).toUpperCase();
+                        }
+                        iniciaisMaiusculas += array[i];
+                        c++;
+                    }
+
+                    root.mostrar(iniciaisMaiusculas);
+                },
+
+                iniciaisMinusculas: function () {
+                    let array = [];
+                    let iniciaisMinusculas = '';
+
+                    var c = -1;
+                    for (let i = 0; i < this.texto.length; i++) {
+                        if (i == 0) {
+                            array.push(this.texto.charAt(i).toLowerCase());
+                        } else {
+                            array.push(this.texto.charAt(i));
+                        }
+
+                        if (this.texto.charAt(i) != ' ' && this.texto.charAt(c) == ' ') {
+
+                            array[i] = this.texto.charAt(i).toLowerCase();
+                        }
+                        iniciaisMinusculas += array[i];
+                        c++;
+                    }
+
+                    root.mostrar(iniciaisMinusculas);
+                },
+
+                maiusculas: function () {
+                    root.mostrar(this.texto.toUpperCase());
+                },
+
+                minusculas: function () {
+                    root.mostrar(this.texto.toLowerCase());
+                },
+
+                quantidadeDeLetras: function () {
+                    let quantidadeDeLetras = 0;
+                    var alfabeto = 'abcdefghijklmnopqrstuvwxyz';
+
+                    for (let i = 0; i < this.texto.length; i++) {
+                        for (let j = 0; j < alfabeto.length; j++) {
+                            if (this.texto[i] == alfabeto[j] || this.texto[i] == alfabeto[j].toUpperCase()) {
+                                quantidadeDeLetras++;
+                            }
+                        }
+                    }
+
+                    texto = 'Há <strong>' + quantidadeDeLetras + '</strong> letras no texto.';
+                    root.mostrar(texto);
+                },
+
+                quantidadeDeVogais: function () {
+                    let quantidadeDeVogais = 0;
+                    let vogais = 'aeiouAEIOU';
+
+                    for (let i = 0; i < this.texto.length; i++) {
+                        for (let j = 0; j < vogais.length; j++) {
+                            if (this.texto[i] == vogais[j]) {
+                                quantidadeDeVogais++;
+                            }
+                        }
+                    }
+
+                    texto = 'Há <strong>' + quantidadeDeVogais + '</strong> vogais no texto.';
+                    root.mostrar(texto);
+                },
+
+                quantidadeDeConsoantes: function () {
+                    let quantidadeDeVogais = 0;
+                    let quantidadeDeConsoantes = 0;
+                    let vogais = 'aeiouAEIOU';
+
+                    for (let i = 0; i < this.texto.length; i++) {
+                        for (let j = 0; j < vogais.length; j++) {
+                            if (this.texto[i] == vogais[j]) {
+                                quantidadeDeVogais++;
+                            }
+
+                            if (j == vogais.length - 1) {
+                                if (quantidadeDeVogais == 0) {
+                                    quantidadeDeConsoantes++;
+                                } else {
+                                    quantidadeDeVogais = 0;
+                                }
+                            }
+                        }
+                    }
+
+                    texto = 'Há <strong>' + quantidadeDeConsoantes + '</strong> consoantes no texto.';
+                    root.mostrar(texto);
+                },
+
+                silga: function () {
+                    let sigla = '';
+                    var c = -1;
+                    for (let i = 0; i < this.texto.length; i++) {
+                        if (i == 0) {
+                            sigla += this.texto.charAt(i).toUpperCase();
+                        }
+
+                        if (this.texto.charAt(i) != ' ' && this.texto.charAt(c) == ' ') {
+                            sigla += this.texto.charAt(i).toUpperCase();
+                        }
+                        c++;
+                    }
+
+                    root.mostrar(sigla);
+                },
+
+                verificarElemento: function () {
+                    let resolucao = document.getElementById('resolucao');
+                    let elemento = document.getElementById('paragrafo');
+
+                    if (elemento != null) {
+                        resolucao.removeChild(elemento);
+                    }
+                },
+
+                mostrar: function (texto) {
+                    root.verificarElemento();
+                    let resolucao = document.getElementById('resolucao');
+                    let paragrafo = document.createElement('p');
+
+                    paragrafo.setAttribute('id', 'paragrafo');
+                    paragrafo.innerHTML = texto;
+                    resolucao.appendChild(paragrafo);
+                },
+
+                /* Funções do Select */
+            },
+
+            filters: {
+
+            }
+        });
+
+        root.mudarBotaoLimpar();
+    </script>
+</body>
+
+</html>
