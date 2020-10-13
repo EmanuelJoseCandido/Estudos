@@ -71,6 +71,10 @@
             flex-direction: column;
         }
 
+        #resolucao h3{
+            margin-bottom: -10px;
+        }
+
         #resolucao #paragrafo {
             padding: 5px;
         }
@@ -94,7 +98,6 @@
                 <select v-model="textoQuestoes" @change="selecionarFuncao">
                     <option value="" disabled>Selecione uma acção</option>
                     <optgroup v-show="texto != ''">
-                        <option>Divisão Silábica</option>
                         <option>Inicias Maiúsculas</option>
                         <option>Inicias Minúsculas</option>
                         <option>Maiúsculas</option>
@@ -159,7 +162,6 @@
                 /* Funções do Select */
                 selecionarFuncao: function () {
                     switch (this.textoQuestoes) {
-                        case 'Divisão Silábica': root.funcao(); break;
                         case 'Inicias Maiúsculas': root.iniciaisMaiusculas(); break;
                         case 'Inicias Minúsculas': root.iniciaisMinusculas(); break;
                         case 'Maiúsculas': root.maiusculas(); break;
@@ -246,31 +248,43 @@
 
                 quantidadeDeVogais: function () {
                     let quantidadeDeVogais = 0;
-                    let quantidadeDeConsoantes = 0;
-                    let vogais = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'];
+                    let vogais = 'aeiouAEIOU';
 
                     for (let i = 0; i < this.texto.length; i++) {
                         for (let j = 0; j < vogais.length; j++) {
                             if (this.texto[i] == vogais[j]) {
                                 quantidadeDeVogais++;
-                            } else {
-                                quantidadeDeConsoantes++;
                             }
                         }
                     }
 
-                    if (this.textoQuestoes == 'Quantidade Vogais') {
-                        texto = 'Há <strong>' + quantidadeDeVogais + '</strong> vogais no texto.';
-                    }
-                    else {
-                        texto = 'Há <strong>' + quantidadeDeConsoantes + '</strong> consoantes no texto.';
-                    }
-
+                    texto = 'Há <strong>' + quantidadeDeVogais + '</strong> vogais no texto.';
                     root.mostrar(texto);
                 },
 
                 quantidadeDeConsoantes: function () {
-                    root.quantidadeDeVogais();
+                    let quantidadeDeVogais = 0;
+                    let quantidadeDeConsoantes = 0;
+                    let vogais = 'aeiouAEIOU';
+
+                    for (let i = 0; i < this.texto.length; i++) {
+                        for (let j = 0; j < vogais.length; j++) {
+                            if (this.texto[i] == vogais[j]) {
+                                quantidadeDeVogais++;
+                            }
+
+                            if (j == vogais.length - 1) {
+                                if (quantidadeDeVogais == 0) {
+                                    quantidadeDeConsoantes++;
+                                } else {
+                                    quantidadeDeVogais = 0;
+                                }
+                            }
+                        }
+                    }
+
+                    texto = 'Há <strong>' + quantidadeDeConsoantes + '</strong> consoantes no texto.';
+                    root.mostrar(texto);
                 },
 
                 silga: function () {
@@ -302,17 +316,11 @@
                 mostrar: function (texto) {
                     root.verificarElemento();
                     let resolucao = document.getElementById('resolucao');
-                    let paragrafoGlobal = document.createElement('p');
-                    let paragrafo1 = document.createElement('p');
-                    let paragrafo2 = document.createElement('p');
+                    let paragrafo = document.createElement('p');
 
-                    paragrafoGlobal.setAttribute('id', 'paragrafo');
-                    paragrafo1.innerHTML = 'Texto: <strong>' + this.texto + '</strong>.';
-
-                    paragrafo2.innerHTML = texto;
-                    paragrafoGlobal.appendChild(paragrafo1);
-                    paragrafoGlobal.appendChild(paragrafo2);
-                    resolucao.appendChild(paragrafoGlobal);
+                    paragrafo.setAttribute('id', 'paragrafo');
+                    paragrafo.innerHTML = texto;
+                    resolucao.appendChild(paragrafo);
                 },
 
                 /* Funções do Select */
