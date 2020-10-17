@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../assets/viu_version_dev.js"></script>
+    <title>Vue - App016(Components(Props) #5)</title>
+    <style>
+        html,
+        body {
+            background: #191F3C;
+        }
+
+        .container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .box{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            flex-grow: 2;
+            background: #2B3253;
+            margin: 10px;
+            border-radius: 7px;
+            box-shadow: 0 12px 18px 2px rgba(34, 0, 51, .04), 0 6px 22px 4px rgba(7, 48, 114, .12), 0 6px 10px -4px rgba(14, 13, 26, .12);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+       <blog-posts
+            v-for="post in posts"
+            v-bind:id="post.id"
+            v-bind:title="post.title"
+            v-bind:text="post.text"
+            v-bind:img="post.img"
+       >
+
+       </blog-posts>
+    </div>
+
+    <script>
+        //-------Components-------
+        Vue.component('blog-posts', {
+            props: [
+                'id',
+                'title',
+                'text',
+                'img'
+            ],
+
+            template:
+                `
+                <div class="container">
+                    <div class="box">
+                        <h1>{{title}}</h1>
+                        <h4>{{id}}</h4>
+                        <img :src="img" :alt="title">
+                        <p>About: {{text}}</p>
+                    </div>
+                </div>
+            `,
+        });
+        //-------Components-------
+        let root = new Vue({
+            el: "#root",
+            data: {
+                posts: [
+                    { id: 1, title: 'Google', text: 'This is the best organization of world.', img: 'pictures/google.svg' },
+                    { id: 2, title: 'Facebook', text: 'This is amazing social.', img: 'pictures/Facebook.svg' },
+                    { id: 3, title: 'Apple', text: 'Best phones and pc.', img: 'pictures/Apple.svg' },
+                    { id: 1, title: 'Amazon', text: 'This is the best place for you buy.', img: 'pictures/Amazon.svg' }
+                ],
+            }
+        });
+    </script>
+</body>
+
+</html>
