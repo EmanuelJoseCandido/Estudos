@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../assets/viu_version_dev.js"></script>
+    <title>Vue - App016(Components #2)</title>
+    <style>
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+            background: #121115;
+            font-family: 'Avenir', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", Arial, sans-serif;
+            font-style: italic;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        header {
+            background: #151317;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        header div.logo {
+            margin-top: 10px;
+        }
+
+        header ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        header ul li {
+            margin: 0px 5px;
+            padding: 10px 20px;
+            border-radius: 15px;
+            color: #251721;
+        }
+
+        header ul li.active {
+            background: #251721;
+        }
+
+        header ul li.active a {
+            color: #6D304D;
+
+        }
+
+        header ul li a {
+            text-decoration: none;
+            color: #FCFBFE;
+            transition: all ease-in-out 0.4s;
+        }
+
+        header ul li a:hover {
+            color: #6D304D;
+        }
+
+        button {
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            background: #FDFEFE;
+        }
+
+        button a {
+            text-decoration: none;
+            color: #3B393D;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        button a img:nth-child(2), button a img:nth-child(3){
+            margin-left: -15px;
+        }
+
+        section article img{
+            height: 2.5rem;
+            width: 2.5rem;
+        }
+
+        button a span{
+            font-size: 20px;
+        }
+
+        button a:hover {}
+
+        /* Body-2 */
+        #root {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+        }
+
+        .container {
+            margin-top: 50px;
+            background: #100E12;
+            color: #FCFBFE;
+            width: 100%;
+            height: 100%;
+        }
+
+        .container .box {
+            display: flex;
+            padding: 0px 50px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        section {
+            width: 50%;
+            margin-right: 20px;
+        }
+
+        section article {}
+
+        section article h1 {
+            font-size: 64px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        section article h2 {
+            margin-top: -80px;
+            font-size: 48px;
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+
+        section article p {
+            color: #9A989A;
+            text-align: justify;
+            font-size: 18px;
+            font-weight: 400;
+        }
+
+        aside {
+            width: 40%;
+            margin-left: 20px;
+        }
+
+        aside article {}
+
+        aside article div {
+            background: #010001;
+            border-radius: 16px;
+            box-shadow: 0 12px 18px 2px rgba(34, 0, 51, .04), 0 6px 22px 4px rgba(7, 48, 114, .12), 0 6px 10px -4px rgba(14, 13, 26, .12);
+            padding: 40px 40px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <header-2></header-2>
+        <body-2>
+    </div>
+
+    <script>
+        //--------------------
+        Vue.component('header-2', {
+            template:
+                `
+                <header>
+                    <div class="logo">
+                        <img src="pictures/dayl_dev.svg">
+                    </div>
+                    <ul>
+                        <li class="active"><a href="#">Premiun</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <button><a href="#"><span>Get Started</span> - <span>It's Free</span></a></button>
+                    </ul>
+                </header>
+            `,
+        });
+
+        Vue.component('body-2', {
+            template:
+                `
+                <div class="container">
+                    <div class="box">
+                        <section>
+                            <article>
+                                <h1>Discover Dev News</h1>
+
+                                <h2>With Zero Effort</h2>
+
+                                <p>Daily delivers the best programming news every new tab. It is a browser extesion that boots your profissional growth. we will rank hundreds of qualified sources for you so that you can hack the future.</p>
+
+                                
+                                <div class="">
+                                    <button>
+                                        <a href="#">
+                                            <img src="pictures/Edge.svg"> 
+                                            <img src="pictures/Firefox.svg"> 
+                                            <img src="pictures/Chrome.svg"> 
+                                            <span>Get Started</span> - <span>It's Free</span>
+                                        </a>
+                                    </button>
+                                </div>
+
+                                <p></p>
+
+                                <div class="">
+                                
+                                </div>
+                            </article>
+                        </section>
+
+                        <aside>
+                            <article>
+                                <div>
+                                    Emanuel Cândido &copy; 2020
+                                </div>
+                            </article>
+                        </aside>
+                    </div>
+                </div>
+            `,
+        });
+        //--------------------
+        let root = new Vue({
+            el: "#root",
+        });
+    </script>
+</body>
+
+</html>

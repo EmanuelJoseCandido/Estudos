@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../assets/viu_version_dev.js"></script>
+    <title>Vue - App016(Components #3)</title>
+    <style>
+        .body h1{
+            text-align: center;
+        }
+
+        header ul{
+            display: flex;
+            list-style: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        header ul li{
+            margin: 0px 10px;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin: 20px;
+            background: slategrey;
+            padding: 20px;
+            border-radius: 7px;
+        }
+
+        .box {
+            display: flex;
+            background: steelblue;
+            padding: 20px;
+            border-radius: 7px;
+        }
+
+        .box section,
+        .box aside {
+            margin: 0px 20px;
+            text-align: center;
+            padding: 20px;
+            border-radius: 7px;
+        }
+
+        .box section,
+        .box aside,
+        .box,
+        .container {
+            transition: all ease-in-out 0.4s;
+        }
+
+        .box section:hover,
+        .box aside:hover,
+        .box:hover,
+        .container:hover {
+            box-shadow: 0 12px 18px 2px rgba(34, 0, 51, .04), 0 6px 22px 4px rgba(7, 48, 114, .12), 0 6px 10px -4px rgba(14, 13, 26, .12);
+        }
+
+        .box section {
+            background: tan;
+        }
+
+        .box aside {
+            background: teal;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <body-2></body-2>
+    </div>
+
+    <script>
+        //-------Components-------
+        Vue.component('body-2', {
+            template:
+                `
+                <div class="body">
+                    <h1>Body</h1>
+                    <header-in/>
+                    <container-in/>
+                    <container-in/>
+                </div>
+            `
+        });
+
+        Vue.component('header-in', {
+            template:
+                `   
+                <header>
+                    <ul>
+                        <li><a href="#">Home 1</a></li>
+                        <li><a href="#">Home 2</a></li>
+                        <li><a href="#">Home 3</a></li>
+                        <li><a href="#">Home 4</a></li>
+                        <li><a href="#">Home 5</a></li>
+                    </ul>
+                </header>
+            `
+        });
+
+        Vue.component('container-in', {
+            template:
+                `
+            <div class="container">
+                <h2>Container</h2>
+                <box-in-in/>
+            </div>
+            `
+        });
+
+        Vue.component('box-in-in', {
+            template:
+                `
+            <div class="box">
+                <section-in-in-in/>
+                <aside-in-in-in/>
+            </div>
+            `
+        });
+
+        Vue.component('section-in-in-in', {
+            template:
+                `
+            <section>
+                <h4>Section</h4>
+                <p>Conteudo do section</p>
+            </section>
+            `
+        });
+
+        Vue.component('aside-in-in-in', {
+            template:
+                `
+            <aside>
+                <h4>Aside</h4>
+                <p>Conteudo do aside</p>
+            </aside>
+            `
+        });
+        //-------Components-------
+        let root = new Vue({
+            el: "#root",
+        });
+    </script>
+</body>
+
+</html>

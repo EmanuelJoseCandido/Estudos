@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../assets/viu_version_dev.js"></script>
+    <title>Vue - App016(Components(Props) #4)</title>
+</head>
+
+<body>
+    <div id="root">
+        <list-names :names = 'names'></list-names>
+    </div>
+
+    <script>
+        //-------Components-------
+
+        Vue.component('list-names', {
+            props:[
+                'names',
+            ],
+
+            template:
+            `
+            <ul>
+                <li v-for="name in names">{{name}}</li>
+            </ul>
+            `
+        });
+
+        //-------Components-------
+        let root = new Vue({
+            el: "#root",
+            data: {
+                names: ['Aldair', 'Junior','Emanuel'],
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../assets/viu_version_dev.js"></script>
+    <title>Vue - App016(Components #1)</title>
+</head>
+<body>
+    <div id="root">
+        <new></new>
+    </div>
+
+    <script>
+        //--------------------
+        Vue.component('new', {
+            template: 
+            `
+                <header>
+                    <ul>
+                        <li><a href="#">Home 1</a></li>
+                        <li><a href="#">Home 2</a></li>
+                        <li><a href="#">Home 3</a></li>
+                        <li><a href="#">Home 4</a></li>
+                        <li><a href="#">Home 5</a></li>
+                    </ul>
+                </header>
+            `
+        });
+        //--------------------
+        let root = new Vue({
+            el: "#root",
+            component: [
+                'new',
+            ]
+
+        });
+    </script>
+</body>
+</html>

@@ -98,6 +98,7 @@
                 <select v-model="textoQuestoes" @change="selecionarFuncao">
                     <option value="" disabled>Selecione uma acção</option>
                     <optgroup v-show="texto != ''">
+                        <option>Divisão Silábica</option>
                         <option>Inicias Maiúsculas</option>
                         <option>Inicias Minúsculas</option>
                         <option>Maiúsculas</option>
@@ -163,6 +164,7 @@
                 /* Funções do Select */
                 selecionarFuncao: function () {
                     switch (this.textoQuestoes) {
+                        case 'Divisão Silábica': root.divisaoSilabica(); break;
                         case 'Inicias Maiúsculas': root.iniciaisMaiusculas(); break;
                         case 'Inicias Minúsculas': root.iniciaisMinusculas(); break;
                         case 'Maiúsculas': root.maiusculas(); break;
@@ -177,6 +179,21 @@
 
                 funcao: function () {
                     alert('Em desenvolvimento!');
+                },
+
+                divisaoSilabica: function(){
+                    let ditongos = ['ai', 'êi', 'ãi', 'ei', 'éi', 'oi', 'ói', 'ui', 'au', 'áu', 'eu', 'éu', 'iu', 'ou', 'ãe', 'ão', 'õe']
+                    let triongos = [];
+                    let digrafos = ['lh', 'ch', 'nh', 'gu', 'qu'];
+                    let consonantaisPuros = ['bl', 'cl', 'gl', 'pl', 'fl', 'br', 'cr', 'dr', 'gr', 'pr', 'tr', 'fr', 'vr'];
+                    let consonantaisIniciais = ['ps', 'mn', 'pn', 'gn']; // ...
+                    let texto = '';
+
+                    for (let i = 0; i < this.texto.length; i++) {
+                        
+                    }
+
+                    root.mostrar(this.texto);
                 },
 
                 iniciaisMaiusculas: function () {
