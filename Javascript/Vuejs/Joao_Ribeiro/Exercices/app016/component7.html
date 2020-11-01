@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../assets/viu_version_dev.js"></script>
+    <title>Vue - App016(Components #6)</title>
+    <style>
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+            width: 100vw;
+            height: 100vh;
+            color: #43414E;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #DDDFE2;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-around;
+            background: #43414E;
+            color: white;
+        }
+
+        header .logo img {
+            background: #43414E;
+        }
+
+        header nav ul {
+            display: flex;
+        }
+
+        header nav ul li {
+            list-style: none;
+            margin: 0px 10px;
+        }
+
+        header nav ul li a {
+            text-decoration: none;
+            color: white;
+            transition: all 650ms ease-in-out;
+        }
+
+        header nav ul li a:hover {
+            font-weight: bold;
+        }
+
+        .corpo {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .corpo .clientes {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: center;
+            width: 100%;
+            padding: 10px;
+        }
+
+
+        .corpo .clientes .cliente {
+            width: 300px;
+            height: 350px;
+            background: #43414E;
+            margin: 10px;
+            border-radius: 7px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .3), 0 1px 3px 1px rgba(60, 64, 67, .15);
+            transition: all 650ms ease-in-out;
+            color: #DDDFE2;
+        }
+
+        .corpo .clientes .cliente:hover {
+            box-shadow: 0 12px 18px 2px rgba(34, 0, 51, .04), 0 6px 22px 4px rgba(7, 48, 114, .12), 0 6px 10px -4px rgba(14, 13, 26, .12);
+        }
+
+        .corpo .clientes .cliente img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+
+        .rodape{
+            text-align: center;
+        }
+
+        .rodape a{
+            text-decoration: none;
+            color: #43414E;
+            font-style: italic;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <cabeca :emis = 'emis'></cabeca>
+        <rodape></rodape>
+    </div>
+    <script>
+        //-------Components-------
+        Vue.component('cabeca', {
+            props: [
+                'emis',
+            ],
+
+            data() {
+                return {
+                    banco: '',
+                }
+            },
+
+            methods: {
+                carregarBanco: function(banco){
+                    if(banco == 'BPC'){
+                        this.banco = 'BPC';
+                    }else if(banco == 'BIC'){
+                        this.banco = 'BIC';
+                    }
+                }
+            },
+
+            template:
+                `
+                <div>
+                    <header>
+                        <div classe="logo">
+                            <img src="pictures/google.svg">
+                        </div>
+                            
+                        <nav>
+                            <ul>
+                                <li><a href="#" @click="carregarBanco('BPC')">BPC</a></li>
+                                <li><a href="#" @click="carregarBanco('BIC')">BIC</a></li>
+                            </ul>
+                        </nav>
+                    </header>
+
+                    <main>
+                        <section v-if="banco == 'BPC'">
+                            <corpo-bpc :emis="emis[0].bpc"></corpo-bpc>
+                        </section>
+
+                        <section v-else-if="banco == 'BIC'">
+                            <corpo-bic :emis="emis[0].bic"></corpo-bic>
+                        </section>
+                    </main>
+                </div>
+            `,
+        });
+
+        Vue.component('corpo-bic', {
+            props: [
+                'emis'
+            ],
+
+            template:
+                `
+            <div class="corpo">
+                <h2>Clientes BIC</h2>
+                <div class="clientes">
+                    <div class="cliente" v-for="cliente in emis.clientes">
+                        <img :src="cliente.picture">
+                        <h3>Nome: {{cliente.nome}}</h3>
+                        <p>Nº conta: {{cliente.conta}}</p>
+                        <p>IBAN: {{cliente.iban}}</p>
+                        <p>Saldo: {{cliente.saldo}}</p>
+                    </div>
+                </div>
+            </div>
+            `,
+        });
+
+        Vue.component('corpo-bpc', {
+            props: [
+                'emis'
+            ],
+
+            template:
+                `
+            <div class="corpo">
+                <h2>Clientes BPC</h2>
+                <div class="clientes">
+                    <div class="cliente" v-for="cliente in emis.clientes">
+                        <img :src="cliente.picture">
+                        <h3>Nome: {{cliente.nome}}</h3>
+                        <p>Nº conta: {{cliente.conta}}</p>
+                        <p>IBAN: {{cliente.iban}}</p>
+                        <p>Saldo: {{cliente.saldo}}</p>
+                    </div>
+                </div>
+            </div>
+            `,
+        });
+        
+        Vue.component('rodape', {
+            template:
+                `
+            <footer class="rodape">
+                <a href="https://emanueljosecandido.github.io">Emanuel Cândido &copy; 2020</a>
+            </footer>
+            `,
+        });
+        //-------Components-------
+        let root = new Vue({
+            el: "#root",
+            data: {
+                emis: [
+                    {
+                        bic: {
+                            info: {
+                                pais: 'Angola',
+                                cidade: 'Luanda',
+                                municipio: 'Talatona',
+                                bairro: 'Benfica'
+                            },
+
+                            clientes: [
+                                { picture: 'pictures/Edge.svg', nome: 'Aldair  Lopes', conta: 145334566, iban: 'AO00145334566', saldo: 0 },
+                                { picture: 'pictures/Firefox.svg', nome: 'Daniela Cândido', conta: 137439908, iban: 'AO00137439908', saldo: 2000 },
+                                { picture: 'pictures/Chrome.svg', nome: 'Itiodeth  Lopes', conta: 144940333, iban: 'AO00144940333', saldo: 99 },
+                            ]
+                        },
+
+                        bpc: {
+                            info: {
+                                pais: 'Angola',
+                                cidade: 'Luanda',
+                                municipio: 'Belas',
+                                bairro: 'Ramiro'
+                            },
+
+                            clientes: [
+                                { picture: 'pictures/Mercedes.svg', nome: 'Emanuel Cândido', conta: 157169780, iban: 'AO00157169780', saldo: 7777777777777770000 },
+                                { picture: 'pictures/Nike.svg', nome: 'Jony  Lopes', conta: 188776743, iban: 'AO00188776743', saldo: 0 },
+                            ]
+                        },
+                    }
+                ]
+            },
+        });
+
+    </script>
+</body>
+
+</html>
