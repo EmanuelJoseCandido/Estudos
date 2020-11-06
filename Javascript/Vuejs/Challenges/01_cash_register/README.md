@@ -2,9 +2,9 @@
 
 <p align="center">
 
-Clique aqui para testar : [Caixa Registradora](https://emanuelcandido-js.netlify.app/javascript/vuejs/joao_ribeiro/challenges/01_cash_register/cash_register)
+Clique aqui para testar : [Caixa Registradora](https://emanuelcandido-js.netlify.app/javascript/vuejs/challenges/01_cash_register/cash_register)
 
-<a href="https://emanuelcandido-js.netlify.app/javascript/vuejs/joao_ribeiro/challenges/01_cash_register/cash_register">
+<a href="https://emanuelcandido-js.netlify.app/javascript/vuejs/challenges/01_cash_register/cash_register">
 <img src="../00_assets/01_cash_register.png">
 </a>
 

@@ -1,19 +1,19 @@
-# [Vuejs | Challenge #02](https://emanuelcandido-js.netlify.app/javascript/vuejs/joao_ribeiro/challenges/02_numbers/numbers.html) 🇦🇴
+# [Vuejs | Challenge #02](https://emanuelcandido-js.netlify.app/javascript/vuejs/challenges/02_numbers/numbers.html) 🇦🇴
 
 <p align="center">
 
-Clique aqui para testar : [Números](https://emanuelcandido-js.netlify.app/javascript/vuejs/joao_ribeiro/challenges/02_numbers/numbers.html)
+Clique aqui para testar : [Números](https://emanuelcandido-js.netlify.app/javascript/vuejs/challenges/02_numbers/numbers.html)
 
 
 <table>
 <tbody>
 <td>
-<a href="https://emanuelcandido-js.netlify.app/javascript/vuejs/joao_ribeiro/challenges/02_numbers/numbers.html">
+<a href="https://emanuelcandido-js.netlify.app/javascript/vuejs/challenges/02_numbers/numbers.html">
 <img src="../00_assets/02_numbers_01.png">
 </a>
 </td>
 <td>
-<a href="https://emanuelcandido-js.netlify.app/javascript/vuejs/joao_ribeiro/challenges/02_numbers/numbers.html">
+<a href="https://emanuelcandido-js.netlify.app/javascript/vuejs/challenges/02_numbers/numbers.html">
 <img src="../00_assets/02_numbers_02.png">
 </a>
 </td>

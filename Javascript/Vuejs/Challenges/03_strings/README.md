@@ -1,11 +1,11 @@
-# [Vuejs | Challenge #03](https://emanuelcandido-js.netlify.app/javascript/vuejs/joao_ribeiro/challenges/03_strings/strings.html) 🇦🇴
+# [Vuejs | Challenge #03](https://emanuelcandido-js.netlify.app/javascript/vuejs/challenges/03_strings/strings.html) 🇦🇴
 
 <p align="center">
 
-Clique aqui para testar : [Números](https://emanuelcandido-js.netlify.app/javascript/vuejs/joao_ribeiro/challenges/03_strings/strings.html)
+Clique aqui para testar : [Números](https://emanuelcandido-js.netlify.app/javascript/vuejs/challenges/03_strings/strings.html)
 
 
-<a href="https://emanuelcandido-js.netlify.app/javascript/vuejs/joao_ribeiro/challenges/03_strings/strings.html">
+<a href="https://emanuelcandido-js.netlify.app/javascript/vuejs/challenges/03_strings/strings.html">
 <img src="../00_assets/03_strings.png">
 </a>
 
