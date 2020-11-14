@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../assets/viu_version_dev.js"></script>
+    <title>Vuejs | Challenge #04</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        #root {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #DDDFE2;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background: white;
+            border-radius: 7px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .3), 0 1px 3px 1px rgba(60, 64, 67, .15);
+        }
+
+        .countdown {
+            margin-bottom: 20px;
+            display: flex;
+        }
+
+        .countdown div {
+            margin: 5px;
+        }
+
+
+        button,
+        input {
+            border: none;
+            border-radius: 7px;
+            padding: 10px 15px;
+            background: transparent;
+            box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .3), 0 1px 3px 1px rgba(60, 64, 67, .15);
+            transition: all 650ms ease-in-out;
+        }
+
+        input {
+            width: 40px;
+            padding: 8px 8px;
+            background: black;
+            color: white;
+        }
+
+        .btn:hover {
+            background: #DDDFE2;
+            cursor: pointer;
+        }
+
+        .rodape {
+            text-align: center;
+        }
+
+        .rodape a {
+            text-decoration: none;
+            color: black;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <container></container>
+        <rodape></rodape>
+    </div>
+
+    <script>
+        //-------Components-------
+        Vue.component('container', {
+            data() {
+                return {
+                    horas: 0,
+                    minutos: 0,
+                    segundos: 0,
+                    textoHoras: '',
+                    textoMinutos: '',
+                    textoSegundos: '',
+                }
+            },
+            methods: {
+                playCountdown: function () {
+                    let buttonPlay = document.getElementsByTagName('button')[0];
+                    let buttonPause = document.getElementsByTagName('button')[1];
+                    let buttonReset = document.getElementsByTagName('button')[2];
+
+                    buttonPlay.setAttribute('disabled', 'disabled');
+                    buttonPlay.removeAttribute('class');
+
+                    buttonPause.setAttribute('class', 'btn');
+                    buttonPause.removeAttribute('disabled');
+
+                    buttonReset.removeAttribute('disabled');
+                    buttonReset.setAttribute('class', 'btn');
+
+                    let tempo = document.getElementsByClassName('fullTime')[0];
+                    let horas = document.getElementsByClassName('hours')[0];
+                    let minutos = document.getElementsByClassName('minutes')[0];
+                    let segundos = document.getElementsByClassName('seconds')[0];
+
+                    let auxHoras = this.horas = horas.value;
+                    let auxMinutos = this.minutos = minutos.value;
+                    let auxSegundos = this.segundos = segundos.value;
+
+                    auxSegundos++;
+                    let temp = setInterval(() => {
+
+                        /* Ajustes no texto */
+                        if ((this.segundos + '').length > 1) {
+                            this.textoSegundos = this.segundos;
+                        } else {
+                            this.textoSegundos = '0' + this.segundos;
+                        }
+
+                        if ((this.minutos + '').length > 1) {
+                            this.textoMinutos = this.minutos;
+                        } else {
+                            this.textoMinutos = '0' + this.minutos;
+                        }
+
+                        if ((this.horas + '').length > 1) {
+                            this.textoHoras = this.horas;
+                        } else {
+                            this.textoHoras = '0' + this.horas;
+                        }
+                        /* Ajustes no texto */
+
+
+                        /* Countdown */
+                        if (this.segundos == 0) {
+                            this.segundos = auxSegundos;
+
+                            if (this.minutos != 0) {
+                                this.minutos--;
+                            } else {
+                                this.minutos = auxMinutos;
+
+                                if (this.horas != 0) {
+                                    this.horas--;
+                                } else {
+                                    clearInterval(temp);
+                                    this.textoHoras = this.textoMinutos = this.textoSegundos = '00';
+                                    buttonPlay.removeAttribute('disabled');
+                                    buttonPause.setAttribute('disabled', 'disabled');
+                                }
+                            }
+                        }
+                        /* Countdown */
+
+                        horas.value = this.textoHoras;
+                        minutos.value = this.textoMinutos;
+                        segundos.value = this.textoSegundos;
+                        this.segundos--;
+                    }, 1000);
+                },
+
+                pauseCountdown: function () {
+                    alert('Pause');
+                },
+
+                resetCountdown: function () {
+                    let tempo = document.getElementsByClassName('fullTime')[0]
+                    tempo.innerHTML = '00:00:00';
+                    root.playCountdown();
+                },
+
+                AjustsText: function () {
+                    if ((this.segundos + '').length > 1) {
+                        this.textoSegundos = this.segundos;
+                    } else {
+                        this.textoSegundos = '0' + this.segundos;
+                    }
+
+                    if ((this.minutos + '').length > 1) {
+                        this.textoMinutos = this.minutos;
+                    } else {
+                        this.textoMinutos = '0' + this.minutos;
+                    }
+
+                    if ((this.horas + '').length > 1) {
+                        this.textoHoras = this.horas;
+                    } else {
+                        this.textoHoras = '0' + this.horas;
+                    }
+                },
+            },
+
+            template:
+                `
+                <div class="container">
+                    <h1>Countdown</h1>
+
+                    <div class="countdown">
+                        <div>
+                            <input type="number" class="hours">
+                        </div>
+                        
+                        <div >
+                            <input type="number" class="minutes">
+                        </div>
+
+                        <div >
+                            <input type="number" class="seconds">
+                        </div>
+                    </div>
+
+                    <div class="buttons">
+                        <button @click="playCountdown" class="btn">Play</button>
+                        <button @click="pauseCountdown" disabled="disabled">Pause</button>
+                        <button @click="resetCountdown" disabled="disabled">Reset</button>    
+                    </div>
+                </div>
+            `,
+        });
+
+        Vue.component('rodape', {
+            template:
+                `
+            <footer class="rodape">
+                <a href="https://emanueljosecandido.github.io">Emanuel Cândido &copy; 2020</a>
+            </footer>
+            `,
+        });
+        //-------Components-------
+
+        let root = new Vue({
+            el: "#root",
+
+            data: {
+
+            },
+        });
+
+    </script>
+</body>
+
+</html>
