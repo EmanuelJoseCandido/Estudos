@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../assets/viu_version_dev.js"></script>
+    <title>Vue - App012(Components #2)</title>
+</head>
+<body>
+      <div id="root">
+          <rodape></rodape>
+      </div>
+
+      <template id="footer-change">
+          <footer>
+              <div class="top">
+                   <p>Conteúdo do rodapé da página.</p>
+              </div>
+              <div class="bottom">
+                <p><a href="https://emanueljosecandido.github.io">Emanuel Cândido &copy; 2020</a></p>
+              </div>
+            </footer>
+      </template>
+      
+      <script>
+          //-------Components-------
+          Vue.component('rodape', {
+            template: '#footer-change',
+          });
+          //-------Components-------
+
+
+          //--------Instance--------
+          let root = new Vue({
+            el: '#root',
+
+          });
+          //--------Instance--------
+      </script>
+</body>
+</html>

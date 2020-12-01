@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../assets/viu_version_dev.js"></script>
+    <title>Vue - App012(Components #1)</title>
+</head>
+
+<body>
+    <div id="root">
+        <menu-bar></menu-bar>
+
+        <menu-bar></menu-bar>
+    </div>
+
+    <template id="menu">
+        <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+        </ul>
+    </template>
+    <script>
+        //-------Components-------
+        Vue.component('menu-bar', {
+            template: '#menu',
+        });
+        //-------Components-------
+        let root = new Vue({
+            el: '#root',
+        });
+    </script>
+</body>
+
+</html>
