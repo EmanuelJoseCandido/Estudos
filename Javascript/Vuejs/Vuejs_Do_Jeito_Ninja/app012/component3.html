@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../assets/viu_version_dev.js"></script>
+    <title>Vue - App012(Components #3)</title>
+    <style>
+        html, body{
+            padding: 0;
+            margin: 0;
+        }
+        
+        nav{
+            display: flex;
+            background: #0A66C2;
+            color: #F3F2EF;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        ul{
+            display: flex;
+        }
+
+        ul li{
+            list-style: none;
+            margin: 0px 5px;
+        }
+
+        ul li a{
+            color: #f3f3f3;
+            text-decoration: none;
+        }
+
+        input{
+            border-radius:  7px;
+            border: none;
+            height: 2rem;
+            width: 30%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <navbar></navbar>
+    </div>
+
+    <template id="navegacao">
+        <nav>
+            <div class="logotipo">
+                <img src="../../Joao_Ribeiro/Exercices/app016/pictures/Mercedes.svg" alt="">
+            </div>
+
+            <menubar></menubar>
+
+            <input type="search" name="" id="">
+        </nav>
+    </template>
+
+    <tamplate id="lista">
+        <ul>
+            <li><a href="#">Tema 1</a></li>
+            <li><a href="#">Tema 2</a></li>
+            <li><a href="#">Tema 3</a></li>
+            <li><a href="#">Tema 4</a></li>
+            <li><a href="#">Tema 5</a></li>
+        </ul>
+    </tamplate>
+
+    <script>
+        //-------Components-------
+        Vue.component('navbar',{
+            template: '#navegacao',
+        });
+
+        Vue.component('menubar', {
+            template: '#lista',
+        });
+        //-------Components-------
+
+        //--------Instance--------
+        let app = new Vue({
+            el: '#app',
+        });
+        //--------Instance--------
+    </script>
+</body>
+
+</html>

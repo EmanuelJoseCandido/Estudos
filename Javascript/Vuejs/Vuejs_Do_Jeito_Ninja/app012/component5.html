@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../assets/viu_version_dev.js"></script>
+    <title>Vue - App012(Components #5)</title>
+    <style>
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        nav {
+            display: flex;
+            background: #0A66C2;
+            color: #F3F2EF;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        ul {
+            display: flex;
+        }
+
+        ul li {
+            list-style: none;
+            margin: 0px 5px;
+        }
+
+        ul li a {
+            color: #f3f3f3;
+            text-decoration: none;
+        }
+
+        input {
+            border-radius: 7px;
+            border: none;
+            height: 2rem;
+            width: 30%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <navbar :items="[{label: 'The company'}, {label: 'Services'}, ]"></navbar>
+    </div>
+
+    <template id="navegacao">
+        <nav>
+            <div class="logotipo">
+                <img src="../../Joao_Ribeiro/Exercices/app016/pictures/Mercedes.svg" alt="">
+            </div>
+
+            <menubar :items="topNav">
+            </menubar>
+
+            <input type="search" name="" id="">
+        </nav>
+    </template>
+
+    <tamplate id="lista-nav">
+        <div>
+            <ul>
+                <li v-for="(item, index) in items" :key="index"><a href="#">{{item.label}} {{index}}</a></li>
+            </ul>
+        </div>
+    </tamplate>
+
+    <script>
+        //-------Components-------
+        Vue.component('navbar', {
+            template: '#navegacao',
+
+            data() {
+                return {
+                    topNav: [{
+                            label: 'Tema'
+                        },
+                        {
+                            label: 'Tema'
+                        },
+                        {
+                            label: 'Tema'
+                        },
+                        {
+                            label: 'Tema'
+                        },
+                        {
+                            label: 'Tema'
+                        }
+                    ],
+                }
+            },
+        });
+
+        Vue.component('menubar', {
+            template: '#lista-nav',
+            props: {
+                items: {
+                    typeof: 'Array',
+                    require: true,
+                },
+            }
+        });
+        //-------Components-------
+
+        //--------Instance--------
+        let app = new Vue({
+            el: '#app',
+        });
+        //--------Instance--------
+    </script>
+</body>
+
+</html>

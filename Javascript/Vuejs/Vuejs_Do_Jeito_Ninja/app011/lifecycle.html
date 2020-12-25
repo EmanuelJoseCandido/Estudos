@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../assets/viu_version_dev.js"></script>
+    <title>Vue - App012(Lifecycle #1)</title>
+</head>
+
+<body>
+    <div id="root">
+
+    </div>
+
+    <script>
+        //--------Instance--------
+        let root = new Vue({
+            el: '#root',
+
+            //--------Lifecycle--------
+            beforeCreate() {
+                console.log('beforeCreate'); 
+                console.log('Name: ', this.name); 
+                console.log('Element: ', this.$el);
+            },
+
+            created() {
+                console.log('\nCreated');
+                console.log('Name: ', this.name);
+                console.log('Element: ', this.$el);
+            },
+
+            beforeMount() {
+                console.log('\nBeforeMount');
+                console.log('Name: ', this.name);
+                console.log('Element: ', this.$el);
+            },
+
+            mounted() {
+                console.log('\nMounted');
+                console.log('Name: ', this.name);
+                console.log(this.$el);
+            },
+
+            beforeUpdate() {
+                console.log('\nBeforeUpdate');
+            },
+
+            updated() {
+                console.log('\nUpdated');
+            },
+            //--------Lifecycle--------
+
+            data: {
+                name: 'Emanuel Cândido',
+            },
+        });
+        //--------Instance--------
+    </script>
+</body>
+
+</html>
