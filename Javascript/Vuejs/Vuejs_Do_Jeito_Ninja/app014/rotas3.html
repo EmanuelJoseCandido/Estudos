@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../assets/viu_version_dev.js"></script>
+    <title>Vue - App013(Rotas #3)</title>
+    <style>
+        #root {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 98vw;
+            height: 98vh;
+        }
+
+        header{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul li {
+            list-style: none;
+        }
+
+        .cubo,
+        .box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .box{
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid rgb(51, 50, 50);
+            border-radius: 7px;
+            height: 150px;
+            width: 150px;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <header>
+            <ul>
+                <li>
+                    <router-link :to="{name: 'petro'}">Petro de Luanda</router-link>
+                </li>
+                <li>
+                    <router-link :to="{name: 'dagosto'}">1º de Agosto</router-link>
+                </li>
+            </ul>
+        </header>
+
+        <router-view></router-view>
+    </div>
+
+    <!-- Template -->
+    <template id="petro">
+        <div class="cubo">
+            <h1>Petro de Luanda</h1>
+            <div class="container">
+                <div class="box">
+                    <p>Jogadores do Petro</p>
+
+                    <ul>
+                        <li v-for="jogador in jogadores">
+                            <router-link :to="{ name: 'petroContent', params: {name: jogador.slug}}">{{jogador.nome}} -
+                                {{jogador.numero}}</router-link>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="box">
+                    <router-view></router-view>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="dagosto">
+        <div>
+            <h1>1º de Agosto</h1>
+        </div>
+    </template>
+
+    <template id="petroContent">
+        <div>
+            <h3>Conteúdo Petro</h3>
+            <p>{{$route.params.name}}</p>
+        </div>
+    </template>
+    <!-- Template -->
+
+    <script src="../assets/vue-router.js"></script>
+    <script>
+        //------- Components -------//
+        var petro = Vue.component('petro-de-luanda', {
+            template: '#petro',
+
+            data() {
+                return {
+                    jogadores: [
+                        { nome: 'Job', numero: 7, slug: 'job' },
+                        { nome: 'Yano', numero: 9, slug: 'yano' },
+                        { nome: 'Picas', numero: 17, slug: 'picas' },
+                    ]
+                }
+            },
+        })
+
+        var dagosto = Vue.component('primeiro-de-agosto', {
+            template: '#dagosto',
+        })
+
+        var petroContent = Vue.component('petro-content', {
+            template: '#petroContent',
+        })
+        //------- Components -------//
+
+        //--------- Router ---------//
+        var router = new VueRouter({
+            mode: 'history',
+
+            routes: [
+                {
+                    path: '/petro', component: petro, name: 'petro',
+                    children: [
+                        { path: ':name', component: petroContent, name: 'petroContent' }
+                    ]
+                },
+                { path: '/dagosto', component: dagosto, name: 'dagosto' }
+            ]
+        })
+        //--------- Router ---------//
+
+        //-------- Instance --------//
+        let root = new Vue({
+            el: '#root',
+
+            router,
+
+            data: {
+
+            },
+        });
+        //-------- Instance --------//
+    </script>
+</body>
+
+</html>

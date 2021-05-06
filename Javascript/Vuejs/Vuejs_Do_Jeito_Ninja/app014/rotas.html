@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../assets/viu_version_dev.js"></script>
+    <title>Vue - App013(Rotas #1)</title>
+</head>
+
+<body>
+    <div id="root">
+        <ul>
+            <li><router-link to="petro">Petro de Luanda</router-link></li>
+            <li><router-link to="dagosto">1º de Agosto</router-link></li>
+        </ul>
+        
+        <router-view></router-view>
+    </div>
+
+    <!-- Template -->
+    <template id="petro">
+        <h1>Petro de Luanda</h1>
+    </template>
+
+    <template id="dagosto">
+        <h1>1º de Agosto</h1>
+    </template>
+    <!-- Template -->
+
+    <script src="../assets/vue-router.js"></script>
+    <script>
+        //------- Components -------//
+        var petro = Vue.component('petro-de-luanda', {
+            template: '#petro',
+        })
+
+        var dagosto = Vue.component('primeiro-de-agosto', {
+            template: '#dagosto',
+        })
+        //------- Components -------//
+
+        //--------- Router ---------//
+
+        var router = new VueRouter({
+            routes: [
+                { path: '/petro', component: petro },
+                { path: '/dagosto', component: dagosto }
+            ]
+        })
+
+        //--------- Router ---------//
+
+        //-------- Instance --------//
+        let root = new Vue({
+            el: '#root',
+
+            router,
+
+            data: {
+
+            },
+        });
+        //-------- Instance --------//
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue - App013(Rotas-Teste #1)</title>
+</head>
+
+<body>
+    <div id="root">
+        <ul>
+            <li>
+                <router-link :to="{name: 'ncr'}">NRC</router-link>
+            </li>
+            <li>
+                <router-link :to="{name: 'kero'}">Kero</router-link>
+            </li>
+        </ul>
+
+        <router-view></router-view>
+    </div>
+
+    <!---------- Template ---------->
+    <template id="ncr">
+        <div class="container">
+            <h2>Loja da NCR</h2>
+
+            <div class="box">
+                <h3>Produtos</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Processador</th>
+                            <th>Preço</th>
+                            <th>Descontos</th>
+                            <th>Preço com desconto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="produto in produtos">
+                            <td>
+                                <router-link :to="{name: 'ncrContent', params: {name: produto.slug}}">{{produto.nome}}
+                                </router-link>
+                            </td>
+                            <td>{{produto.processador}}</td>
+                            <td>{{produto.preco}}</td>
+                            <td>{{produto.desconto}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="box">
+                <router-view></router-view>
+            </div>
+        </div>
+    </template>
+
+    <template id="kero">
+        <div class="container">
+            <h2>Loja do Kero</h2>
+
+            <div class="box">
+                <h3>Produtos</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Preço</th>
+                            <th>Descontos</th>
+                            <th>Preço com desconto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="produto in produtos">
+                            <td>
+                                <router-link :to="{name: 'keroContent', params: {name: produto.slug}}">{{produto.nome}}
+                                </router-link>
+                            </td>
+                            <td>{{produto.preco}}</td>
+                            <td>{{produto.desconto}}</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="box">
+                <router-view></router-view>
+            </div>
+        </div>
+    </template>
+
+    <template id="nrc_content">
+        <div>
+            <h1>{{$route.params.name}}</h1>
+        </div>
+    </template>
+
+    <template id="kero_content">
+        <div>
+            <h1>{{$route.params.name}}</h1>
+        </div>
+    </template>
+    <!---------- Template ---------->
+
+
+    <script src="../assets/viu_version_dev.js"></script>
+    <script src="../assets/vue-router.js"></script>
+    <script>
+        //------- Components -------//
+        var ncr = Vue.component('ncr', {
+            template: '#ncr',
+
+            data() {
+                return {
+                    produtos: [
+                        { nome: 'Computador HP', slug: 'hp', processador: 'intel i7', preco: 1000, desconto: 0 },
+                        { nome: 'Computador Apple', slug: 'apple', processador: 'intel i9', preco: 2500, desconto: 5 },
+                        { nome: 'Computador Lenovo', slug: 'lenovo', processador: 'amd 56', preco: 2000, desconto: 20 },
+                    ],
+                }
+            },
+        });
+
+        var kero = Vue.component('kero', {
+            template: '#kero',
+
+            data() {
+                return {
+                    produtos: [
+                        { nome: 'Banana', slug: 'banana', preco: 75, desconto: 2 },
+                        { nome: 'Tambarindo', slug: 'tambarindo', preco: 25, desconto: 3 },
+                        { nome: 'Manga', slug: 'manga', preco: 50, desconto: 0 }
+                    ],
+                }
+            },
+        });
+
+        var ncrContent = Vue.component('nrc-content', {
+            template: '#nrc_content',
+        });
+
+        var keroContent = Vue.component('kero-content', {
+            template: '#kero_content',
+        });
+        //------- Components -------//
+
+        //--------- Router ---------//
+        var router = new VueRouter({
+            mode: 'history',
+
+            routes: [
+                {
+                    path: '/ncr', component: ncr, name: 'ncr',
+                    children: [
+                        { path: ':name', component: ncrContent, name: 'ncrContent' },
+                    ]
+                },
+                {
+                    path: '/kero', component: kero, name: 'kero',
+                    children: [
+                        { path: ':name', component: keroContent, name: 'keroContent' },
+                    ]
+                },
+            ],
+        });
+
+        //--------- Router ---------//
+
+        //---------- Vue ----------//
+        let root = new Vue({
+            el: '#root',
+
+            router,
+
+            data: {},
+        });
+        //---------- Vue ----------//
+
+    </script>
+</body>
+
+</html

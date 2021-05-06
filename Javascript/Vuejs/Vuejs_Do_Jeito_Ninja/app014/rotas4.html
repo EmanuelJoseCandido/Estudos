@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue - App013(Rotas #4)</title>
+</head>
+
+<body>
+    <div id="root">
+        <ul>
+            <li>
+                <router-link :to="{name: 'angola'}">Angola</router-link>
+            </li>
+            <li>
+                <router-link to="/nigeria">Nigeria</router-link>
+            </li>
+            <li>
+                <router-link :to="{name: 'brasil'}">Brasil</router-link>
+            </li>
+        </ul>
+
+        <router-view></router-view>
+    </div>
+
+    <!---------- Template ---------->
+    <template id="angola">
+        <div>
+            <h2>Angola</h2>
+            <p>Angola é um país grande e belo.</p>
+
+            <ul>
+                <li v-for="(item, index) in angola" :key="index">
+                    <router-link :to="{name:'angolatexto', params: {name: item.slug}}">{{item.provincia}}</router-link>
+                </li>
+            </ul>
+
+            <router-view></router-view>
+        </div>
+    </template>
+
+    <template id="brasil">
+        <div>
+            <h2>Brasil</h2>
+
+            <p>Ordem e progresso.</p>
+
+            <ul>
+                <li>
+                    <router-link to="">São Paulo</router-link>
+                </li>
+                <li>
+                    <router-link to="">Rio de Janeiro</router-link>
+                </li>
+                <li>
+                    <router-link to="">Coritiba</router-link>
+                </li>
+            </ul>
+        </div>
+    </template>
+
+    <template id="angola-texto">
+        <div>
+            <h3>Texto de {{$route.params.name}}</h3>
+        </div>
+    </template>
+
+    <template id="erro404">
+        <div>
+            <h2>Página não encontrada</h2>
+
+            <p>A página requerida não encontrada.(#404)</p>
+        </div>
+    </template>
+
+    <!---------- Template ---------->
+    <script src="../assets/viu_version_dev.js"></script>
+    <script src="../assets/vue-router.js"></script>
+    <script>
+        //------- Components -------//
+        var angola = Vue.component('Angola', {
+            template: '#angola',
+            data() {
+                return {
+                    angola: [
+                        { maravilha: 'Quedas de Kalandula', provincia: 'Malanje', Capital: 'Malanje', slug: 'malanje' },
+                        { maravilha: 'Morro dos Veados', provincia: 'Luanda', Capital: 'Luanda', slug: 'luanda' },
+                    ]
+                }
+            },
+        })
+
+        var nigeria = Vue.component('Nigeria', {
+            template: '#nigeria',
+        })
+
+        var brasil = Vue.component('Brasil', {
+            template: '#brasil',
+        })
+
+        var angolatexto = Vue.component('Angola-texto', {
+            template: '#angola-texto',
+        })
+
+        var erro404 = Vue.component('erro404', {
+            template: '#erro404',
+        })
+        //------- Components -------//
+
+        //--------- Router ---------//
+        var router = new VueRouter({
+            mode: 'history',
+
+            routes: [
+                {path: '/', name: 'home'},
+                {
+                    path: '/angola', component: angola, name: 'angola',
+                    children: [
+                        { path: ':name', component: angolatexto, name: 'angolatexto' }
+                    ]
+                },
+                { path: '/brasil', component: brasil, name: 'brasil' },
+                { path: '*', component: erro404, name: 'erro404' },
+            ],
+
+        });
+        //--------- Router ---------//
+
+        //-------- Instance --------//
+        let root = new Vue({
+            el: "#root",
+
+            router,
+
+            created() {
+                console.log(this.$router.push);
+                this.$router.push({name: '/angola'});
+            },
+
+            data: {
+
+            },
+        });
+        //-------- Instance --------//
+    </script>
+</body>
+
+</html>
