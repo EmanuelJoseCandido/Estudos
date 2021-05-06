@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../assets/viu_version_dev.js"></script>
+    <style>
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        #root {
+            background: floralwhite;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-container {
+            background: chocolate;
+            margin: 10px;
+            width: 450px;
+            height: 55%;
+            border-radius: 7px;
+            text-align: center;
+            box-shadow: 0 12px 18px 2px rgba(34, 0, 51, .04), 0 6px 22px 4px rgba(7, 48, 114, .12), 0 6px 10px -4px rgba(14, 13, 26, .12);
+        }
+
+        .card-container img {
+            width: 100%;
+            border-radius: 7px 7px 0px 0px;
+            height: 50%;
+        }
+
+        .text {
+            height: 50%;
+            width: 100%;
+        }
+
+        .button {
+            border: 1px solid white;
+            border-radius: 7px;
+            padding: 8px 20px;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+            transition: all 600ms ease-in-out;
+        }
+
+        a.button:hover {
+            background: white;
+            color: chocolate;
+        }
+    </style>
+    <title>Vue - App013(Slots #1)</title>
+</head>
+
+<body>
+    <div id="root">
+        <card>
+            <div>
+                <h4 slot="title" class="title" >Angola</h4>
+                <p class="text" slot="text">Angola é um país grande e belo.</p>
+                <a href="#" class="button" slot="action">Go to anyware</a>
+            </div>
+        </card>
+
+        <card>
+            <div>
+                <h4 class="title">Angola</h4>
+                <p class="text">Angola é um país grande e belo.</p>
+                <a href="#" class="button">Go to anyware</a>
+            </div>
+        </card>
+    </div>
+
+    <template id="card">
+        <div class="card-container">
+            <img src="../../Challenges/00_assets/03_strings.png" alt="">
+            <div class="text">
+                <slot name="title"></slot>
+                <slot name="text"></slot>
+                <slot name="action"></slot>
+            </div>
+        </div>
+    </template>
+
+    <script>
+        //------- Components -------//
+        Vue.component('card', {
+            template: '#card',
+
+            data() {
+                return {
+                    title: '',
+                }
+            },
+        })
+        //------- Components -------//
+
+        //-------- Instance --------//
+        let root = new Vue({
+            el: '#root',
+
+            data: {
+                titulo: 'Angola',
+            },
+        });
+        //-------- Instance --------//
+    </script>
+</body>
+
+</html>

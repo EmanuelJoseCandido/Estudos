@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../assets/viu_version_dev.js"></script>
+    <title>Vue - App013(Mixins #1)</title>
+</head>
+
+<body>
+    <div id="root">
+        <card></card>
+    </div>
+
+    <template id="card">
+        <button @click.stop.prevent="getUsers()">Get Users</button>
+    </template>
+
+    <script>
+        //--------- Mixins ---------//
+        var mixin = {
+            methods: {
+                getUsers() {
+                    console.log('Get users from Mixins');
+                }
+            },
+        }
+        //--------- Mixins ---------//
+
+        //------- Components -------//
+        Vue.component('card', {
+            template: '#card',
+
+            mixins: [mixin], 
+            
+            data() {
+                return {
+                    title: '',
+                }
+            },
+        })
+        //------- Components -------//
+
+        //-------- Instance --------//
+        let root = new Vue({
+            el: '#root',
+
+            mixins: [mixin], 
+
+            data: {
+
+            },
+
+            methods: {
+                getUsers() {
+                    console.log('Get users from Vue');
+                }
+            },
+        });
+        //-------- Instance --------//
+    </script>
+</body>
+
+</html>
