@@ -125,27 +125,7 @@
 
                     auxSegundos++;
                     let temp = setInterval(() => {
-
-                        /* Ajustes no texto */
-                        if ((this.segundos + '').length > 1) {
-                            this.textoSegundos = this.segundos;
-                        } else {
-                            this.textoSegundos = '0' + this.segundos;
-                        }
-
-                        if ((this.minutos + '').length > 1) {
-                            this.textoMinutos = this.minutos;
-                        } else {
-                            this.textoMinutos = '0' + this.minutos;
-                        }
-
-                        if ((this.horas + '').length > 1) {
-                            this.textoHoras = this.horas;
-                        } else {
-                            this.textoHoras = '0' + this.horas;
-                        }
-                        /* Ajustes no texto */
-
+                        this.AjustsText();
 
                         /* Countdown */
                         if (this.segundos == 0) {
@@ -176,7 +156,7 @@
                 },
 
                 pauseCountdown: function () {
-                    alert('Pause');
+                    console.log(`${this.textoHoras}: ${this.textoMinutos}: ${this.textoSegundos}`);
                 },
 
                 resetCountdown: function () {
