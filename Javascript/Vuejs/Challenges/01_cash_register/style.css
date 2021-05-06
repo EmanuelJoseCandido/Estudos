@@ -236,9 +236,10 @@ table {
     font-size: 9pt;
 }
 
-th,
-td {
-    padding: 5px;
+
+
+tr{
+    border: 1px solid #080807;
 }
 
 
