@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../assets/viu_version_dev.js"></script>
+    <title>Vue - App012(Components #7)</title>
+    <style>
+        html,
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #root {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <form-2></form-2>
+        <list-2></list-2>
+    </div>
+
+    <!------- Templates ------->
+    <template id="form-2">
+        <div>
+            <input type="text" name="" id="" v-model="titulo">
+            <button @click.stop.prevent="submit()">Enviar</button>
+        </div>
+    </template>
+
+    <template id="list-2">
+        <ul>
+            <li v-for="(item, index) in list">{{item.titulo}}</li>
+        </ul>
+    </template>
+    <!------- Templates ------->
+
+    <script>
+        //------- Components -------//
+        Vue.component('form-2', {
+            template: '#form-2',
+
+            data() {
+                return {
+                    titulo: '',
+                }
+            },
+
+            methods: {
+                submit() {
+                    eventBus.$emit('submit', this.titulo);
+                    console.log('Hey');
+                },
+            },
+
+        })
+
+        Vue.component('list-2', {
+            template: '#list-2',
+            created() {
+                var vm = this;
+                eventBus.$on('submit', function (titulo) {
+                    console.log(titulo);
+                    if(titulo){
+                        vm.list.push({titulo: titulo });
+                    }
+                });
+            },
+
+            data() {
+                return {
+                    list: [
+                        { titulo: 'ir a feira!'}, 
+                    ],
+                }
+            },
+
+        })
+        //------- Components -------//
+
+
+        //-------- Instances --------//
+        var eventBus = new Vue();
+
+        let root = new Vue({
+            el: '#root',
+            data: {
+
+            },
+        });
+        //-------- Instances --------//
+    </script>
+</body>
+
+</html>
