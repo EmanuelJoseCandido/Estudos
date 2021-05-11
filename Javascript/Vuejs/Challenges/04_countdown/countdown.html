@@ -86,6 +86,46 @@
         <rodape></rodape>
     </div>
 
+    <!---------- Templates--------->
+
+    <!-- Container -->
+    <template id="container">
+        <div class="container">
+            <h1>Countdown</h1>
+
+            <div class="countdown">
+                <div>
+                    <input type="number" class="hours">
+                </div>
+
+                <div>
+                    <input type="number" class="minutes">
+                </div>
+
+                <div>
+                    <input type="number" class="seconds">
+                </div>
+            </div>
+
+            <div class="buttons">
+                <button @click="playCountdown" class="btn">Play</button>
+                <button @click="pauseCountdown" disabled="disabled">Pause</button>
+                <button @click="resetCountdown" disabled="disabled">Reset</button>
+            </div>
+        </div>
+    </template>
+    <!-- Container -->
+
+    <!-- Footer -->
+    <template id="footer">
+        <footer class="rodape">
+            <a href="https://emanueljosecandido.github.io">Emanuel Cândido &copy; 2020</a>
+        </footer>
+    </template>
+    <!-- Footer -->
+
+    <!---------- Templates --------->
+
     <script>
         //-------Components-------
         Vue.component('container', {
@@ -186,41 +226,11 @@
                 },
             },
 
-            template:
-                `
-                <div class="container">
-                    <h1>Countdown</h1>
-
-                    <div class="countdown">
-                        <div>
-                            <input type="number" class="hours">
-                        </div>
-                        
-                        <div >
-                            <input type="number" class="minutes">
-                        </div>
-
-                        <div >
-                            <input type="number" class="seconds">
-                        </div>
-                    </div>
-
-                    <div class="buttons">
-                        <button @click="playCountdown" class="btn">Play</button>
-                        <button @click="pauseCountdown" disabled="disabled">Pause</button>
-                        <button @click="resetCountdown" disabled="disabled">Reset</button>    
-                    </div>
-                </div>
-            `,
+            template: '#container',
         });
 
         Vue.component('rodape', {
-            template:
-                `
-            <footer class="rodape">
-                <a href="https://emanueljosecandido.github.io">Emanuel Cândido &copy; 2020</a>
-            </footer>
-            `,
+            template: '#footer',
         });
         //-------Components-------
 
