@@ -30,7 +30,7 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            background: white;
+            background: rgba(255, 255, 255, .2);
             border-radius: 7px;
             padding: 20px;
             margin-bottom: 20px;
@@ -60,7 +60,7 @@
         input {
             width: 40px;
             padding: 8px 8px;
-            background: black;
+            background: rgba(0, 0, 0, .2);
             color: white;
         }
 
@@ -96,15 +96,15 @@
 
             <div class="countdown">
                 <div>
-                    <input type="number" class="hours">
+                    <input type="number" class="hours" value="00">
                 </div>
 
                 <div>
-                    <input type="number" class="minutes">
+                    <input type="number" class="minutes" value="00">
                 </div>
 
                 <div>
-                    <input type="number" class="seconds">
+                    <input type="number" class="seconds" value="00">
                 </div>
             </div>
 
@@ -146,54 +146,56 @@
                     let buttonPause = document.getElementsByTagName('button')[1];
                     let buttonReset = document.getElementsByTagName('button')[2];
 
-                    buttonPlay.setAttribute('disabled', 'disabled');
-                    buttonPlay.removeAttribute('class');
-
-                    buttonPause.setAttribute('class', 'btn');
-                    buttonPause.removeAttribute('disabled');
-
-                    buttonReset.removeAttribute('disabled');
-                    buttonReset.setAttribute('class', 'btn');
-
                     let tempo = document.getElementsByClassName('fullTime')[0];
-                    let horas = document.getElementsByClassName('hours')[0];
-                    let minutos = document.getElementsByClassName('minutes')[0];
-                    let segundos = document.getElementsByClassName('seconds')[0];
+                    var horas = document.getElementsByClassName('hours')[0];
+                    var minutos = document.getElementsByClassName('minutes')[0];
+                    var segundos = document.getElementsByClassName('seconds')[0];
 
-                    let auxHoras = this.horas = horas.value;
-                    let auxMinutos = this.minutos = minutos.value;
-                    let auxSegundos = this.segundos = segundos.value;
+                    if (this.validarTempo(horas.value, minutos.value, segundos.value)) {
+                        buttonPlay.setAttribute('disabled', 'disabled');
+                        buttonPlay.removeAttribute('class');
 
-                    auxSegundos++;
-                    let temp = setInterval(() => {
-                        this.AjustsText();
+                        buttonPause.setAttribute('class', 'btn');
+                        buttonPause.removeAttribute('disabled');
 
-                        /* Countdown */
-                        if (this.segundos == 0) {
-                            this.segundos = auxSegundos;
+                        buttonReset.removeAttribute('disabled');
+                        buttonReset.setAttribute('class', 'btn');
 
-                            if (this.minutos != 0) {
-                                this.minutos--;
-                            } else {
-                                this.minutos = auxMinutos;
+                        let auxHoras = this.horas;
+                        let auxMinutos = this.minutos;
+                        let auxSegundos = this.segundos;
 
-                                if (this.horas != 0) {
-                                    this.horas--;
+                        auxSegundos++;
+                        let temp = setInterval(() => {
+                            this.AjustsText();
+
+                            /* Countdown */
+                            if (this.segundos == 0) {
+                                this.segundos = auxSegundos;
+
+                                if (this.minutos != 0) {
+                                    this.minutos--;
                                 } else {
-                                    clearInterval(temp);
-                                    this.textoHoras = this.textoMinutos = this.textoSegundos = '00';
-                                    buttonPlay.removeAttribute('disabled');
-                                    buttonPause.setAttribute('disabled', 'disabled');
+                                    this.minutos = auxMinutos;
+
+                                    if (this.horas != 0) {
+                                        this.horas--;
+                                    } else {
+                                        clearInterval(temp);
+                                        this.textoHoras = this.textoMinutos = this.textoSegundos = '00';
+                                        buttonPlay.removeAttribute('disabled');
+                                        buttonPause.setAttribute('disabled', 'disabled');
+                                    }
                                 }
                             }
-                        }
-                        /* Countdown */
+                            /* Countdown */
 
-                        horas.value = this.textoHoras;
-                        minutos.value = this.textoMinutos;
-                        segundos.value = this.textoSegundos;
-                        this.segundos--;
-                    }, 1000);
+                            horas.value = this.textoHoras;
+                            minutos.value = this.textoMinutos;
+                            segundos.value = this.textoSegundos;
+                            this.segundos--;
+                        }, 1000);
+                    }
                 },
 
                 pauseCountdown: function () {
@@ -225,6 +227,53 @@
                         this.textoHoras = '0' + this.horas;
                     }
                 },
+
+                validarTempo: function (horas, minutos, segundos) {
+                    let tempo = new Date();
+                    let tempoDefault = 60;
+                    let regex = /^\d+$/;
+
+                    if (!(regex.test(horas)) || !(regex.test(minutos)) || !(regex.test(segundos))) {
+                        alert('Insert integer numbers please.')
+                        if (!(regex.test(horas))) {
+                            this.horas = 00;
+                        } else if (!(regex.test(minutos))) {
+                            this.minutos = 00;
+                        } else if (!(regex.test(segundos))) {
+                            this.segundos = 00;
+                        }
+
+                        return false;
+                    }
+
+                    // > 60
+                    if (horas > 60) {
+                        this.horas = tempoDefault;
+
+                    } else if (minutos > 60) {
+                        this.minutos = tempoDefault;
+                    } else if (segundos > 60) {
+                        this.segundos = tempoDefault;
+                    }
+
+                    // Null and 0
+                    if ((horas == null || horas == 0) && (minutos == null || minutos == 0) && (segundos == null || segundos == 0)) {
+                        this.horas = tempo.getHours();
+                        this.minutos = tempo.getMinutes();
+                        this.segundos = tempo.getSeconds();
+                    } else if (!(horas == null || horas == 0) && (minutos == null || minutos == 0) && (segundos == null || segundos == 0)) {
+                        this.minutos = tempo.getMinutes();
+                        this.segundos = tempo.getSeconds();
+                    } else if ((horas == null || horas == 0) && !(minutos == null || minutos == 0) && (segundos == null || segundos == 0)) {
+                        this.horas = tempo.getHours();
+                        this.segundos = tempo.getSeconds();
+                    } else if ((horas == null || horas == 0) && (minutos == null || minutos == 0) && !(segundos == null || segundos == 0)) {
+                        this.horas = tempo.getHours();
+                        this.minutos = tempo.getMinutes();
+                    }
+
+                    return true;
+                }
             },
 
             template: '#container',
@@ -237,10 +286,6 @@
 
         let root = new Vue({
             el: "#root",
-
-            data: {
-
-            },
         });
 
     </script>
