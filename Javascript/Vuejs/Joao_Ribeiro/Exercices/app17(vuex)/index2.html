@@ -21,6 +21,49 @@
             margin-bottom: 10px;
         }
 
+        #app main .count.green {
+            color: #41B883;
+            border: 1px solid #41B883;
+        }
+
+        #app main .count.red {
+            color: #D93F3D;
+            border: 1px solid #D93F3D;
+        }
+
+        #app main .count {
+            border: 1px solid #fff;
+            padding: 50px 0px;
+            text-align: center;
+            margin-bottom: 10px;
+            border-radius: 7px;
+            transition: all 650ms ease-in-out;
+        }
+
+        #app main .buttons button {
+            color: white;
+            border: none;
+            padding: 10px 10px;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        #app main .buttons button:nth-child(1) {
+            background: #41B883;
+        }
+
+        #app main .buttons button:nth-child(2) {
+            background: #D93F3D;
+        }
+
+        #app main .buttons button:nth-child(1):hover {
+            background: #105a39;
+        }
+
+        #app main .buttons button:nth-child(2):hover {
+            background: #ac0f0d;
+        }
+
         #app footer a {
             color: var(--cinzento);
             text-decoration: none;
@@ -39,7 +82,7 @@
     <!-- Main -->
     <template id="main">
         <main>
-            <div class="count">
+            <div :class="classe">
                 {{count}}
             </div>
 
@@ -65,6 +108,7 @@
 
     <script>
         //------------- Vuex ------------//
+
         const store = new Vuex.Store({
             state: {
                 count: 0,
@@ -80,6 +124,7 @@
                 }
             }
         });
+
         //------------- Vuex ------------//
 
         //--------- Componentes ---------//
@@ -96,8 +141,21 @@
                 },
             },
 
+            data() {
+                return {
+                    classe: "count",
+                }
+            },
+
             computed: {
-                count: function(){
+                count: function () {
+                    if (store.state.count > 0) {
+                        this.classe = "count green";
+                    } else if (store.state.count < 0) {
+                        this.classe = "count red";
+                    } else {
+                        this.classe = "count";
+                    }
                     return store.state.count;
                 }
             },
