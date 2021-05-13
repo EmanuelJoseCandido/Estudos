@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <script src="../../assets/js/viu_version_dev.js"></script>
+    <script src="../../assets/js/vuex.js"></script>
+    <title>App12 - Vuex(Mutations)</title>
+    <style>
+        :root {
+            --cinzento: #B2B6B9;
+            --roxo: #41B883;
+        }
+
+        #app main {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+
+        #app footer a {
+            color: var(--cinzento);
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <main-component></main-component>
+        <footer-component></footer-component>
+    </div>
+
+    <!------------ Templates ------------>
+
+    <!-- Main -->
+    <template id="main">
+        <main>
+            <div class="count">
+                {{count}}
+            </div>
+
+            <div class="buttons">
+                <button @click="aumentar">Aumentar</button>
+                <button @click="diminuir">Diminuir</button>
+            </div>
+        </main>
+    </template>
+    <!-- Main -->
+
+    <!-- Footer -->
+    <template id="footer">
+        <footer>
+            <a href="https://emanueljosecandido.github.io">
+                Emanuel Cândido &copy; 2020
+            </a>
+        </footer>
+    </template>
+    <!-- Footer -->
+
+    <!------------ Templates ------------>
+
+    <script>
+        //------------- Vuex ------------//
+        const store = new Vuex.Store({
+            state: {
+                count: 0,
+            },
+
+            mutations: {
+                incrementCount: function (state) {
+                    state.count++;
+                },
+
+                decrementCount: function (state) {
+                    state.count--;
+                }
+            }
+        });
+        //------------- Vuex ------------//
+
+        //--------- Componentes ---------//
+
+        var main = Vue.component('main-component', {
+            template: '#main',
+            methods: {
+                aumentar: function () {
+                    store.commit('incrementCount');
+                },
+
+                diminuir: function () {
+                    store.commit('decrementCount');
+                },
+            },
+
+            computed: {
+                count: function(){
+                    return store.state.count;
+                }
+            },
+        });
+
+        var footer = Vue.component('footer-component', {
+            template: '#footer',
+        });
+
+        //--------- Componentes ---------//
+
+        //---------- Instância ---------//
+
+        new Vue({
+            el: '#app',
+            components: {
+                'main-component': main,
+                'footer-component': footer,
+            },
+        });
+
+        //---------- Instância ---------//
+    </script>
+</body>
+
+</html>
