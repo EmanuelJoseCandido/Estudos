@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <script src="../../assets/js/viu_version_dev.js"></script>
+    <script src="../../assets/js/vuex.js"></script>
+    <title>App12 - Vuex(store - test)</title>
+    <style>
+        :root {
+            --cinzento: #B2B6B9;
+            --roxo: #41B883;
+        }
+
+        #app main {
+            margin-bottom: 10px;
+        }
+
+        #app footer a {
+            color: var(--cinzento);
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <main-component v-for="(Component, index) in 5" :key="index"></main-component>
+        <footer-component></footer-component>
+    </div>
+
+    <!------------ Templates ------------>
+
+    <!-- Main -->
+    <template id="main">
+        <main>
+            {{nomeComponent}} {{sobreNomeComponent}}
+        </main>
+    </template>
+    <!-- Main -->
+
+    <!-- Footer -->
+    <template id="footer">
+        <footer>
+            <a href="https://emanueljosecandido.github.io">
+                Emanuel Cândido &copy; 2020
+            </a>
+        </footer>
+    </template>
+    <!-- Footer -->
+
+    <!------------ Templates ------------>
+
+    <script>
+        //------------- Vuex ------------//
+        const store = new Vuex.Store({
+            state: {
+                nome: "Catarina",
+                sobreNome: "Sambuque",
+            },
+        });
+        //------------- Vuex ------------//
+
+        //--------- Componentes ---------//
+
+        var main = Vue.component('main-component', {
+            template: '#main',
+            computed: {
+                nomeComponent: function () {
+                    return store.state.nome;
+                },
+
+                sobreNomeComponent: function () {
+                    return store.state.sobreNome;
+                },
+            },
+        });
+
+        var footer = Vue.component('footer-component', {
+            template: '#footer',
+        });
+
+        //--------- Componentes ---------//
+
+        //---------- Instância ---------//
+
+        new Vue({
+            el: '#app',
+            components: {
+                'main-component': main,
+                'footer-component': footer,
+            },
+        });
+
+        //---------- Instância ---------//
+    </script>
+</body>
+
+</html>
