@@ -17,7 +17,7 @@ Metodos para o aprendizado:
 
 - [VueJS - Curso de Iniciação](https://www.youtube.com/playlist?list=PLXik_5Br-zO_xQHAH9GrNR1gAefYWaKxz)
 
-- [Vuejs do Jeito Ninja](https://www.youtube.com/playlist?list=PLXik_5Br-zO_xQHAH9GrNR1gAefYWaKxz)
+- [Vuejs do Jeito Ninja](https://www.youtube.com/playlist?list=PLcoYAcR89n-qq1vGRbaUiV6Q9puy0qigW)
 
 - [Documentação do VueJs](https://br.vuejs.org/v2/guide/)
 
