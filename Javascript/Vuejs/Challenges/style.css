@@ -34,8 +34,8 @@ header {
 
 
 
-/* Section */
-section {
+/* main */
+main {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -44,11 +44,11 @@ section {
     height: 90%;
 }
 
-section h2{
+main h2{
     margin-bottom: 20px;
 }
 
-section div{
+main div{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -56,11 +56,11 @@ section div{
     flex-wrap: wrap;
 }
 
-section div a{
+main div a{
     color: black;
 }
 
-section div div{
+main div div{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -72,7 +72,7 @@ section div div{
     box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
 }
 
-section div div h3 a:hover{
+main div div h3 a:hover{
     color: #27AE61;
 }
 
@@ -88,11 +88,11 @@ footer a {
 }
 
 @media (max-width: 660px) {
-    section div{
+    main div{
         flex-direction: column;
     }
 
-    section div div{
+    main div div{
         width: 250px;
         height: 150px;
     }
