@@ -12,26 +12,7 @@
 <body>
     <div id="root">
         <header-component></header-component>
-        
-        <section>
-            <h2>Challenges</h2>
-
-            <div>
-                <div>
-                    <h3><a href="01_cash_register/cash_register.html">#01 - Caixa Registradora</a></h3>
-                    <h3><a href="02_numbers/numbers.html">#02 - Números</a></h3>
-                    <h3><a href="03_strings/strings.html">#03 - String</a></h3>
-                    <h3><a href="04_countdown/countdown.html">#04 - Countdown</a></h3>
-                </div>
-
-                <div>
-                    <h3><a href="01_cash_register/cash_register.html">#01 - Caixa Registradora</a></h3>
-                    <h3><a href="02_numbers/numbers.html">#02 - Números</a></h3>
-                    <h3><a href="03_strings/strings.html">#03 - String</a></h3>
-                    <h3><a href="04_countdown/countdown.html">#04 - Countdown</a></h3>
-                </div>
-            </div>
-        </section>
+        <main-component></main-component>
 
         <footer>
             <a href="https://emanueljosecandido.github.io">Emanuel Cândido &copy; {{Year}}</a>
@@ -50,6 +31,30 @@
     </template>
     <!-- Header -->
 
+    <!-- Main -->
+    <template id="main">
+        <main>
+            <h2>Challenges</h2>
+
+            <div>
+                <div>
+                    <h3><a href="01_cash_register/cash_register.html">#01 - Caixa Registradora</a></h3>
+                    <h3><a href="02_numbers/numbers.html">#02 - Números</a></h3>
+                    <h3><a href="03_strings/strings.html">#03 - String</a></h3>
+                    <h3><a href="04_countdown/countdown.html">#04 - Countdown</a></h3>
+                </div>
+
+                <div>
+                    <h3><a href="01_cash_register/cash_register.html">#01 - Caixa Registradora</a></h3>
+                    <h3><a href="02_numbers/numbers.html">#02 - Números</a></h3>
+                    <h3><a href="03_strings/strings.html">#03 - String</a></h3>
+                    <h3><a href="04_countdown/countdown.html">#04 - Countdown</a></h3>
+                </div>
+            </div>
+        </main>
+    </template>
+    <!-- Main -->
+
     <!------------ Templates ------------>
 
 
@@ -60,12 +65,17 @@
             template: '#header'
         })
 
+        var MainComponent = Vue.component('main-component', {
+            template: '#main',
+        })
+
         //--------- Componentes ---------//
         let root = new Vue({
             el: "#root",
-            
+
             component: {
                 'header-component': HeaderComponent,
+                'main-component': MainComponent,
             },
 
             computed: {
