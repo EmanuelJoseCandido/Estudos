@@ -210,7 +210,7 @@
 
                 pauseCountdown: function () {
                     clearInterval(this.temp);
-                    
+
                     var horas = document.getElementsByClassName('hours')[0];
                     var minutos = document.getElementsByClassName('minutes')[0];
                     var segundos = document.getElementsByClassName('seconds')[0];
@@ -273,7 +273,6 @@
 
                 validarTempo: function (horas, minutos, segundos) {
                     let tempo = new Date();
-                    let tempoDefault = 60;
                     let regex = /^\d+$/;
 
                     if (!(regex.test(horas)) || !(regex.test(minutos)) || !(regex.test(segundos))) {
@@ -289,30 +288,28 @@
                         return false;
                     }
 
-                    // > 60
-                    if (horas > 60) {
-                        this.horas = tempoDefault;
-
-                    } else if (minutos > 60) {
-                        this.minutos = tempoDefault;
-                    } else if (segundos > 60) {
-                        this.segundos = tempoDefault;
+                    if (horas == null || horas == 00) {
+                        this.horas = tempo.getHours();
+                    } else if (horas > 60) {
+                        this.horas = 24;
+                    }else{
+                        this.horas = horas;
                     }
 
-                    // Null and 0
-                    if ((horas == null || horas == 0) && (minutos == null || minutos == 0) && (segundos == null || segundos == 0)) {
-                        this.horas = tempo.getHours();
+                    if (minutos == null || minutos == 00) {
                         this.minutos = tempo.getMinutes();
+                    } else if (minutos > 60) {
+                        this.minutos = 60;
+                    }else{
+                        this.minutos = minutos;
+                    }
+
+                    if (segundos == null || segundos == 00) {
                         this.segundos = tempo.getSeconds();
-                    } else if (!(horas == null || horas == 0) && (minutos == null || minutos == 0) && (segundos == null || segundos == 0)) {
-                        this.minutos = tempo.getMinutes();
-                        this.segundos = tempo.getSeconds();
-                    } else if ((horas == null || horas == 0) && !(minutos == null || minutos == 0) && (segundos == null || segundos == 0)) {
-                        this.horas = tempo.getHours();
-                        this.segundos = tempo.getSeconds();
-                    } else if ((horas == null || horas == 0) && (minutos == null || minutos == 0) && !(segundos == null || segundos == 0)) {
-                        this.horas = tempo.getHours();
-                        this.minutos = tempo.getMinutes();
+                    } else if (segundos > 60) {
+                        this.segundos = 60;
+                    }else{
+                        this.segundos = segundos;
                     }
 
                     return true;
