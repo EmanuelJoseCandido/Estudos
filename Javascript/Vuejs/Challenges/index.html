@@ -13,10 +13,7 @@
     <div id="root">
         <header-component></header-component>
         <main-component></main-component>
-
-        <footer>
-            <a href="https://emanueljosecandido.github.io">Emanuel Cândido &copy; {{Year}}</a>
-        </footer>
+        <footer-component></footer-component>
     </div>
 
     <!------------ Templates ------------>
@@ -55,6 +52,14 @@
     </template>
     <!-- Main -->
 
+    <!-- Footer -->
+    <template id="footer">
+        <footer>
+            <a href="https://emanueljosecandido.github.io">Emanuel Cândido &copy; {{Year}}</a>
+        </footer>
+    </template>
+    <!-- Footer -->
+
     <!------------ Templates ------------>
 
 
@@ -66,7 +71,17 @@
         })
 
         var MainComponent = Vue.component('main-component', {
-            template: '#main',
+            template: '#main'
+        })
+
+        var FooterComponent = Vue.component('footer-component', {
+            template: '#footer',
+            
+            computed: {
+                Year: function () {
+                    return new Date().getFullYear();
+                }
+            }
         })
 
         //--------- Componentes ---------//
@@ -76,13 +91,8 @@
             component: {
                 'header-component': HeaderComponent,
                 'main-component': MainComponent,
+                'footer-component': FooterComponent
             },
-
-            computed: {
-                Year: function () {
-                    return new Date().getFullYear();
-                }
-            }
         });
     </script>
 </body>
