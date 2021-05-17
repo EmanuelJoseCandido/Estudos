@@ -37,6 +37,10 @@
             box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .3), 0 1px 3px 1px rgba(60, 64, 67, .15);
         }
 
+        .container h1 {
+            color: rgba(255, 255, 255, .4);
+        }
+
         .countdown {
             margin-bottom: 20px;
             display: flex;
@@ -129,12 +133,16 @@
 
     <script>
         //-------Components-------
-        Vue.component('container', {
+        var ContainerComponent = Vue.component('container', {
             data() {
                 return {
+                    temp: 0,
                     horas: 0,
                     minutos: 0,
                     segundos: 0,
+                    auxHoras: 0,
+                    auxMinutos: 0,
+                    auxSegundos: 0,
                     textoHoras: '',
                     textoMinutos: '',
                     textoSegundos: '',
@@ -161,22 +169,22 @@
                         buttonReset.removeAttribute('disabled');
                         buttonReset.setAttribute('class', 'btn');
 
-                        let auxHoras = this.horas;
-                        let auxMinutos = this.minutos;
-                        let auxSegundos = this.segundos;
+                        this.auxHoras = this.horas
+                        this.auxMinutos = this.minutos;
+                        this.auxSegundos = this.segundos;
 
-                        auxSegundos++;
-                        let temp = setInterval(() => {
+                        this.auxSegundos++;
+                        this.temp = setInterval(() => {
                             this.AjustsText();
 
                             /* Countdown */
                             if (this.segundos == 0) {
-                                this.segundos = auxSegundos;
+                                this.segundos = this.auxSegundos;
 
                                 if (this.minutos != 0) {
                                     this.minutos--;
                                 } else {
-                                    this.minutos = auxMinutos;
+                                    this.minutos = this.auxMinutos;
 
                                     if (this.horas != 0) {
                                         this.horas--;
@@ -199,14 +207,49 @@
                 },
 
                 pauseCountdown: function () {
-                    console.log(`${this.textoHoras}: ${this.textoMinutos}: ${this.textoSegundos}`);
+                    clearInterval(this.temp);
+                    
+                    var horas = document.getElementsByClassName('hours')[0];
+                    var minutos = document.getElementsByClassName('minutes')[0];
+                    var segundos = document.getElementsByClassName('seconds')[0];
+
+                    this.textoHoras = this.horas = horas.value;
+                    this.textoMinutos = this.minutos = minutos.value;
+                    this.textoSegundos = this.segundos = segundos.value;
+
+                    let buttonPlay = document.getElementsByTagName('button')[0];
+                    let buttonPause = document.getElementsByTagName('button')[1];
+                    let buttonReset = document.getElementsByTagName('button')[2];
+
+                    buttonPlay.removeAttribute('disabled')
+                    buttonPlay.setAttribute('class', 'btn');
+
+                    buttonPause.setAttribute('disabled', 'disabled');
+                    buttonPause.removeAttribute('class');
                 },
 
                 resetCountdown: function () {
-                    let tempo = document.getElementsByClassName('fullTime')[0]
-                    tempo.innerHTML = '00:00:00';
-                    root.playCountdown();
+                    //Ajusts in reset.
+                    clearInterval(this.temp);
+                    this.textoHoras = this.horas = this.auxHoras;
+                    this.textoMinutos = this.minutos = this.auxMinutos;
+                    this.textoSegundos = this.segundos = this.auxSegundos;
+
+                    let buttonPlay = document.getElementsByTagName('button')[0];
+                    let buttonPause = document.getElementsByTagName('button')[1];
+                    let buttonReset = document.getElementsByTagName('button')[2];
+
+                    buttonPlay.removeAttribute('disabled')
+                    buttonPlay.setAttribute('class', 'btn');
+
+                    buttonPause.setAttribute('disabled', 'disabled');
+                    buttonPause.removeAttribute('class');
+
+                    buttonReset.setAttribute('disabled', 'disabled');
+                    buttonReset.removeAttribute('class');
+
                 },
+
 
                 AjustsText: function () {
                     if ((this.segundos + '').length > 1) {
@@ -279,13 +322,17 @@
             template: '#container',
         });
 
-        Vue.component('rodape', {
+        var RodapeComponent = Vue.component('rodape', {
             template: '#footer',
         });
         //-------Components-------
 
         let root = new Vue({
             el: "#root",
+            components: {
+                'container': ContainerComponent,
+                'rodape': RodapeComponent,
+            }
         });
 
     </script>
