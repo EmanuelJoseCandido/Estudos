@@ -11,12 +11,8 @@
 
 <body>
     <div id="root">
-        <header>
-            <h1>Vuejs</h1>
-            <p>#VidasNegrasImportam</p>
-            <p>#EstaNaoEhAngolaQueEuSonhei</p>
-        </header>
-
+        <header-component></header-component>
+        
         <section>
             <h2>Challenges</h2>
 
@@ -38,15 +34,42 @@
         </section>
 
         <footer>
-            <a href="https://emanueljosecandido.github.io">Emanuel Cândido &copy; {{dateNow}}</a>
+            <a href="https://emanueljosecandido.github.io">Emanuel Cândido &copy; {{Year}}</a>
         </footer>
     </div>
 
+    <!------------ Templates ------------>
+
+    <!-- Header -->
+    <template id="header">
+        <header>
+            <h1>Vuejs</h1>
+            <p>#VidasNegrasImportam</p>
+            <p>#EstaNaoEhAngolaQueEuSonhei</p>
+        </header>
+    </template>
+    <!-- Header -->
+
+    <!------------ Templates ------------>
+
+
     <script>
+        //--------- Componentes ---------//
+
+        var HeaderComponent = Vue.component('header-component', {
+            template: '#header'
+        })
+
+        //--------- Componentes ---------//
         let root = new Vue({
             el: "#root",
+            
+            component: {
+                'header-component': HeaderComponent,
+            },
+
             computed: {
-                dateNow: function () {
+                Year: function () {
                     return new Date().getFullYear();
                 }
             }
