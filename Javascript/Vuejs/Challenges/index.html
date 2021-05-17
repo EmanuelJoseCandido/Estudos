@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
     <script src="00_assets/viu_version_dev.js"></script>
     <title>Vuejs - Challenges</title>
 </head>
@@ -35,6 +36,9 @@
 
             <div>
                 <div>
+                    <span class="iconify" data-icon="simple-icons:vue-dot-js" data-inline="false"
+                        style="color: #27AE61;">
+                    </span>
                     <h3><a href="01_cash_register/cash_register.html">#01 - Caixa Registradora</a></h3>
                     <h3><a href="02_numbers/numbers.html">#02 - Números</a></h3>
                     <h3><a href="03_strings/strings.html">#03 - String</a></h3>
@@ -42,6 +46,9 @@
                 </div>
 
                 <div>
+                    <span class="iconify" data-icon="simple-icons:vue-dot-js" data-inline="false"
+                        style="color: #27AE61;">
+                    </span>
                     <h3><a href="01_cash_register/cash_register.html">#01 - Caixa Registradora</a></h3>
                     <h3><a href="02_numbers/numbers.html">#02 - Números</a></h3>
                     <h3><a href="03_strings/strings.html">#03 - String</a></h3>
@@ -76,7 +83,7 @@
 
         var FooterComponent = Vue.component('footer-component', {
             template: '#footer',
-            
+
             computed: {
                 Year: function () {
                     return new Date().getFullYear();
