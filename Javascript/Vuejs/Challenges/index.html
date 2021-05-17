@@ -38,20 +38,17 @@
         </section>
 
         <footer>
-            <a href="https://emanueljosecandido.github.io">Emanuel Cândido &copy; 2020</a>
+            <a href="https://emanueljosecandido.github.io">Emanuel Cândido &copy; {{dateNow}}</a>
         </footer>
     </div>
 
     <script>
         let root = new Vue({
             el: "#root",
-
-            data: {
-
-            },
-
-            methods: {
-
+            computed: {
+                dateNow: function () {
+                    return new Date().getFullYear();
+                }
             }
         });
     </script>
