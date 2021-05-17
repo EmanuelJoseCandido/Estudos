@@ -161,7 +161,7 @@
                     var minutos = document.getElementsByClassName('minutes')[0];
                     var segundos = document.getElementsByClassName('seconds')[0];
 
-                    if (this.validarTempo(horas.value, minutos.value, segundos.value)) {
+                    if (this.validationTime(horas.value, minutos.value, segundos.value)) {
                         buttonPlay.setAttribute('disabled', 'disabled');
                         buttonPlay.removeAttribute('class');
 
@@ -271,7 +271,7 @@
                     }
                 },
 
-                validarTempo: function (horas, minutos, segundos) {
+                validationTime: function (horas, minutos, segundos) {
                     let tempo = new Date();
                     let regex = /^\d+$/;
 
