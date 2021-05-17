@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/main.css">
+    <script src="../assets/viu_version_dev.js"></script>
+    <script src="../assets/vuex.js"></script>
+    <title>App17 - Vuex(Actions - teste 2)</title>
+    <style>
+        :root {
+            --cinzento: #B2B6B9;
+            --roxo: #41B883;
+        }
+
+        #app main {
+            margin-bottom: 10px;
+        }
+
+        #app main span{
+            cursor: pointer;
+        }
+
+        #app footer a {
+            color: var(--cinzento);
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <main-component></main-component>
+        <footer-component></footer-component>
+    </div>
+
+    <!------------ Templates ------------>
+
+    <!-- Main -->
+    <template id="main">
+        <main>
+            <span @mouseover="alterarUniversidade('ISIA')" @mouseout="alterar">{{universidade}}</span>
+
+        </main>
+    </template>
+    <!-- Main -->
+
+    <!-- Footer -->
+    <template id="footer">
+        <footer>
+            <a href="https://emanueljosecandido.github.io">
+                Emanuel Cândido &copy; 2020
+            </a>
+        </footer>
+    </template>
+    <!-- Footer -->
+
+    <!------------ Templates ------------>
+
+    <script>
+        //------------- Vuex ------------//
+
+        const store = new Vuex.Store({
+            state:{
+                nomeUniversidade: "UNIBELAS",
+            },
+
+            mutations:{
+                alterarNome: function(state, novoNomeUniverdade){
+                    state.nomeUniversidade = novoNomeUniverdade;
+                }
+            },
+
+            actions:{
+                alterarNome: function(state, novoNomeUniverdade){
+                    state.commit('alterarNome', novoNomeUniverdade);
+                }
+            },
+
+            getters:{
+                nomeDaUniveridade: function(state){
+                    return "Universidade " +  state.nomeUniversidade;
+                }
+            }
+        });
+
+        //------------- Vuex ------------//
+
+        //--------- Componentes ---------//
+
+        var main = Vue.component('main-component', {
+            template: '#main',
+
+            computed:{
+                universidade: function(){
+                    return store.getters.nomeDaUniveridade;
+                }
+            },
+
+            methods:{
+                alterarUniversidade: function(nome){
+                    store.dispatch('alterarNome', nome);
+                },
+
+                alterar: function(){
+                    store.dispatch('alterarNome', 'UNIBELAS');
+                }
+            }
+        });
+
+        var footer = Vue.component('footer-component', {
+            template: '#footer',
+        });
+
+        //--------- Componentes ---------//
+
+        //---------- Instância ---------//
+
+        new Vue({
+            el: '#app',
+            components: {
+                'main-component': main,
+                'footer-component': footer,
+            },
+        });
+
+        //---------- Instância ---------//
+    </script>
+</body>
+
+</html>
