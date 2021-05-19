@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../assets/viu_version_dev.js"></script>
+    <script src="../../assets/vue-router.js"></script>
+    <link rel="stylesheet" href="../../../Joao_Ribeiro/Exercices/assets/main.css">
+    <style>
+        #app {
+            flex-direction: row;
+        }
+
+        #team {
+            padding: 50px;
+            margin: 50px;
+            border-radius: 7px;
+            border: 1px solid #5773FF;
+            transition: all 650ms ease-in-out;
+        }
+
+        #team h3 {
+            margin-bottom: 20px;
+        }
+    </style>
+    <title>App014 - Vue(router#1)</title>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li>
+                <router-link :to="{name: 'real'}">Real Madrid</router-link>
+            </li>
+            <li>
+                <router-link :to="{name: 'barca'}">Barcelona</router-link>
+            </li>
+        </ul>
+
+        <router-view></router-view>
+    </div>
+
+    <!-------------Template ------------->
+
+    <!-- Real Madrid -->
+    <template id="real-madrid">
+        <div id="team" ref="team" @mouseover="hover" @mouseout="out">
+            <h3>Real Madrid</h3>
+            <ul>
+                <li v-for="(player, index) in real_madrid" :key="index">{{player.nome}} ({{player.numero}})</li>
+            </ul>
+        </div>
+    </template>
+    <!-- Real Madrid -->
+
+    <!--  Barcelona  -->
+    <template id="barcelona">
+        <div id="team" ref="team" @mouseover="hover" @mouseout="out">
+            <h3>Barcelona</h3>
+            <ul>
+                <li v-for="(player, index) in barca" :key="index">{{player.nome}} ({{player.numero}})</li>
+            </ul>
+        </div>
+    </template>
+    <!--  Barcelona  -->
+
+    <!-------------Template ------------->
+
+    <script>
+        //-------- Mixin --------//
+
+        var mixin = {
+            methods: {
+                hover: function () {
+                    this.$refs.team.style.border = '1px solid chocolate';
+                },
+
+                out: function () {
+                    this.$refs.team.style.border = '1px solid #5773FF';
+                }
+            },
+        }
+
+        //-------- Mixin --------//
+
+        //-------- Component --------//
+
+        /* Real Madrid */
+        var RealMadrid = Vue.component('real-madrid', {
+            template: '#real-madrid',
+
+            mixins: [mixin],
+
+            data: function () {
+                return {
+                    real_madrid: [
+                        { nome: "Marcelo", numero: 2 },
+                        { nome: "Toni Kroos", numero: 8 },
+                        { nome: "Eden Hazard", numero: 7 },
+                    ],
+                };
+            },
+        });
+        /* Real Madrid */
+
+        /* Barcelona */
+        var Barcelona = Vue.component('barcelona', {
+            props: {
+                barca: {
+                    default:  [
+                        { nome: "Leonel Messi", numero: 10 },
+                        { nome: "Gerard Pique", numero: 3 },
+                        { nome: "Jordi Alba", numero: 2 },
+                    ],
+                }
+            },
+
+            mixins: [mixin],
+
+            template: '#barcelona',
+        });
+        /* Barcelona */
+
+        //-------- Component --------//
+
+        //-------- Router --------//
+
+        var router = new VueRouter({
+            mode: 'history',
+            routes: [
+                { path: 'real-madrid', name: 'real',  component: RealMadrid },
+                { path: 'barcelona',   name: 'barca', component: Barcelona },
+            ]
+        });
+
+        //-------- Router --------//
+
+        //-------- Instância --------//
+
+        new Vue({
+            el: '#app',
+
+            router,
+
+            data: {
+                barcelona: [
+                    { nome: "Leonel Messi", numero: 10 },
+                    { nome: "Gerard Pique", numero: 3 },
+                    { nome: "Jordi Alba", numero: 2 },
+                ],
+
+                team: 'real-madrid'
+            },
+
+            components: {
+                'real-madrid': RealMadrid,
+                'barcelona': Barcelona,
+            },
+
+        });
+
+        //-------- Instância --------//
+    </script>
+</body>
+
+</html>
