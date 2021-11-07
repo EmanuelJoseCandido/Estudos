@@ -40,13 +40,15 @@
                             <th>{{labelPrice}}</th>
                             <th>{{labelQtd}}</th>
                         </thead>
-                        <tbody v-for="(name, co) in produts" :key="co" v-show="produts[co] != ''">
-                            <td>{{namesCar[co]}}</td>
-                            <td><span>{{pricesCar[co]}}</span></td>
-                            <td><span class="qtd">{{qtd[co]}}</span></td>
-                            <td><span class="times"
-                                    @click="removeProductFromCart(namesCar[co], pricesCar[co], qtd[co], co)">&times;</span>
-                            </td>
+                        <tbody>
+                            <tr v-for="(name, co) in produts" :key="co" v-show="produts[co] != ''">
+                                <td>{{namesCar[co]}}</td>
+                                <td><span>{{pricesCar[co]}}</span></td>
+                                <td><span class="qtd">{{qtd[co]}}</span></td>
+                                <td><span class="times"
+                                        @click="removeProductFromCart(namesCar[co], pricesCar[co], qtd[co], co)">&times;</span>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -108,15 +110,17 @@
                                 <th>{{labelPrice}}</th>
                                 <th>{{labelQtd}}</th>
                             </thead>
-                            <tbody v-for="(name, co) in things" :key="co">
-                                <td>{{names[co]}}</td>
-                                <td><span>{{prices[co]}}</span></td>
-                                <td><span>{{qtdThings[co]}}</span></td>
-                                <td><span class="ctdot"
-                                        @click="editProduct(names[co], prices[co], qtdThings[co], co)"><i
-                                            class="fa fa-edit"></i></span>
-                                </td>
-                                <td><span class="times" @click="removeProduct(co)">&times;</span></td>
+                            <tbody>
+                                <tr v-for="(name, co) in things" :key="co">
+                                    <td>{{names[co]}}</td>
+                                    <td><span>{{prices[co]}}</span></td>
+                                    <td><span>{{qtdThings[co]}}</span></td>
+                                    <td><span class="ctdot"
+                                            @click="editProduct(names[co], prices[co], qtdThings[co], co)"><i
+                                                class="fa fa-edit"></i></span>
+                                    </td>
+                                    <td><span class="times" @click="removeProduct(co)">&times;</span></td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
