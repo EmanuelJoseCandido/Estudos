@@ -42,9 +42,9 @@
                         </thead>
                         <tbody>
                             <tr v-for="(name, co) in produts" :key="co" v-show="produts[co] != ''">
-                                <td>{{namesCar[co] | showProduts('name')}}</td>
-                                <td><span>{{pricesCar[co] | showProduts('price')}}</span></td>
-                                <td><span class="qtd">{{qtd[co] | showProduts('qtd')}}</span></td>
+                                <td :title="namesCar[co]">{{namesCar[co] | showProduts('name')}}</td>
+                                <td :title="pricesCar[co]"><span>{{pricesCar[co] | showProduts('price')}}</span></td>
+                                <td :title="qtd[co]"><span class="qtd">{{qtd[co] | showProduts('qtd')}}</span></td>
                                 <td><span class="times"
                                         @click="removeProductFromCart(namesCar[co], pricesCar[co], qtd[co], co)">&times;</span>
                                 </td>
