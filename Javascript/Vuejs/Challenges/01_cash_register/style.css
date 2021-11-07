@@ -106,7 +106,7 @@ input {
 }
 
 
-.inputs.second .buttons{
+.inputs.second .buttons {
     display: flex;
 }
 
@@ -120,7 +120,8 @@ input {
     margin-right: 0px;
 }
 
-#btn_edit, #btn_cancel{
+#btn_edit,
+#btn_cancel {
     display: none;
 }
 
@@ -132,6 +133,7 @@ select {
 .things {
     display: flex;
     justify-content: center;
+    align-items: flex-start;
     overflow-y: scroll;
     border-radius: 7px;
     background: var(--color-1);
@@ -177,7 +179,6 @@ button:hover {
     width: 100%;
 }
 
-
 .footer-cliente .down {
     margin-top: 10px;
 }
@@ -198,13 +199,14 @@ span.ctdot {
     transition: all 650ms ease-in-out;
 }
 
-span.ctdot{
+span.ctdot {
     padding: 4px 4px;
     border-radius: 50%;
     font-size: 8pt;
 }
 
-span.times:hover, span.ctdot:hover{
+span.times:hover,
+span.ctdot:hover {
     border: 1px solid var(--color-2);
     color: var(--color-2);
     background: var(--color-1);
@@ -236,12 +238,10 @@ table {
     font-size: 9pt;
 }
 
-
-
-tr{
-    border: 1px solid #080807;
+td,
+th {
+    padding: 2px 4px;
 }
-
 
 @media (min-width: 390px) {
 
