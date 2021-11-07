@@ -113,8 +113,8 @@
                             <tbody>
                                 <tr v-for="(name, co) in things" :key="co">
                                     <td :title="names[co]">{{names[co] | showProduts('name')}}</td>
-                                    <td><span :title="prices[co]">{{prices[co] | showProduts('price')}}</span></td>
-                                    <td><span :title="qtdThings[co]">{{qtdThings[co] | showProduts('qtd')}}</span></td>
+                                    <td :title="prices[co]"><span>{{prices[co] | showProduts('price')}}</span></td>
+                                    <td :title="qtdThings[co]"><span>{{qtdThings[co] | showProduts('qtd')}}</span></td>
                                     <td><span class="ctdot"
                                             @click="editProduct(names[co], prices[co], qtdThings[co], co)"><i
                                                 class="fa fa-edit"></i></span>
