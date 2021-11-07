@@ -112,9 +112,9 @@
                             </thead>
                             <tbody>
                                 <tr v-for="(name, co) in things" :key="co">
-                                    <td :title="names[co]">{{names[co]}}</td>
-                                    <td><span :title="prices[co]">{{prices[co]}}</span></td>
-                                    <td><span :title="qtdThings[co]">{{qtdThings[co]}}</span></td>
+                                    <td :title="names[co]">{{names[co] | showProduts('name')}}</td>
+                                    <td><span :title="prices[co]">{{prices[co] | showProduts('price')}}</span></td>
+                                    <td><span :title="qtdThings[co]">{{qtdThings[co] | showProduts('qtd')}}</span></td>
                                     <td><span class="ctdot"
                                             @click="editProduct(names[co], prices[co], qtdThings[co], co)"><i
                                                 class="fa fa-edit"></i></span>
@@ -190,6 +190,31 @@
                 alertTextPriceQty: '',
                 alertTextNamePriceQty: '',
                 labelAux: '',
+            },
+
+            filters: {
+                showProduts: function (content, types) {
+                    var type = typeof content;
+
+                    if (type == "number") {
+                        let length = content.toString().length;
+
+                        if (types == "price" && length > 5) {
+                            return content.toString().substr(0, 3) + "..";
+                        } else if (types == "qtd" && length > 2) {
+                            return content.toString().substr(0, 2) + "..";
+                        } else {
+                            return content;
+                        }
+
+                    }
+
+                    if (type == "string" && types == "name" && content.length > 10) {
+                        return content.substr(0, 6) + "..";
+                    } else {
+                        return content;
+                    }
+                },
             },
 
             methods: {
