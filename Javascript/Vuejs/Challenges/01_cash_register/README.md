@@ -119,6 +119,7 @@ Ao desenvolver a `Caixa Registradora` aprendi e consolidei os seguintes conceito
     //
 
     languagePortuguese: function () {
+        this.languageCodes = 'pt';
         this.labelLanguage = 'Linguagem';
         this.labelTitle = 'Caixa Registradora';
         this.labelClient = 'Cliente';
@@ -164,6 +165,7 @@ Ao desenvolver a `Caixa Registradora` aprendi e consolidei os seguintes conceito
     // um novo idioma:
 
     newlanguage(): function () {
+        this.languageCodes = 'pt';
         this.labelLanguage = '';
         this.labelTitle = '';
         this.labelClient = '';
@@ -219,8 +221,4 @@ Metodos para o aprendizado:
 
 ---
 
-<center>
-
 Feito com 🖤💛❤ por [Emanuel Cândido](https://emanueljosecandido.github.io/)
-
-</center>
