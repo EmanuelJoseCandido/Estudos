@@ -95,7 +95,7 @@
                         <div class="buttons">
                             <button @click="saveEditedProduct" id="btn_edit" :aria-label="labelSave"><i class="fa fa-save"></i></button>
                             <button @click="addProduct" id="btn_add" :aria-label="labelAdd"><i class="fa fa-save"></i></button>
-                            <button @click="clearAllAdministrativeAreaInputs" :aria-label="labelCancel"><i class="fa fa-trash"></i></button>
+                            <button @click="clearAllAdministrativeAreaInputs" :aria-label="labelClean"><i class="fa fa-trash"></i></button>
                             <button @click="cancelEditing" id="btn_cancel" :aria-label="labelCancel"><i class="fa fa-ban"></i></button>
                         </div>
                     </div>
@@ -185,6 +185,7 @@
                 labelCancel: '',
                 labelSave: '',
                 labelDrop: '',
+                labelClean: '',
                 labelAddToCart: '',
                 alertTextName: '',
                 alertTextPrice: '',
@@ -530,6 +531,7 @@
                     this.labelCancel = 'إجهاض';
                     this.labelSave = 'للحفظ،';
                     this.labelDrop = 'للقضاء،';
+                    this.labelClean = 'لينظف';
                     this.labelAddToCart = 'أضف إلى السلة';
                     this.alertTextName = 'الرجاء إدخال الاسم';
                     this.alertTextPrice = 'الرجاء إدخال السعر';
@@ -563,6 +565,7 @@
                     this.labelCancel = 'Avorter';
                     this.labelSave = 'Sauver';
                     this.labelDrop = 'Éliminer';
+                    this.labelClean = 'Nettoyer';
                     this.labelAddToCart = 'Ajouter au panier';
                     this.alertTextName = 'Veuillez saisir un nom';
                     this.alertTextPrice = 'Veuillez insérer un prix';
@@ -596,6 +599,7 @@
                     this.labelCancel = 'Прервать';
                     this.labelSave = 'Сохранить';
                     this.labelDrop = 'Устранить';
+                    this.labelClean = 'Чистить';
                     this.labelAddToCart = 'добавить в корзину';
                     this.alertTextName = 'Пожалуйста, введите имя';
                     this.alertTextPrice = 'Пожалуйста, введите цену';
@@ -629,6 +633,7 @@
                     this.labelCancel = 'Zhōngzhǐ';
                     this.labelSave = 'wèile jiéshěng';
                     this.labelDrop = 'wèile xiāochú';
+                    this.labelClean = 'Qīngjié';
                     this.labelAddToCart = 'tiānjiā dào gòuwù chē';
                     this.alertTextName = 'Qǐng shūrù míngchēng';
                     this.alertTextPrice = 'qǐng shūrù jiàgé';
@@ -662,6 +667,7 @@
                     this.labelCancel = 'Abort';
                     this.labelSave = 'Save';
                     this.labelDrop = 'Drop';
+                    this.labelClean = 'Clean';
                     this.labelAddToCart = 'Add to car';
                     this.alertTextName = 'Please enter a name';
                     this.alertTextPrice = 'Please insert a price';
@@ -694,6 +700,7 @@
                     this.labelCancel = 'Cancelar';
                     this.labelSave = 'Salvar';
                     this.labelDrop = 'Eliminar';
+                    this.labelClean = 'Limpar';
                     this.labelAddToCart = 'Adicionar no carrinho';
                     this.alertTextName = 'Insira um nome porfavor';
                     this.alertTextPrice = 'Insira um preço porfavor';
