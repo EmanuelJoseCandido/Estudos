@@ -241,11 +241,11 @@
                 render: function () {
                     root.renderLanguage();
                     root.languageEnglish();
-                    root.AddMetaNames();
+                    root.addMetaNames();
                     this.copyQtdThings = [...this.qtdThings];
                 },
 
-                AddMetaNames() {
+                addMetaNames() {
                     const description = document.querySelector('meta[name="description"]');
                     const keywords = document.querySelector('meta[name="keywords"]');
 
@@ -534,7 +534,7 @@
                         default: break;
                     }
 
-                    root.AddMetaNames();
+                    root.addMetaNames();
                     document.documentElement.setAttribute('lang', this.languageCodes); 
                 },
 
