@@ -31,7 +31,7 @@
                     <option v-for="(name, co) in things" :key="co" v-show="qtdThings[co] != 0">{{name}}</option>
                 </select>
 
-                <button @click="addProductToCart" v><i class="fa fa-cart-plus"></i></button>
+                <button @click="addProductToCart" :aria-label="labelAddToCart"><i class="fa fa-cart-plus"></i></button>
 
                 <div class="things">
                     <table>
@@ -63,8 +63,8 @@
                     <div class="down">
                         <span class="total"> {{labelTotal}} <b>{{total}}</b> &dollar;</span>
                         <div class="buttons">
-                            <button @click="buyProducts"><i class="fa fa-coins"></i></button>
-                            <button @click="cancelPurchase"><i class="fa fa-ban"></i></button>
+                            <button @click="buyProducts" :aria-label="labelFinish"><i class="fa fa-coins"></i></button>
+                            <button @click="cancelPurchase" :aria-label="labelCancel"><i class="fa fa-ban"></i></button>
                         </div>
                     </div>
                 </div>
@@ -93,10 +93,10 @@
                         </div>
 
                         <div class="buttons">
-                            <button @click="saveEditedProduct" id="btn_edit"><i class="fa fa-save"></i></button>
-                            <button @click="addProduct" id="btn_add"><i class="fa fa-save"></i></button>
-                            <button @click="clearAllAdministrativeAreaInputs"><i class="fa fa-trash"></i></button>
-                            <button @click="cancelEditing" id="btn_cancel"><i class="fa fa-ban"></i></button>
+                            <button @click="saveEditedProduct" id="btn_edit" :aria-label="labelSave"><i class="fa fa-save"></i></button>
+                            <button @click="addProduct" id="btn_add" :aria-label="labelAdd"><i class="fa fa-save"></i></button>
+                            <button @click="clearAllAdministrativeAreaInputs" :aria-label="labelCancel"><i class="fa fa-trash"></i></button>
+                            <button @click="cancelEditing" id="btn_cancel" :aria-label="labelCancel"><i class="fa fa-ban"></i></button>
                         </div>
                     </div>
 
