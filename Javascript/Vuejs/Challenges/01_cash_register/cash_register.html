@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="languageCodes">
 
 <head>
     <meta charset="UTF-8">
@@ -169,6 +169,7 @@
                 qtd: [],
                 qtdThings: JSON.parse(localStorage.getItem('qtdThingsList')) || [],
                 selectLanguage: 'EN',
+                languageCodes: 'en',
                 languages: [],
                 copyQtdThings: [],
                 copyQtdThings2: [],
@@ -248,6 +249,7 @@
                     const description = document.querySelector('meta[name="description"]');
                     const keywords = document.querySelector('meta[name="keywords"]');
 
+                    document.documentElement.setAttribute('lang', this.languageCodes); 
                     description.setAttribute('content', this.metaDescription);
                     keywords.setAttribute('content', this.metaKeywords);
                 },
@@ -533,9 +535,11 @@
                     }
 
                     root.AddMetaNames();
+                    document.documentElement.setAttribute('lang', this.languageCodes); 
                 },
 
                 languageArabic: function () {
+                    this.languageCodes = 'ar';
                     this.labelLanguage = 'لغة';
                     this.labelTitle = 'تسجيل النقدية';
                     this.labelClient = 'العميل';
@@ -572,6 +576,7 @@
                 },
 
                 languageFrench: function () {
+                    this.languageCodes = 'fr'
                     this.labelLanguage = 'Langue';
                     this.labelTitle = 'Caisse Enregisreuse';
                     this.labelClient = 'Client';
@@ -608,6 +613,7 @@
                 },
 
                 languageRussia: function () {
+                    this.languageCodes = 'ru';
                     this.labelLanguage = 'Язык';
                     this.labelTitle = 'кассовый аппарат';
                     this.labelClient = 'Клиент';
@@ -644,6 +650,7 @@
                 },
 
                 languageChinese: function () {
+                    this.languageCodes = 'zh-Hant';
                     this.labelLanguage = 'Yǔyán';
                     this.labelTitle = 'shōuyín jī';
                     this.labelClient = 'kèhù';
@@ -680,6 +687,7 @@
                 },
 
                 languageEnglish: function () {
+                    this.languageCodes = 'en';
                     this.labelLanguage = 'Language';
                     this.labelTitle = 'Cash register';
                     this.labelClient = 'Client';
@@ -715,6 +723,7 @@
                 },
 
                 languagePortuguese: function () {
+                    this.languageCodes = 'pt';
                     this.labelLanguage = 'Linguagem';
                     this.labelTitle = 'Caixa Registradora';
                     this.labelClient = 'Cliente';
