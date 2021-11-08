@@ -76,27 +76,33 @@
                     <h3>{{labelAdd}}</h3>
                     <div class="inputs first">
                         <div>
-                            <label for="">{{labelName}}:</label><br>
-                            <input v-model="name" maxlength="10"><br>
+                            <label for="name">{{labelName}}:</label><br>
+                            <input id="name" v-model="name" maxlength="10"><br>
                         </div>
 
                         <div>
-                            <label for="">{{labelPrice}}:</label><br>
-                            <input v-model="price" maxlength="5" pattern="[0-9]+$" @input="validatePrice($event)"><br>
+                            <label for="price">{{labelPrice}}:</label><br>
+                            <input id="price" v-model="price" maxlength="5" pattern="[0-9]+$"
+                                @input="validatePrice($event)"><br>
                         </div>
                     </div>
 
                     <div class="inputs second">
                         <div>
-                            <label for="">{{labelQtd}}:</label><br>
-                            <input v-model="qtdThing" maxlength="2" pattern="[0-9]+$" @input="validateQty($event)"><br>
+                            <label for="qtdThing">{{labelQtd}}:</label><br>
+                            <input id="qtdThing" v-model="qtdThing" maxlength="2" pattern="[0-9]+$"
+                                @input="validateQty($event)"><br>
                         </div>
 
                         <div class="buttons">
-                            <button @click="saveEditedProduct" id="btn_edit" :aria-label="labelSave"><i class="fa fa-save"></i></button>
-                            <button @click="addProduct" id="btn_add" :aria-label="labelAdd"><i class="fa fa-save"></i></button>
-                            <button @click="clearAllAdministrativeAreaInputs" :aria-label="labelClean"><i class="fa fa-trash"></i></button>
-                            <button @click="cancelEditing" id="btn_cancel" :aria-label="labelCancel"><i class="fa fa-ban"></i></button>
+                            <button @click="saveEditedProduct" id="btn_edit" :aria-label="labelSave"><i
+                                    class="fa fa-save"></i></button>
+                            <button @click="addProduct" id="btn_add" :aria-label="labelAdd"><i
+                                    class="fa fa-save"></i></button>
+                            <button @click="clearAllAdministrativeAreaInputs" :aria-label="labelClean"><i
+                                    class="fa fa-trash"></i></button>
+                            <button @click="cancelEditing" id="btn_cancel" :aria-label="labelCancel"><i
+                                    class="fa fa-ban"></i></button>
                         </div>
                     </div>
 
@@ -196,7 +202,7 @@
                 alertTextPriceQty: '',
                 alertTextNamePriceQty: '',
                 labelAux: '',
-                
+
             },
 
             filters: {
