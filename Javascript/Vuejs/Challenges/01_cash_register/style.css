@@ -192,6 +192,7 @@ span.qtd,
 span.ctdot {
     background: var(--color-2);
     color: var(--color-1);
+    border: 1px solid var(--color-2);
     border-radius: 50%;
     padding: 2px 6px;
     font-weight: bolder;
@@ -240,7 +241,7 @@ table {
 
 td,
 th {
-    padding: 2px 4px;
+    padding: 4px 6px;
 }
 
 @media (min-width: 390px) {
