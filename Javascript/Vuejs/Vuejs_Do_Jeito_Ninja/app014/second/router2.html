@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../assets/viu_version_dev.js"></script>
+    <script src="../../assets/vue-router.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        body {
+            background: #06396D;
+            color: #FFFFFF;
+        }
+
+        #app {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #app header {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background: #06325e;
+            height: 3.5rem;
+        }
+
+        #app header nav ul {
+            display: flex;
+        }
+
+        #app header nav ul li {
+            list-style: none;
+            margin: 0px 5px;
+        }
+
+        #app header nav ul li a {
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+
+        #team {
+            padding: 50px;
+            margin: 50px;
+            border-radius: 7px;
+            border: 1px solid #5773FF;
+            transition: all 650ms ease-in-out;
+        }
+
+        #team h3 {
+            margin-bottom: 20px;
+        }
+    </style>
+    <title>App014 - Vue(router#2)</title>
+</head>
+
+<body>
+    <div id="app">
+        <header-component></header-component>
+        <main-component></main-component>
+    </div>
+
+    <!-------------Template ------------->
+
+    <!-- Header -->
+
+    <template id="header">
+        <header>
+            <div class="logo">
+                #TEAMS
+            </div>
+            <nav>
+                <ul class="menu">
+                    <li>
+                        <router-link :to="{name: 'real_madrid'}">Real Madrid</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{name: 'barcelona'}">Barcelona</router-link>
+                    </li>
+                </ul>
+            </nav>
+            <header>
+    </template>
+
+    <template id="main">
+        <main>
+            <div class="first">
+                <router-view></router-view>
+            </div>
+        </main>
+    </template>
+
+    <!-- Header -->
+
+    <!-- Real Madrid -->
+    <template id="real-madrid">
+        <div id="team" ref="team" @mouseover="hover" @mouseout="out">
+            <h3>Real Madrid</h3>
+            <ul>
+                <li v-for="(player, index) in real_madrid" :key="index">
+                    {{player.nome}} ({{player.numero}})
+                </li>
+            </ul>
+        </div>
+    </template>
+    <!-- Real Madrid -->
+
+    <!--  Barcelona  -->
+    <template id="barcelona">
+        <div>
+            <div id="team" ref="team" @mouseover="hover" @mouseout="out">
+                <h3>Barcelona</h3>
+                <ul>
+
+                    <li v-for="(player, index) in barca" :key="index">
+                        <router-link :to="{name: 'playerBarcelona', params: { name: player.slug }}">{{player.nome}}
+                            ({{player.numero}})</router-link>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="team" ref="team" @mouseover="hover" @mouseout="out">
+                <router-view></router-view>
+            </div>
+        </div>
+    </template>
+    <!--  Barcelona  -->
+
+    <!-- Players Barcelona -->
+    <template id="players-barcelona">
+        <div>
+            <h2>Players Barcelona - {{$route.params.name}}</h2>
+
+            {{$route.params}}
+        </div>
+    </template>
+    <!-- Players Barcelona -->
+
+    <!-------------Template ------------->
+
+    <script>
+        //-------- Mixin --------//
+
+        var mixin = {
+            methods: {
+                hover: function () {
+                    this.$refs.team.style.border = '1px solid chocolate';
+                },
+
+                out: function () {
+                    this.$refs.team.style.border = '1px solid #5773FF';
+                }
+            },
+        }
+
+        //-------- Mixin --------//
+
+        //-------- Component --------//
+
+        /* Header */
+        var Header = Vue.component('header-component', {
+            template: '#header',
+        });
+        /* Header */
+
+        /* Main */
+        var Main = Vue.component('main-component', {
+            template: '#main',
+        })
+        /* Main */
+
+        /* Real Madrid */
+        var RealMadrid = Vue.component('real-madrid', {
+            template: '#real-madrid',
+
+            mixins: [mixin],
+
+            data: function () {
+                return {
+                    real_madrid: [
+                        { nome: "Marcelo", numero: 2 },
+                        { nome: "Toni Kroos", numero: 8 },
+                        { nome: "Eden Hazard", numero: 7 },
+                    ],
+                };
+            },
+        });
+        /* Real Madrid */
+
+        /* Barcelona */
+        var Barcelona = Vue.component('barcelona', {
+            props: {
+                barca: {
+                    default: [
+                        { nome: "Leonel Messi", numero: 10, slug: 'leonel_messi' },
+                        { nome: "Gerard Pique", numero: 3, slug: 'gerard_pique' },
+                        { nome: "Jordi Alba", numero: 2, slug: 'jordi_alba' },
+                    ]
+                }
+            },
+
+            mixins: [mixin],
+
+            template: '#barcelona',
+        });
+        /* Barcelona */
+
+        var PlayerBarcelona = Vue.component('players-barcelona', {
+            template: '#players-barcelona',
+        });
+        //-------- Component --------//
+
+
+        //-------- Router --------//
+
+        var router = new VueRouter({
+            routes: [
+                { path: 'real_madrid', name: 'real_madrid', component: RealMadrid },
+                {
+                    path: 'barcelona', name: 'barcelona', component: Barcelona,
+                    children: [
+                        { path: ':name', name: 'playerBarcelona', component: PlayerBarcelona }
+                    ]
+                }
+            ],
+        })
+
+        //-------- Router --------//
+
+
+        //-------- Instância --------//
+        new Vue({
+            el: '#app',
+
+            router,
+
+            data: {
+                barcelona: [
+                    { nome: "Leonel Messi", numero: 10, slug: 'leonel_messi' },
+                    { nome: "Gerard Pique", numero: 3, slug: 'gerard_pique' },
+                    { nome: "Jordi Alba", numero: 2, slug: 'jordi_alba' },
+                ],
+
+                team: 'real-madrid'
+            },
+
+            components: {
+                'header-component': Header,
+                'main-component': Main,
+                'real-madrid': RealMadrid,
+                'barcelona': Barcelona,
+            },
+
+        });
+        //-------- Instância --------//
+    </script>
+</body>
+
+</html>
